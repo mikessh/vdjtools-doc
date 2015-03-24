@@ -72,7 +72,7 @@ for details). This example allows to have a look at how a diverse set of
 repertoire characteristics changes as we age.
 
 The full dataset could be downloaded using this
-`link <>`__\ [**TODO**\ ], while the lite version is provided in
+[TODO], while the lite version is provided in
 VDJtools
 `repository <https://github.com/mikessh/vdjtools/tree/master/examples>`__
 for the sake of convenience. One can run the full set of analysis
