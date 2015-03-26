@@ -1,11 +1,10 @@
-Install
-=======
+.. _install:
 
-Getting binaries
-----------------
+Installing VDJtools
+-------------------
 
-Core package
-~~~~~~~~~~~~
+Installing binaries
+^^^^^^^^^^^^^^^^^^^
 
 First make sure that Java Runtime Environment (JRE) v1.7+, available
 `here <http://www.oracle.com/technetwork/java/javase/downloads/java-se-jre-7-download-432155.html>`__,
@@ -19,23 +18,28 @@ The program is then run by executing the following line
 
     java -jar vdjtools-X.X.X.jar
 
-where ``X.X.X`` stands for the latest VDJtools version (omitted further
+where ``X.X.X`` stands for the VDJtools version (omitted further
 for simplicity). This will bring up the list of available routines. To
 see the details (parameters, etc) for a specific routine execute
 
 ::
 
     java -jar vdjtools.jar RoutineName -h
+    
+.. warning:: 
 
-Additional argument (``-Xmx``) that sets the memory limit for Java
-Virtual Machine should be set for most cases. For example,
+    Consider allocating sufficient memory for Java Virtual Machine
+    when running the pipeline. To do so, execute the java with the 
+    ``-Xmx`` argument, e.g.: 
+    ::
+    
+        ``java -Xmx16G -jar vdjtools.jar RoutineName [arguments]``. 
+    
+    If insufficient amount memory is allocated, the Java Virtual Machine
+    could drop with a *Java Heap Space Out of Memory* error.
 
-::
-
-    java -Xmx16G -jar vdjtools.jar RoutineName [arguments]
-
-Plotting routines
-~~~~~~~~~~~~~~~~~
+Setting up plotting routines
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 All plotting in VDJtools framework is performed via running R scripts.
 Therefore one needs to install `R <http://www.r-project.org/>`__
@@ -65,21 +69,18 @@ run the following command in R:
                        "gplots","gridExtra","circlize"))
 
 Compiling from source
----------------------
+^^^^^^^^^^^^^^^^^^^^^
 
 VDJtools could be compiled from source code using `Apache
 Maven <http://maven.apache.org/>`__. Compilation should be performed
-under Java v1.7.
+under JRE v1.7.
 
-The only dependencies that need to be manually installed are
-`VDJdb <https://github.com/mikessh/vdjdb>`__ and
-`MiLib <https://github.com/milaboratory/milib>`__, used for clonotype
+The only dependencies that need to be manually installed is
+`VDJdb <https://github.com/mikessh/vdjdb>`__, used for clonotype
 annotation purposes:
 
 .. code:: bash
 
-    git clone --branch 1.0 --depth 1 https://github.com/milaboratory/milib.git
-    cd milib && mvn clean install && cd ..
     git clone https://github.com/mikessh/vdjdb.git
     cd vdjdb
     mvn clean install
