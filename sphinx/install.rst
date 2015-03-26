@@ -14,7 +14,7 @@ release <https://github.com/mikessh/vdjtools/releases/latest>`__.
 
 The program is then run by executing the following line
 
-::
+:: code:: bash
 
     java -jar vdjtools-X.X.X.jar
 
@@ -22,21 +22,9 @@ where ``X.X.X`` stands for the VDJtools version (omitted further
 for simplicity). This will bring up the list of available routines. To
 see the details (parameters, etc) for a specific routine execute
 
-::
+:: code:: bash
 
-    java -jar vdjtools.jar RoutineName -h
-    
-.. warning:: 
-
-    Consider allocating sufficient memory for Java Virtual Machine
-    when running the pipeline. To do so, execute the java with the 
-    ``-Xmx`` argument, e.g.: 
-    ::
-    
-        ``java -Xmx16G -jar vdjtools.jar RoutineName [arguments]``. 
-    
-    If insufficient amount memory is allocated, the Java Virtual Machine
-    could drop with a *Java Heap Space Out of Memory* error.
+    java -jar vdjtools.jar RoutineName -h    
 
 Setting up plotting routines
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -45,7 +33,7 @@ All plotting in VDJtools framework is performed via running R scripts.
 Therefore one needs to install `R <http://www.r-project.org/>`__
 programming language and make sure that the
 
-::
+:: code:: bash
 
     Rscript --version
 
@@ -53,7 +41,7 @@ runs successfully. All R scripts were tested under R version 3.1.0.
 
 Then install all dependencies to a local library automatically using
 
-::
+:: code:: bash
 
     java -jar vdjtools.jar Rinstall
 
