@@ -37,6 +37,3 @@ Table of Contents
    install
    usage
    examples
-   input
-   modules
-   browser

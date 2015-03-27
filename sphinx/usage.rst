@@ -55,7 +55,7 @@ Importing clonotype tables
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 In order to proceed with VDJtools analysis datasets should be converted to
-VDJtools format. To do this run either of the following commands:
+VDJtools format (see :ref:`vdjtools_format`). To do this run either of the following commands:
 
 :: code:: bash
 

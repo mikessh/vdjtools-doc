@@ -45,7 +45,7 @@ following V-(D)-J junction mapping software:
 -  `ImmunoSEQ <http://marketing.adaptivebiotech.com/content/immunoseq-0>`__
 
 For more details see the :ref:`software` section. VDJtools converts those files to 
-its internal format (:ref:`vdjtools_format`) which is used throughout the pipeline.
+its internal format (see :ref:`vdjtools_format`) which is used throughout the pipeline.
 
 .. note::
     If this list is missing your favourite RepSeq processing software, please
