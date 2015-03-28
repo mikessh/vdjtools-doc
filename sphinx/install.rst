@@ -14,7 +14,7 @@ release <https://github.com/mikessh/vdjtools/releases/latest>`__.
 
 The program is then run by executing the following line
 
-:: code:: bash
+.. code:: bash
 
     java -jar vdjtools-X.X.X.jar
 
@@ -22,7 +22,7 @@ where ``X.X.X`` stands for the VDJtools version (omitted further
 for simplicity). This will bring up the list of available routines. To
 see the details (parameters, etc) for a specific routine execute
 
-:: code:: bash
+.. code:: bash
 
     java -jar vdjtools.jar RoutineName -h    
 
@@ -33,7 +33,7 @@ All plotting in VDJtools framework is performed via running R scripts.
 Therefore one needs to install `R <http://www.r-project.org/>`__
 programming language and make sure that the
 
-:: code:: bash
+.. code:: bash
 
     Rscript --version
 
@@ -41,7 +41,7 @@ runs successfully. All R scripts were tested under R version 3.1.0.
 
 Then install all dependencies to a local library automatically using
 
-:: code:: bash
+.. code:: bash
 
     java -jar vdjtools.jar Rinstall
 

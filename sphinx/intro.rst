@@ -14,14 +14,15 @@ Software
 ~~~~~~~~
 
 As the core framework is complied into Java™ bytecode, it could in
-theory be run on any platform that has a Java Runtime Environment v1.7+
-installed. The only thing one needs to do is to download the binaries
-from the `latest
-release <https://github.com/mikessh/vdjtools/releases/latest>`__.
+theory be run on any platform that has a Java Runtime Environment 
+installed. The software is distributed in a form of an executable 
+JAR file.
 
 Note that the graphical output requires
 `R <http://www.r-project.org/>`__ programming language and corresponding
-modules to be installed. See the :ref:`install` section for more details.
+modules to be installed.
+
+See the :ref:`install` section for more details.
 
 Hardware
 ~~~~~~~~

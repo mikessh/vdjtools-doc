@@ -136,7 +136,7 @@ Multiple sclerosis
 
 Multiple sclerosis is a complex autoimmune disorder that does not 
 show a strong T-cell clonotype bias (see 
-`Turner et al. <http://www.nature.com/nri/journal/v6/n12/full/nri1977.html>`__).
+`Turner *et al.* <http://www.nature.com/nri/journal/v6/n12/full/nri1977.html>`__).
 Still some high-level repertoire features such as diversity and segment usage 
 are distinct between affected persons and healthy donors.
 
