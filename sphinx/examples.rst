@@ -3,20 +3,24 @@ Examples
 
 There are several data bundles and shell scripts that cover most of
 VDJtools usage scenarios available in the 
-`examples repositoty <https://github.com/mikessh/vdjtools-examples>`__.
+`examples repository <https://github.com/mikessh/vdjtools-examples>`__.
 
-All of the examples contain a folder with clonotype abundance tables 
-in ``samples/`` file and metadata file (``metadata.txt``),
-as well as a shell script ``run.sh`` that contains a line-by-line
-execution of various VDJtools routines. Samples are already converted
-to VDJtools format (see :ref:`vdjtools_format`).
+All of the examples refer to a folder with clonotype abundance tables 
+(``samples/``). They contain a sample metadata file (``metadata.txt``, 
+see :ref:`metadata`) and a shell script ``run.sh`` that contains a line-by-line
+instructions to run various VDJtools routines. Sections below give
+a detailed explanation for post-analysis steps for the available 
+example datasets.
 
-We assume that you have set the following variable pointing to
-VDJtools executable JAR file:
+.. note:: Samples are already converted to VDJtools format (see :ref:`vdjtools_format`). 
 
-.. code:: bash
+.. note::
+    
+    We assume that you have set the following variable pointing to VDJtools executable JAR file:
 
-    VDJTOOLS="java -Xmx6G -jar vdjtools.jar"
+    .. code:: bash
+
+        VDJTOOLS="java -Xmx6G -jar vdjtools.jar"
 
 
 Aging
@@ -36,29 +40,29 @@ can be performed using the following commands:
 .. code:: bash
 
     # Basic
-    $VDJTOOLS CalcBasicStats -m samples/metadata.txt out/0
-    $VDJTOOLS CalcSpectratype -m samples/metadata.txt out/1
+    $VDJTOOLS CalcBasicStats -m metadata.txt out/0
+    $VDJTOOLS CalcSpectratype -m metadata.txt out/1
     # -p for plotting, -f specifies metadata column for coloring, 
     # -n tells that factor is continuous
-    $VDJTOOLS CalcSegmentUsage -m samples/metadata.txt -p -f age -n out/2
+    $VDJTOOLS CalcSegmentUsage -m metadata.txt -p -f age -n out/2
     # the following routines run on a single sample
-    $VDJTOOLS PlotFancySpectratype samples/A4-i125.txt.gz out/3
-    $VDJTOOLS PlotSpectratypeV samples/A4-i125.txt.gz out/4
-    $VDJTOOLS PlotFancyVJUsage samples/A4-i125.txt.gz out/5
+    $VDJTOOLS PlotFancySpectratype ../samples/A4-i125.txt.gz out/3
+    $VDJTOOLS PlotSpectratypeV ../samples/A4-i125.txt.gz out/4
+    $VDJTOOLS PlotFancyVJUsage ../samples/A4-i125.txt.gz out/5
 
     # Diversity
-    $VDJTOOLS PlotQuantileStats samples/A4-i125.txt.gz out/6
-    # Compute the resampling-based diversity estimates by selecting half
-    # of the reads (all samples contain 10000 reads)
-    $VDJTOOLS CalcDiversityStats -m samples/metadata.txt -x 5000 out/7
-    # -l specifies metadata column used as label
-    $VDJTOOLS RarefactionPlot $PARAMS -f age -n -l sample.id out/8
+    # Plot clonality for a single sample
+    $VDJTOOLS PlotQuantileStats ../samples/A4-i125.txt.gz out/6
+    # Compute sample diversity estimates
+    $VDJTOOLS CalcDiversityStats -m metadata.txt out/7
+    # Perform rarefaction, -l specifies metadata column used as label
+    $VDJTOOLS RarefactionPlot -m metadata.txt -f age -n -l sample.id out/8
 
     # Intersect
     # Overlap two replicate samples coming from the same donor
-    $VDJTOOLS IntersectPair -S mitcr -p samples/A4-i189.txt.gz samples/A4-i190.txt.gz out/9
+    $VDJTOOLS IntersectPair -S mitcr -p ../samples/A4-i189.txt.gz samples/A4-i190.txt.gz out/9
     # computes various metrics characterizing the similarity between repertoires
-    $VDJTOOLS BatchIntersectPair -m samples/metadata.txt out/10
+    $VDJTOOLS BatchIntersectPair -m metadata.txt out/10
     # plotting routine is separated from time-consuming batch intersection
     # sample clustering is performed on this stage.
     # Here we use relative sample overlap as metric and age as continuous factor
@@ -66,10 +70,10 @@ can be performed using the following commands:
     # here we use Variable segment Jensen-Shannon divergence and sex as discrete factor
     $VDJTOOLS BatchIntersectPairPlot -m vJSD -f sex -l sample.id out/10 out/10.sex
 
-    # Annotation
+    # Check for EBV specific clonotypes
     # you can use flexible filter for scanning dataset that accepts regexp syntax, 
     # '__' marks the column in annotation database aka VDJdb
-    $VDJTOOLS ScanDatabase -m samples/metadata.txt -f --filter "__origin__=~/EBV/" out/11
+    $VDJTOOLS ScanDatabase -m metadata.txt -f --filter "__origin__=~/EBV/" out/11
 
 Below is an example of ``CalcSegmentUsage`` graphical output:
 
@@ -87,7 +91,6 @@ HSCT
 
 Hematopoietic stem cell transfer (HSCT) is a great model for clonotype tracking and 
 studying how the diversity of immune repertoire restores following myeloablation.
-The dataset can be found at ``examples/hsct`` folder of ``vdjtools-examples`` repository. 
 Post-analysis can be performed using the following commands:
 
 .. code:: bash
@@ -131,5 +134,27 @@ Multiple sclerosis
 .. figure:: _static/images/ms-logo.jpg
     :align: center
 
-A usage example involving MS study will appear here when the VDJtools
-paper is published :)
+Multiple sclerosis is a complex autoimmune disorder that does not 
+show a strong T-cell clonotype bias (see 
+`Turner et al. <http://www.nature.com/nri/journal/v6/n12/full/nri1977.html>`__).
+Still some high-level repertoire features such as diversity and segment usage 
+are distinct between affected persons and healthy donors.
+
+.. code:: bash
+
+    # shows higher clonality for MS samples
+    $VDJTOOLS RarefactionPlot -m metadata.txt -l sample_id -f state diversity/
+    $VDJTOOLS CalcDiversityStats -metadata.txt diversity/
+
+    # Shows the private nature of MS clonotypes
+    # as well as separation of immune repertoires of MS patients and healthy donors
+    $VDJTOOLS BatchIntersectPair -m metadata.txt /overlap/
+    $VDJTOOLS BatchIntersectPairPlot -f state overlap/
+
+    # Shows details of repertoire changes for MS8 patient that has
+    # undergone a HSCT (MS14 is a post-HSCT blood sample)
+    $VDJTOOLS IntersectPair -p ../samples/MS8.txt.gz ../samples/MS14.txt.gz overlap/
+
+    # Shows V usage level trends and cluster samples based on V usage profiles
+    $VDJTOOLS BatchIntersectPairPlot -m vJSD -f state overlap/ vusage/
+    $VDJTOOLS CalcSegmentUsage -m metadata.txt -p -f state vusage/
