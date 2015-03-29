@@ -52,6 +52,9 @@ intuitive suffix and extension.
     datasets. Setting the ``-Xmx`` argument to 20-60Gb of memory should be enough
     for most purposes, e.g. 100 samples with 500,000 clonotypes on average.
 
+    Another way to work this around is to down-sample datasets to ~100,000 reads
+    each using the :ref:`downsample` routine.
+
 Importing clonotype tables
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
 
