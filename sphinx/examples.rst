@@ -22,8 +22,8 @@ For more details on individual VDJtools routines see the :ref:`modules` section.
 
     .. code:: bash
 
-		# Point to VDJtools executable and allocate memory for JVM
-        VDJTOOLS="java -Xmx6G -jar vdjtools.jar"
+		# Point to VDJtools executable and allocate enough memory for JVM
+        VDJTOOLS="java -Xmx20G -jar vdjtools.jar"
 
 
 Aging

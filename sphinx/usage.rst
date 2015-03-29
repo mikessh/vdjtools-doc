@@ -40,7 +40,7 @@ intuitive suffix and extension.
     
     .. code:: bash
     
-        ``java -Xmx16G -jar vdjtools.jar RoutineName [arguments]``. 
+        java -Xmx16G -jar vdjtools.jar RoutineName [arguments] 
     
     If insufficient amount memory is allocated, the Java Virtual Machine
     could drop with a *Java Heap Space Out of Memory* error.

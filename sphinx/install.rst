@@ -54,7 +54,8 @@ run the following command in R:
     install.packages(c("ggplot2","reshape2","grid",
                        "ape","MASS","plotrix",
                        "RColorBrewer","FField","reshape",
-                       "gplots","gridExtra","circlize"))
+                       "gplots","gridExtra","circlize",
+                       "VennDiagram"))
 
 Compiling from source
 ^^^^^^^^^^^^^^^^^^^^^
