@@ -22,7 +22,7 @@ For more details on individual VDJtools routines see the :ref:`modules` section.
 
     .. code:: bash
 
-		# Point to VDJtools executable and allocate enough memory for JVM
+        # Point to VDJtools executable and allocate enough memory for JVM
         VDJTOOLS="java -Xmx20G -jar vdjtools.jar"
 
 
@@ -111,27 +111,27 @@ Post-analysis can be performed using the following commands:
 .. code:: bash
 
     # Some basic analysis, same as above
-	$VDJTOOLS CalcBasicStats -m metadata.txt out/0
-	$VDJTOOLS CalcSpectratype -m metadata.txt out/1
-	$VDJTOOLS CalcSegmentUsage -m metadata.txt -p -f "Time post HSCT, months" -n out/2
+    $VDJTOOLS CalcBasicStats -m metadata.txt out/0
+    $VDJTOOLS CalcSpectratype -m metadata.txt out/1
+    $VDJTOOLS CalcSegmentUsage -m metadata.txt -p -f "Time post HSCT, months" -n out/2
 
     # Diversity estimates
     # Note that selecting the factor having spaces in its name requires using double quotes
-	$VDJTOOLS CalcDiversityStats -m metadata.txt out/3
-	$VDJTOOLS RarefactionPlot -m metadata.txt -f "Time post HSCT, months" -n -l sample.id out/4
+    $VDJTOOLS CalcDiversityStats -m metadata.txt out/3
+    $VDJTOOLS RarefactionPlot -m metadata.txt -f "Time post HSCT, months" -n -l sample.id out/4
 
     # Clonotype tracking
     # Show repertoire changes that happen directly after HSCT
-	$VDJTOOLS OverlapPair -p ../samples/minus48months.txt.gz ../samples/4months.txt.gz out/5
+    $VDJTOOLS OverlapPair -p ../samples/minus48months.txt.gz ../samples/4months.txt.gz out/5
     # Next routine by default detects clonotypes that are present in 2 or more samples
     # and builds a time course for them, 
     # but here we trace clonotypes from first time point setting -x 0
-	$VDJTOOLS TrackClonotypes -m metadata.txt -f "Time post HSCT, months" -x 0 -p out/6 
+    $VDJTOOLS TrackClonotypes -m metadata.txt -f "Time post HSCT, months" -x 0 -p out/6 
 
     # Annotation
     # can also use Groovy/Java syntax in filter
     $VDJTOOLS ScanDatabase -m metadata.txt -f \
-     --filter "__origin__.contains('CMV')||__origin__.contains('EBV')" \
+    --filter "__origin__.contains('CMV')||__origin__.contains('EBV')" \
     ./out/7
 
 Rarefaction plot shows how repertoire diversity is lost and restored
@@ -158,21 +158,21 @@ are distinct between affected persons and healthy donors.
 
 .. code:: bash
 
-	# Diversity estimation
+    # Diversity estimation
     # Shows higher clonality for MS samples
     $VDJTOOLS RarefactionPlot -m metadata.txt -l sample_id -f state diversity/
-	$VDJTOOLS CalcDiversityStats -metadata.txt diversity/
+    $VDJTOOLS CalcDiversityStats -metadata.txt diversity/
 
     # Shows the private nature of MS clonotypes 
     # (MS cluster is not that compact as healthy donors),
     # as well as separation of immune repertoires of MS patients and healthy donors
-	$VDJTOOLS CalcPairwiseDistances -m metadata.txt /overlap/
-	$VDJTOOLS ClusterSamples -p -f state overlap/
+    $VDJTOOLS CalcPairwiseDistances -m metadata.txt /overlap/
+    $VDJTOOLS ClusterSamples -p -f state overlap/
 
     # Shows details of repertoire changes for MS8 patient that has
     # undergone a HSCT (MS14 is a post-HSCT blood sample)
-	$VDJTOOLS OverlapPair -p ../samples/MS8.txt.gz ../samples/MS14.txt.gz overlap/
+    $VDJTOOLS OverlapPair -p ../samples/MS8.txt.gz ../samples/MS14.txt.gz overlap/
 
     # Shows V usage level trends and cluster samples based on V usage profiles
-	$VDJTOOLS BatchIntersectPairPlot -m vJSD -f state overlap/ vusage/
-	$VDJTOOLS CalcSegmentUsage -m metadata.txt -p -f state vusage/
+    $VDJTOOLS BatchIntersectPairPlot -m vJSD -f state overlap/ vusage/
+    $VDJTOOLS CalcSegmentUsage -m metadata.txt -p -f state vusage/
