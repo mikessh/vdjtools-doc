@@ -3,6 +3,8 @@
 Basic analysis
 --------------
 
+.. _CalcBasicStats:
+
 CalcBasicStats
 ^^^^^^^^^^^^^^
 
@@ -68,6 +70,8 @@ Graphical output
 none
 
 --------------
+
+.. _CalcSegmentUsage:
 
 CalcSegmentUsage
 ^^^^^^^^^^^^^^^^
@@ -148,6 +152,8 @@ with default clustering parameters.
 
 --------------
 
+.. _CalcSpectratype:
+
 CalcSpectratype
 ^^^^^^^^^^^^^^^
 
@@ -210,6 +216,8 @@ none
 
 --------------
 
+.. _PlotFancySpectratype:
+
 PlotFancySpectratype
 ^^^^^^^^^^^^^^^^^^^^
 
@@ -267,6 +275,8 @@ The following image file with ``.fancyspectra.pdf`` suffix,
 
 --------------
 
+.. _PlotFancyVJUsage:
+
 PlotFancyVJUsage
 ^^^^^^^^^^^^^^^^
 
@@ -315,6 +325,8 @@ An image having the same name as the output table, with the exception of
     the pairing frequency (weighted in present case).
 
 --------------
+
+.. _PlotSpectratypeV:
 
 PlotSpectratypeV
 ^^^^^^^^^^^^^^^^

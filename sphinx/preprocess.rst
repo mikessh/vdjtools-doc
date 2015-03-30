@@ -3,6 +3,8 @@
 Pre-processing
 --------------
 
+.. _FilterNonFunctional:
+
 FilterNonFunctional
 ^^^^^^^^^^^^^^^^^^^
 
@@ -53,6 +55,8 @@ none
 
 --------------
 
+.. _DownSample:
+
 DownSample
 ^^^^^^^^^^
 
@@ -97,6 +101,8 @@ Graphical output
 none
 
 --------------
+
+.. _ApplySampleAsFilter:
 
 ApplySampleAsFilter
 ^^^^^^^^^^^^^^^^^^^
@@ -143,6 +149,8 @@ Graphical output
 none
 
 --------------
+
+.. _Decontaminate:
 
 Decontaminate
 ^^^^^^^^^^^^^
@@ -197,6 +205,8 @@ Graphical output
 none
 
 --------------
+
+.. _FilterBySegment:
 
 FilterBySegment
 ^^^^^^^^^^^^^^^

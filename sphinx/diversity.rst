@@ -3,6 +3,8 @@
 Diversity estimation
 --------------------
 
+.. _PlotQuantileStats:
+
 PlotQuantileStats
 ^^^^^^^^^^^^^^^^^
 
@@ -68,6 +70,8 @@ Following plot with ``.qstat.pdf`` prefix is generated,
     **Sample clonality plot.**
 
 --------------
+
+.. _RarefactionPlot:
 
 RarefactionPlot
 ^^^^^^^^^^^^^^^
@@ -154,6 +158,8 @@ provided.
     size and diversity. Shaded areas mark 95% confidence intervals.
 
 --------------
+
+.. _CalcDiversityStats:
 
 CalcDiversityStats
 ^^^^^^^^^^^^^^^^^^

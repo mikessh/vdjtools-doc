@@ -3,6 +3,8 @@
 Operate on clonotype tables
 ---------------------------
 
+.. _JointSamples:
+
 JointSamples
 ^^^^^^^^^^^^
 
@@ -138,6 +140,8 @@ R package.
 <http://en.wikipedia.org/wiki/Venn_diagram>` for the description.
 
 -----------
+
+.. _PoolSamples:
 
 PoolSamples
 ^^^^^^^^^^^

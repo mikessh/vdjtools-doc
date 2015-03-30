@@ -3,6 +3,8 @@
 Repertoire overlap analysis
 ---------------------------
 
+.. _OverlapPair:
+
 OverlapPair
 ^^^^^^^^^^^
 
@@ -77,6 +79,8 @@ plotted against the sample where the clonotype reaches maximum
 abundance.
 
 --------------
+
+.. _CalcPairwiseDistances:
 
 CalcPairwiseDistances
 ^^^^^^^^^^^^^^^^^^^^^
@@ -237,6 +241,8 @@ Pairwise overlaps are stacked, i.e. segment arc length is not equal
 to sample size.
 
 --------------
+
+.. _ClusterSamples:
 
 ClusterSamples
 ^^^^^^^^^^^^^^
