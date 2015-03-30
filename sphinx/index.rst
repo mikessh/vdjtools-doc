@@ -40,3 +40,4 @@ Table of Contents
    input
    modules
    basic
+   diversity
