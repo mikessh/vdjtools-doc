@@ -56,6 +56,7 @@ generated. The second plot file with
 contains a clonotype stack area plot. 
 
 .. figure:: _static/images/modules/intersect-pair-scatter.png
+    :align: center
     :scale: 50 %
     
 **Clonotype scatterplot**. Main frame contains a scatterplot of clonotype abundances (overlapping 
