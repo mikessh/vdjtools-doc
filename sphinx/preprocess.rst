@@ -194,3 +194,55 @@ Graphical output
 ~~~~~~~~~~~~~~~~
 
 none
+
+--------------
+
+FilterBySegment
+^^^^^^^^^^^^^^^
+
+Filters clonotypes that have V/D/J segments that match a specified segment set.
+
+Command line usage
+~~~~~~~~~~~~~~~~~~
+
+::
+
+    $VDJTOOLS FilterBySegment \
+    [options] [sample1.txt sample2.txt ... if -m is not specified] output_prefix
+
+Parameters:
+
++-------------+-----------------------+------------+----------------------------------------------------------------------+
+| Shorthand   |      Long name        | Argument   | Description                                                          |
++=============+=======================+============+======================================================================+
+| ``-m``      | ``--metadata``        | path       | Path to metadata file. See :ref:`common_params`                      |
++-------------+-----------------------+------------+----------------------------------------------------------------------+
+| ``-e``      | ``--negative``        |            | Retain only clonotypes that lack specified V/D/J segments.           |
++-------------+-----------------------+------------+----------------------------------------------------------------------+
+| ``-v``      | ``--v-segments``      | v1,v2,...  | A comma-separated list of Variable segment names                     |
++-------------+-----------------------+------------+----------------------------------------------------------------------+
+| ``-d``      | ``--d-segments``      | d1,d2,...  | A comma-separated list of Diversity segment names                    |
++-------------+-----------------------+------------+----------------------------------------------------------------------+
+| ``-j``      | ``--j-segments``      | j1,j2,...  | A comma-separated list of Joining segment names                      |
++-------------+-----------------------+------------+----------------------------------------------------------------------+
+| ``-c``      | ``--compress``        |            | Compress output sample files                                         |
++-------------+-----------------------+------------+----------------------------------------------------------------------+
+| ``-h``      | ``--help``            |            | Display help message                                                 |
++-------------+-----------------------+------------+----------------------------------------------------------------------+
+
+Tabular output
+~~~~~~~~~~~~~~
+
+Outputs filtered samples to the path specified by output prefix and
+creates a corresponding metadata file. Will also append
+``segfilter:[retain or remove based on -e option]:[-v value]:[-d value]:[-j value]`` 
+to ``..filter..`` metadata column.
+
+Creates a filter summary file with a ``segfilter.summary.txt`` suffix
+containing info on the number of unique clonotypes that passed the
+filtering process, their total frequency and count.
+
+Graphical output
+~~~~~~~~~~~~~~~~
+
+none
