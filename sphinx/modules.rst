@@ -73,6 +73,8 @@ Filtering and resampling
    specified sample
 -  :ref:`Decontaminate`
    Filters possible cross-sample contamination
+-  :ref:`FilterBySegment`
+   Filters clonotype according to their V/D/J segment
 
 :ref:`operate`
 ~~~~~~~~~~~~~~
@@ -100,6 +102,8 @@ Clonotype annotation
    
 -  :ref:`rinstall`
    Installs necessary R dependencies
+
+.. _common_params:
 
 Common parameters
 ^^^^^^^^^^^^^^^^^
