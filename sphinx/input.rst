@@ -59,6 +59,8 @@ statistics and visualization:
    files, such files should have an ``.gz`` suffix. Input data 
    should be provided in a form of tab-delimited table.
 
+.. _vdjtools_format:
+
 VDJtools format
 ^^^^^^^^^^^^^^^
 
@@ -151,12 +153,18 @@ IMGT/HighV-QUEST
 Another commonly used RepSeq processing tool is the 
 `IMGT/HighV-QUEST <http://www.imgt.org/IMGTindex/IMGTHighV-QUEST.html>`__ web server.
 
-Note that the output for each submission consists of several files and only 
-`6_Junction_${chain}_${sx}_${date}.txt` should be used as an input for VDJtools. 
-
 Please refer to the official `documentation <http://www.imgt.org/HighV-QUEST/help.action?section=doc>`__ 
 to see the description of more than a hundred of output columns present in the original output file.
 
+.. warning:: 
+    The output for each submission consists of several files and only 
+    
+    .. code:: bash
+    
+    6_Junction_${chain}_${sx}_${date}.txt
+    
+    should be used as an input for VDJtools :ref:`convert` routine. 
+    
 Run :ref:`convert` routine with ``-S imgthighvquest`` argument to prepare datasets 
 in this format for VDJtools analysis.
 
@@ -191,19 +199,19 @@ Below are the basic guidelines for creating a metadata file.
 
 -  Metadata file should be a tab-delimited table, e.g.
 
-+-----------------+--------------+-------------+-------+
-| #file.name      | sample.id    | col.name    | ...   |
-+=================+==============+=============+=======+
-| sample\_1.txt   | sample\_1    | A           | ...   |
-+-----------------+--------------+-------------+-------+
-| sample\_2.txt   | sample\_2    | A           | ...   |
-+-----------------+--------------+-------------+-------+
-| sample\_3.txt   | sample\_3    | B           | ...   |
-+-----------------+--------------+-------------+-------+
-| sample\_4.txt   | sample\_4    | C           | ...   |
-+-----------------+--------------+-------------+-------+
-| ...             | ...          | ...         | ...   |
-+-----------------+--------------+-------------+-------+
+    +-----------------+--------------+-------------+-------+
+    | #file.name      | sample.id    | col.name    | ...   |
+    +=================+==============+=============+=======+
+    | sample\_1.txt   | sample\_1    | A           | ...   |
+    +-----------------+--------------+-------------+-------+
+    | sample\_2.txt   | sample\_2    | A           | ...   |
+    +-----------------+--------------+-------------+-------+
+    | sample\_3.txt   | sample\_3    | B           | ...   |
+    +-----------------+--------------+-------------+-------+
+    | sample\_4.txt   | sample\_4    | C           | ...   |
+    +-----------------+--------------+-------------+-------+
+    | ...             | ...          | ...         | ...   |
+    +-----------------+--------------+-------------+-------+
 
 -  Header is mandatory, first two columns should be named **file\_name**
    and **sample\_id**. Names of the remaining columns will be later used
