@@ -1,7 +1,7 @@
 .. _overlap:
 
-Clonotype sharing
------------------
+Repertoire overlap analysis
+---------------------------
 
 OverlapPair
 ^^^^^^^^^^^
@@ -51,23 +51,19 @@ Graphical output
 
 A composite scatterplot plot having
 ``paired.[intersection type shorthand].scatter.pdf`` suffix is
-generated.
+generated. The second plot file with
+``.paired.[intersection type shorthand].table.collapsed.pdf`` suffix
+contains a clonotype stack area plot. 
 
 .. figure:: _static/images/modules/intersect-pair-scatter.png
     :scale: 50 %
     
-    **Clonotype scatterplot**
-    
-    Main frame contains a scatterplot of clonotype abundances (overlapping 
-    clonotypes only) and a linear regression. Point size is scaled to clonotype 
-    abundance. Two marginal histograms show the overlapping (red) and total 
-    clonotype (grey) abundance distributions in corresponding sample. 
-    Histograms are weighted by clonotype abundance, i.e. they display 
-    read distribution by clonotype size.
-
-The second plot file with
-``.paired.[intersection type shorthand].table.collapsed.pdf`` suffix
-contains a clonotype stack area plot. 
+**Clonotype scatterplot**. Main frame contains a scatterplot of clonotype abundances (overlapping 
+clonotypes only) and a linear regression. Point size is scaled to clonotype 
+abundance. Two marginal histograms show the overlapping (red) and total 
+clonotype (grey) abundance distributions in corresponding sample. 
+Histograms are weighted by clonotype abundance, i.e. they display 
+read distribution by clonotype size.
 
 .. figure:: _static/images/modules/intersect-pair-stack.png
     :align: center
@@ -308,6 +304,8 @@ Graphical output
 
 Hierarchical clustering plot is stored in a file suffixed
 ``hc.[value of -i argument].[value of -e argument].pdf``. 
+MDS plot is stored in a file with 
+``mds.[value of -i argument].[value of -e argument].pdf`` suffix. 
 
 .. figure:: _static/images/modules/intersect-batch-dendro.png
     :align: center
@@ -322,10 +320,9 @@ present case (``-n -f age`` argument).
     :align: center
     :scale: 50 %
     
-**Hierarchical clustering**. Dendrogram of samples, branch 
-length shows the distance between repertoires. Node colors 
-correspond to factor value, continuous scale is used in 
-present case (``-n -f age`` argument).
+**MDS plot**. A scatterplot of samples. Euclidean distance 
+between points reflects the distance between repertoires. 
+Points are colored by factor value.
 
 
 --------------
@@ -468,6 +465,10 @@ they are computed as follows:
 
 Summary table is visualized in a plot file suffixed
 ``sequential.[value of -i argument].summary.pdf``.
+A plot file with ``.sequential.[value of -i argument].stackplot.pdf`` 
+suffix contains a clonotype abundance stack area plot. 
+The same is also visualized using a heatmap in a file with 
+``.sequential.[value of -i argument].heatplot.pdf``).
 
 .. figure:: _static/images/modules/intersect-seq-summary.png
     :align: center
@@ -478,10 +479,6 @@ panels correspond to the read count, frequency (both non-symmetric)
 and the total number of clonotypes that are shared between samples.
 Rows and columns of each matrix are sorted according to time point
 sequence.
-
-A plot file with
-``.sequential.[value of -i argument].stackplot.pdf`` suffix
-contains a clonotype abundance stack area plot.
 
 .. figure:: _static/images/modules/intersect-seq-stackplot.png
     :align: center
@@ -494,12 +491,11 @@ plotted against the sample where the clonotype reaches maximum
 abundance. Clonotypes are colored by the peak position of their
 abundance profile.
 
-The same is also visualized using a heatmap, 
-(``.sequential.[value of -i argument].heatplot.pdf``).
 
 .. figure:: _static/images/modules/intersect-seq-heatplot.png
     :align: center
     :scale: 50 %
 
-**Clonotype tracking heatmap**. Shows top ``-t`` clonotypes.
+**Clonotype tracking heatmap**. Shows a heatmap for top ``-t`` 
+joint clonotype abundances.
 
