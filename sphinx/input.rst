@@ -1,36 +1,43 @@
 Input
-=====
+-----
 
-Formats
--------
+Clonotype tables
+^^^^^^^^^^^^^^^^
 
-Raw reads with mapped V-(D)-J junctions should assembled into clonotypes
-by the RepSeq processing software prior to post-analysis using VDJtools.
-VDJtools supports input files in form of tab-delimited clonotype
-abundance tables. To fully characterize a **clonotype**, the following
-fields are required:
+The processing stage of RepSeq analysis starts with mapping of Variable, 
+Diversity and Joining segments. Mapped reads are then assembled into clonotypes
+and stored as a clonotype abundance tables.
 
--  Variable (*V*) segment name
+VDJtools **clonotype** specification includes the following fields:
+
+-  Variable (*V*) segment name.
 
 -  Diversity (*D*) segment name for some of the receptor chains (TRB,
-   TRD and IGH)
+   TRD and IGH). Set to `.` if not aplicable or D segment was not
+   identified.
 
--  Joining (*J*) segment name
+-  Joining (*J*) segment name.
 
-    NOTE: in case a comma separated list of segment names is provided,
-    only the first one is selected
+-  Complementarity determining region 3 nucleotide sequence (*CDR3nt*).
+   CDR3) that starts with Variable region reference point (conserved Cys residue) 
+   and ends with Joining segment reference point (conserved Phe\Try).
 
--  Complementarity determining region 3 nucleotide sequence (*CDR3nt*)
+-  Translated CDR3 sequence (*CDR3aa*).
 
--  CDR3 amino acid sequence (*CDR3aa*)
+-  Somatic hypermutations (*SHMs*) in the variable segment (antibody only, **planned**).
 
--  In case of non-coding nucleotide sequences, the convention is to
-   translate both starting from V segment and backwards from J segment
-   up to the CDR3 mid point, producing sequence like ``CASSLAgg?TNEKFF``
-   where ``gg?`` marks the incomplete codon (MiGEC). This could also be
-   replaced by ``~`` symbol (MiTCR).
+.. note::
+   For ambiguous segment assignments encoded by a comma separated list 
+   of segment names only the first one is selected.
 
-Clonotype **abundance** data is provided in the following fields:
+.. note::
+   In case of non-coding CDR3 sequences, the convention is to
+   translate in both directions: upstream from V segment 
+   reference point and downstream from J segment reference point.
+   The resulting sequence (e.g. ``CASSLA~TNEKFF``) 
+   is linked by a ``~`` symbol that marks the incomplete codon.
+
+Clonotype **abundance** data is represented by *count* and *frequency* fields:
 
 -  *Count*: number of reads or cDNA/DNA molecules in case
    `UMIs <https://github.com/mikessh/migec#migec-molecular-identifier-group-based-error-correction-pipeline>`__
@@ -45,16 +52,30 @@ The following fields are optional, but are used for computing various
 statistics and visualization:
 
 -  *Vend*, *Dstart*, *Dend* and *Jstart* - marking V, D and J segment
-   boundaries within CDR3 nucleotide sequence
+   boundaries within CDR3 nucleotide sequence (inclusive)
 
-VDJtools also supports parsing somatic hypermutations (*SHMs*) in
-antibody sequences, as hypermutation analysis modules are planned to be
-added in future versions.
+.. note::
+   VDJtools accepts `gzip <http://www.gzip.org/>`__-compressed
+   files, such files should have an ``.gz`` suffix. Input data 
+   should be provided in a form of tab-delimited table.
 
-VDJtools could also read `gzip <http://www.gzip.org/>`__-compressed
-files, such files should have an ``.gz`` suffix. VDJtools currently
-supports four input types, specified by a mandatory ``-S`` argument,
-with the following table layouts.
+VDJtools format
+^^^^^^^^^^^^^^^
+
+This is a core tabular format for VDJtools. All datasets 
+should be converted to this format using the :ref:`convert` routine 
+prior to analysis. Columns 8-10 are optional.
+
++-----------+-------------+---------------------------+------------------+------------+-----------+-----------+------------+-----------+-----------+-----------+
+| column1   | column2     | column3                   | column4          | column5    | column6   | column7   | column8    | column9   | column10  | column11  |
++===========+=============+===========================+==================+============+===========+===========+============+===========+===========+===========+
+| count     | frequency   | CDR3nt                    | CDR3aa           | V          | D         | J         | Vend       | Dstart    | Dend      | Jstart    |
++-----------+-------------+---------------------------+------------------+------------+-----------+-----------+============+===========+===========+===========+
+| 1176      | 9.90E-02    | TGTGCCAGC...AAGCTTTCTTT   | CAST...EAFF      | TRBV12-4   | TRBD1     | TRBJ1-1   | 11         | 14        | 16        | 23        |
++-----------+-------------+---------------------------+------------------+------------+-----------+-----------+------------+-----------+-----------+-----------+
+
+Formats supported for conversion
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 MiTCR
 ~~~~~
@@ -63,45 +84,10 @@ Output from `MiTCR <mitcr.milaboratory.com>`__ software in ``full`` mode
 can be used without any pre-processing. The table shoul start with **two
 header lines** (default MiTCR output stores processing options and
 version in the first line), which are skipped by VDJtools. Clonotypes
-are then listed one at a line. Fields marked as <unused> are skipped by
-VDJtools but are necessary for correct table layout.
+are then listed one at a line.
 
-Table example:
-
-+-----------+-----------+------------------------------+
-| column1   | column2   | column3                      |
-+===========+===========+==============================+
-| count     | freq      | CDR3nt                       |
-+-----------+-----------+------------------------------+
-| 84        | 0.0084    | TGCGCCAGCAG...GAGCTGTTTTTT   |
-+-----------+-----------+------------------------------+
-
-+------------+------------+--------------------+------------+
-| column4    | column5    | column6            | column7    |
-+============+============+====================+============+
-| <unused>   | <unused>   | CDR3aa             | <unused>   |
-+------------+------------+--------------------+------------+
-| .          | .          | CASSQEGTGYSGELFF   | .          |
-+------------+------------+--------------------+------------+
-
-+-----------+------------+------------+------------+------------+
-| column8   | column9    | column10   | column11   | column12   |
-+===========+============+============+============+============+
-| V         | <unused>   | J          | <unused>   | D          |
-+-----------+------------+------------+------------+------------+
-| TRBV4-1   | .          | TRBJ2-2    | .          | TRBD1      |
-+-----------+------------+------------+------------+------------+
-
-+------------+------------+------------+------------+
-| column13   | column14   | column15   | column16   |
-+============+============+============+============+
-| Vend       | Dstart     | Dend       | Jstart     |
-+------------+------------+------------+------------+
-| 16         | 18         | 26         | 31         |
-+------------+------------+------------+------------+
-
-To use this input type execute VDJtools routines with ``-S mitcr``
-argument.
+Run :ref:`convert` routine with ``-S mitcr`` argument to prepare datasets 
+in this format for VDJtools analysis.
 
 MiGEC
 ~~~~~
@@ -110,133 +96,103 @@ Default output of `MiGEC <https://github.com/mikessh/migec>`__ software
 can be directly used with VDJtools. The table should start with a
 **single header line**. The table should have the following columns:
 
-+-----------+--------------+--------------------------------------+
-| column1   | column2      | column3                              |
-+===========+==============+======================================+
-| Count     | Percentage   | CDR3 nucleotide sequence             |
-+-----------+--------------+--------------------------------------+
-| 198       | 0.0295       | TGTGCGAAAGAGAG...ACGGTATGGACGTCTGG   |
-+-----------+--------------+--------------------------------------+
-
-+----------------------------+------------------------------+--------------+--------------+
-| column4                    | column5                      | column6      | column7      |
-+============================+==============================+==============+==============+
-| CDR3 amino acid sequence   | V segments                   | J segments   | D segments   |
-+----------------------------+------------------------------+--------------+--------------+
-| CAKERYSSSPDYYYYGMDVW       | IGHV3-NL1\ *01\|IGHJ6*\ 01   | .            |              |
-+----------------------------+------------------------------+--------------+--------------+
-
-+------------------------------+-------------------------------+------------------------------+-------------------------------+
-| column8                      | column9                       | column10                     | column11                      |
-+==============================+===============================+==============================+===============================+
-| Last V nucleotide position   | First D nucleotide position   | Last D nucleotide position   | First J nucleotide position   |
-+------------------------------+-------------------------------+------------------------------+-------------------------------+
-| 10                           | .                             | .                            | 31                            |
-+------------------------------+-------------------------------+------------------------------+-------------------------------+
-
-To use this input type execute VDJtools routines with ``-S migec``
-argument.
+Run :ref:`convert` routine with ``-S migec`` argument to prepare datasets 
+in this format for VDJtools analysis.
 
 IgBlast
 ~~~~~~~
 
-As IgBlast doesn't provide means for clonotype abundance table
+As IgBlast doesn't compute a canonical clonotype abundance table
 generation, I wrote a small wrapper to handle this task (see
 `IgBlastWrapper <https://github.com/mikessh/igblastwrp>`__ repository).
 IgBlastWrapper should be run with ``-l 2`` argument to generate the full
 table.
 
-+------------+------------+--------------+----------------+
-| column1    | column2    | column3      | column4        |
-+============+============+==============+================+
-| <unused>   | <unused>   | mig\_count   | mig\_freq      |
-+------------+------------+--------------+----------------+
-| .          | .          | 7            | 0.0103857567   |
-+------------+------------+--------------+----------------+
-
-+-----------------------+----------------------+------------------------------+
-| column5               | column6              | column7                      |
-+=======================+======================+==============================+
-| cdr1nt                | cdr2nt               | cdr3nt                       |
-+-----------------------+----------------------+------------------------------+
-| GGGCACG...ATCTTATCC   | TTTGACC...GCGAAATG   | TGTGCAAGAGG...TTCGACCCCTGG   |
-+-----------------------+----------------------+------------------------------+
-
-+------------+------------+------------------------+
-| column8    | column9    | column10               |
-+============+============+========================+
-| cdr1aa     | cdr2aa     | cdr3aa                 |
-+------------+------------+------------------------+
-| GHGDTILS   | FDPEDGEM   | CARGGSLNVVPPAANWFDPW   |
-+------------+------------+------------------------+
-
-+------------+------------+------------+
-| column11   | column12   | column13   |
-+============+============+============+
-| inFrame    | noStop     | complete   |
-+------------+------------+------------+
-| true       | true       | true       |
-+------------+------------+------------+
-
-+--------------------------------+-------------+------------+
-| column14                       | column15    | column16   |
-+================================+=============+============+
-| vSegment                       | dSegment    | jSegment   |
-+--------------------------------+-------------+------------+
-| IGHV1-24\ *01\|IGHD3-16*\ 01   | IGHJ5\*01   |            |
-+--------------------------------+-------------+------------+
-
-+------------+------------+------------+-------------------------------------+
-| column17   | column18   | column19   | column20                            |
-+============+============+============+=====================================+
-| <unused>   | <unused>   | <unused>   | mutations                           |
-+------------+------------+------------+-------------------------------------+
-| .          | .          | .          | 2:1E0:2:1E0,13:T>A,4:V>E,FW2\|...   |
-+------------+------------+------------+-------------------------------------+
-
 See the IgBlastWrapper repository for details on hypermutation encoding.
-To use this input type execute VDJtools routines with ``-S igblast``
-argument.
+Run :ref:`convert` routine with ``-S igblast`` argument to prepare datasets 
+in this format for VDJtools analysis.
 
-Simple
-~~~~~~
+ImmunoSEQ
+~~~~~~~~~
 
-Simple format is a lightweight clonotype abundance table format that
-allows to use data that was generated with software not currently
-supported by VDJtools / in-house processed data / incomplete data.
+One of the most commonly used RepSeq data format, more than 90% of recently published studies  
+were performed using `immunoSEQ <http://www.adaptivebiotech.com/content/immunoseq-0>`__ 
+assay. We have implemented a parser for clonotype tables as returned by 
+`Adaptive Biotechnologies <http://www.adaptivebiotech.com/>`__.
 
-+-----------+-------------+---------------------------+------------------+
-| column1   | column2     | column3                   | column4          |
-+===========+=============+===========================+==================+
-| count     | frequency   | CDR3nt                    | CDR3aa           |
-+-----------+-------------+---------------------------+------------------+
-| 1176      | 9.90E-02    | TGTGCCAGC...AAGCTTTCTTT   | CASTVDSLDTEAFF   |
-+-----------+-------------+---------------------------+------------------+
+-  Example datasets in this format could be found in the 
+   `Supplementary Data <http://ard.bmj.com/content/suppl/2014/12/11/annrheumdis-2014-206226.DC1/annrheumdis-2014-206226supp_tcr-primary-data.zip>`__ 
+   section of `Spreafico R *et al.* Ann Rheum Dis. 2014 <http://ard.bmj.com/content/early/2014/12/11/annrheumdis-2014-206226.full>`__.
 
-+------------+-----------+-----------+
-| column5    | column6   | column7   |
-+============+===========+===========+
-| V          | D         | J         |
-+------------+-----------+-----------+
-| TRBV12-4   | .         | TRBJ1-1   |
-+------------+-----------+-----------+
+-  Column header information was taken from **page 24** of the immunoSEQ Analyzer 
+   `manual <https://clients.adaptivebiotech.com/assets/downloads/immunoSEQ_AnalyzerManual.pdf>`__
 
-To use this input type execute VDJtools routines with ``-S simple``
-argument.
+-  VDJtools will use V/J segment information only at the family level, as many of the clonotypes miss 
+   segment (`-X`) and allele (`-X*0Y`) information. 
+   The clonotype table is then collapsed to handle unique V/J/CDR3 entries.
+
+-  Clonotype tables in this format initially are missing CDR3 nucleotide sequence. 
+   Instead, an entire sequencing read (first column) is provided. Therefore, we have 
+   implemented additional algorithms for CDR3 extraction and "virtual" translation 
+   to tell out-of-frame clonotypes from partially read ones.
+
+.. note::
+   Some of the clonotype entries will dropped during conversion as they contain an incomplete 
+   CDR3 sequence (lacking J segment), which is due to short reads used in immunoSEQ assay, 
+   see this `blog post <http://www.immunoseq.com/comparing-adaptive-data-and-imgt-data-on-cdr3-region-amino-acid-sequences/>`__ 
+   for details.
+   
+Run :ref:`convert` routine with ``-S immunoseq`` argument to prepare datasets 
+in this format for VDJtools analysis.
+   
+IMGT/HighV-QUEST 
+~~~~~~~~~~~~~~~~
+
+Another commonly used RepSeq processing tool is the 
+`IMGT/HighV-QUEST <http://www.imgt.org/IMGTindex/IMGTHighV-QUEST.html>`__ web server.
+
+Note that the output for each submission consists of several files and only 
+`6_Junction_${chain}_${sx}_${date}.txt` should be used as an input for VDJtools. 
+
+Please refer to the official `documentation <http://www.imgt.org/HighV-QUEST/help.action?section=doc>`__ 
+to see the description of more than a hundred of output columns present in the original output file.
+
+Run :ref:`convert` routine with ``-S imgthighvquest`` argument to prepare datasets 
+in this format for VDJtools analysis.
+
+.. _metadata:
 
 Metadata
---------
+^^^^^^^^
 
 Most VDJtools routines could be run with a sample batch. In this case
-the paths for the sample files to be analyzed could be provided via
-command line, but a more elegant solution is to specify a metadata file
-via ``-m`` option. Basic guidelines for creating metadata file are the
-following.
+paths to input files could be provided via command line (space separated), 
+but a more elegant solution is to specify a metadata file via ``-m`` option.
+The primary purpose of a metadata file is to organize and annotate datasets.
+
+.. note::
+   -  VDJtools will append metadata fields to its output tables to
+      facilitate the exploration of analysis results.
+      
+   -  Metadata entries are used as a factor in some analysis routines and
+      most plotting routines.
+
+   -  When performing tasks that involve modifying clonotype abundance
+      tables themselves, such as down-sampling, VDJtools will also provide
+      a copy of metadata file pointing to newly generated samples.
+
+   -  Newly generated metadata file would contain an additional
+      ``..filter..`` column, which has a comma-separated list of filters
+      that were applied. For example the :ref:`downsample` routine run with
+      ``-n 50000`` will append ``ds:50000`` to the ``..filter..`` column.
+      Note that this column name is reserved and should not be modified.
+
+Below are the basic guidelines for creating a metadata file.
 
 -  Metadata file should be a tab-delimited table, e.g.
 
 +-----------------+--------------+-------------+-------+
-| #file\_name     | sample\_id   | col\_name   | ...   |
+| #file.name      | sample.id    | col.name    | ...   |
 +=================+==============+=============+=======+
 | sample\_1.txt   | sample\_1    | A           | ...   |
 +-----------------+--------------+-------------+-------+
@@ -255,38 +211,22 @@ following.
 
 -  First two columns should contain the file name and sample id
    respectively.
--  The file name should be an absolute path
-   (``/Users/username/somedir/file.txt``) or a path relative to the
-   directory of parent metadata file (``./file.txt``)
--  Sample IDs should be unique
+   
+   -  The file name should be either an absolute path
+      (e.g. ``/Users/username/somedir/file.txt``) or a path relative to the
+      parent directory of metadata file (e.g. ``../file.txt``)
+   
+   -  Sample IDs should be unique
 
--  Columns after **sample\_id** are treated as metadata entries. There
+-  Columns after **sample.id** are treated as metadata entries. There
    are also several cases when info from metadata is used during
    execution:
--  VDJtools plotting routines could be directed to use metadata fields
-   for naming samples and creating intuitive legends
+   
+   -  VDJtools plotting routines could be directed to use metadata fields
+      for naming samples and creating intuitive legends. If column name
+      contains spaces it should be quoted, e.g. ``-f "patient id"``
 
    -  Metadata fields are categorized as factor (contain only strings),
       numeric (contain only numbers) and semi-numeric (numbers and
       strings). Numeric and semi-numeric fields could be used for
       gradient coloring by plotting routines.
-
--  The **time** column is used to specify time points in sequential
-   intersection
-
-Note
-~~~~
-
-Metadata is introduced to allow easy organizing files to be analyzed.
-VDJtools will also append metadata fields to its output tables to
-facilitate the exploration of analysis results.
-
--  When performing tasks that involve modifying clonotype abundance
-   tables themselves, such as down-sampling, VDJtools will also provide
-   a copy of metadata file pointing to newly generated samples.
-
--  Newly generated metadata file would contain an additional
-   ``..filter..`` column, which has a comma-separated list of filters
-   that were applied. For example the downsample routine run with
-   ``-n 50000`` will append ``ds:50000`` to the ``..filter..`` column.
-   Note that this column name is reserved and should not be modified.

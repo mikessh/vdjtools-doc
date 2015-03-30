@@ -37,3 +37,4 @@ Table of Contents
    install
    usage
    examples
+   input
