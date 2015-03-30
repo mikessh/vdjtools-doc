@@ -7,7 +7,8 @@ PlotQuantileStats
 ^^^^^^^^^^^^^^^^^
 
 Plots a three-layer donut chart to visualize the repertoire clonality.
--  First layer ("set") includes the frequency of singleton ("1", met
+
+-  First layer ("set") includes the frequency of singleton ("1", met 
    once), doubleton ("2", met twice) and high-order ("3+", met three or
    more times) clonotypes. Singleton and doubleton frequency is an
    important factor in estimating the total repertoire diversity, e.g.
@@ -76,8 +77,8 @@ dependencies between sample diversity and sample size. Those curves are
 interpolated from 0 to the current sample size and then extrapolated up
 to the size of the largest of samples, allowing comparison of diversity
 estimates. Interpolation and extrapolation are based on multinomial
-models, see `Colwell *et
-al* <http://viceroy.eeb.uconn.edu/estimates/EstimateSPages/EstSUsersGuide/References/ColwellEtAl2012.pdf>`__
+models, see 
+`Colwell et al <http://viceroy.eeb.uconn.edu/estimates/EstimateSPages/EstSUsersGuide/References/ColwellEtAl2012.pdf>`__
 for details.
 
 Command line usage
@@ -158,18 +159,20 @@ CalcDiversityStats
 ^^^^^^^^^^^^^^^^^^
 
 Computes a set of diversity statistics, including 
--  `Observed diversity`
+
+-  `Observed diversity`, the total number of clonotypes in a sample
 -  `Chao <http://viceroy.eeb.uconn.edu/estimates/EstimateSPages/EstSUsersGuide/References/ColwellEtAl2012.pdf>`__
-   and `Efron-Thisted <www.jstor.org/stable/2335721>`__ lower bound total
-   diversity (LBTD) estimates
+    (denoted ``chao1``) and `Efron-Thisted <www.jstor.org/stable/2335721>`__ lower bound total
+    diversity (LBTD) estimates
 -  `Shannon-Weaver <http://www.esajournals.org/doi/abs/10.2307/1934352>`__
     and `Inverse
     Simpson <http://www.esajournals.org/doi/abs/10.2307/1934352>`__
     diversity indices
--  `Extrapolated Chao diversity
-    estimate <http://viceroy.eeb.uconn.edu/estimates/EstimateSPages/EstSUsersGuide/References/ColwellEtAl2012.pdf>`__
-    (``chaoE``).
--  `d50 index <http://www.google.com/patents/WO2012097374A1?cl=en>`__
+-  `Extrapolated Chao diversity 
+    estimate <http://viceroy.eeb.uconn.edu/estimates/EstimateSPages/EstSUsersGuide/References/ColwellEtAl2012.pdf>`__ 
+    denoted ``chaoE`` here.
+-  `d50 index <http://www.google.com/patents/WO2012097374A1?cl=en>`__, 
+    a recently developed immune diversity estimate
 
 Diversity stats are computed in two modes: using original data and via
 several re-sampling steps (usually down-sampling to the size of smallest
@@ -233,23 +236,29 @@ original samples. Both tables contain means and standard deviations of
 diversity estimates. Also note that standard deviation and mean values
 for down-sampled datasets are computed based on N=3 re-samples.
 
-Here is an example column layout, similar between both output tables
+Here is an example column layout, similar between both output tables:
 
-+-----------------------------------------------------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------+
-| Column                                                                                                                                                    | Definition                                                                                                    |
-+===========================================================================================================================================================+===============================================================================================================+
-| sample\_id                                                                                                                                                | Sample unique identifier                                                                                      |
-+-----------------------------------------------------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------+
-| ...                                                                                                                                                       | Sample metadata columns, see :ref:`metadata` section                                                          |
-+-----------------------------------------------------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------+
-| reads                                                                                                                                                     | Number of reads in the sample                                                                                 |
-+-----------------------------------------------------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------+
-| diversity                                                                                                                                                 | Diversity of the original sample (after collapsing to unique clonotypes according to ``-i`` parameter)        |
-+-----------------------------------------------------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------+
-| extrapolate\_reads / resample\_reads                                                                                                                      | The reads used to extrapolate or re-sample in order to compute present diversity estiamtes                    |
-+-----------------------------------------------------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------+
-| <*name*\ >\_mean\|Mean value of the diversity estimate <*name*\ > \|<*name*\ >\_std\|Standard deviation of the diversity estimate <*name*\ > \|...\|...   |                                                                                                               |
-+-----------------------------------------------------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------+
++--------------------------------------+---------------------------------------------------------------------------------------------------------------+
+| Column                               | Definition                                                                                                    |
++======================================+===============================================================================================================+
+| sample\_id                           | Sample unique identifier                                                                                      |
++--------------------------------------+---------------------------------------------------------------------------------------------------------------+
+| ...                                  | Sample metadata columns, see :ref:`metadata` section                                                          |
++--------------------------------------+---------------------------------------------------------------------------------------------------------------+
+| reads                                | Number of reads in the sample                                                                                 |
++--------------------------------------+---------------------------------------------------------------------------------------------------------------+
+| diversity                            | Diversity of the original sample (after collapsing to unique clonotypes according to ``-i`` parameter)        |
++--------------------------------------+---------------------------------------------------------------------------------------------------------------+
+| extrapolate\_reads / resample\_reads | The reads used to extrapolate or re-sample in order to compute present diversity estiamtes                    |
++--------------------------------------+---------------------------------------------------------------------------------------------------------------+
+| <*name*\ >\_mean                     | Mean value of the diversity estimate <*name*\ >                                                               |
++--------------------------------------+---------------------------------------------------------------------------------------------------------------+
+| <*name*\ >\_std                      | Standard deviation of the diversity estimate <*name*\ >                                                       |
++--------------------------------------+---------------------------------------------------------------------------------------------------------------+
+| ...\_mean                            |                                                                                                               |
++--------------------------------------+---------------------------------------------------------------------------------------------------------------+
+| ...\_std                             |                                                                                                               |
++--------------------------------------+---------------------------------------------------------------------------------------------------------------+
 
 Graphical output
 ~~~~~~~~~~~~~~~~
