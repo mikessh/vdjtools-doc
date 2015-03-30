@@ -43,3 +43,4 @@ Table of Contents
    diversity
    overlap
    preprocess
+   operate

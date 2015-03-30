@@ -67,7 +67,7 @@ Filtering and resampling
 -  :ref:`FilterNonFunctional`
    Filters non-functional clonotypes
 -  :ref:`DownSample`
-   Performs down-sampling
+   Performs down-sampling, i.e. takes a subset of random reads from a sample
 -  :ref:`ApplySampleAsFilter`
    Given a list of samples filters clonotypes that are present in a
    specified sample
@@ -84,7 +84,7 @@ Clonotype table operations
 -  :ref:`PoolSamples`
    Pools clonotypes from several samples together
 -  :ref:`JoinsSamples`
-   Joins several samples and generates clonotype abundance profiles
+   Joins several samples and generates clonotype abundance profiles for a set of samples
 
 :ref:`annotate`
 ~~~~~~~~~~~~~~~

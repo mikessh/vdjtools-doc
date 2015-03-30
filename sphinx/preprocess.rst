@@ -53,20 +53,21 @@ none
 
 --------------
 
-Downsample
+DownSample
 ^^^^^^^^^^
 
 Down-samples a list of clonotype abundance tables by randomly selecting
-a pre-defined number of reads. This routine could be useful for a)
-normalizing samples for further highly-sensitive comparison b) speeding
-up computation / decreasing file size.
+a pre-defined number of reads. This routine could be useful for
+
+-  normalizing samples for further highly-sensitive comparison
+-  speeding up computation / decreasing file size and memory footprint.
 
 Command line usage
 ~~~~~~~~~~~~~~~~~~
 
 ::
 
-    $VDJTOOLS Downsample \
+    $VDJTOOLS DownSample \
     [options] [sample1.txt sample2.txt ... if -m is not specified] output_prefix
 
 Parameters:
