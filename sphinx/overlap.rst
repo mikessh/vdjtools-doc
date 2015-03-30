@@ -39,7 +39,7 @@ are generated. Tables are written in :ref:`vdjtools_format`.
 Collapsed table contains rows corresponding to top N clonotypes and 
 summary abundances for non-overlapping and hidden clonotypes.
 
-See :ref:`joint_table_structure` section for a detailed description of table fields.
+See :ref:`joint_table_structure` for a detailed description of table columns.
 
 A summary table (``paired.[intersection type shorthand].summary.txt``
 suffix) containing information on sample overlap size, etc, is also
@@ -400,67 +400,9 @@ Two joint clonotype abundance tables with
 ``sequential.[intersection type shorthand].table.collapsed.txt``
 suffices are generated. The latter contains top ``-t``
 clonotypes, with two additional rows containing summary count and frequency 
-for non-overlapping and collapsed clonotypes. Table structure is given in next
-section.
+for non-overlapping and collapsed clonotypes. 
 
-.. _joint_table_structure:
-
-Joint clonotype abundance table structure
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-First columns are the same as in canonical :ref:`vdjtools_format`, 
-they are computed as follows:
-
--  Normalized frequency is computed as geometric mean 
-   of clonotype frequencies that comprise a given joint clonotype
-   in intersected samples. If clonotype is missing, its frequency 
-   is set to ``1e-9``.
-   
-   .. note::
-       
-       A joint clonotype is comprised of all clonotypes in all
-       samples that match under the specified ``-i`` rule.
-   
--  Normalized count is calculated by scaling normalized frequencies
-   so that the joint clonotypes with smallest frequency has a count 
-   of ``1``.
-   
--  Clonotype signature (CDR3nt, CDR3aa, V, D and J) is taken from a
-   representative clonotype.
-
-   .. note::
-
-       When several clonotype variants are present in samples that
-       correspond to the same clonotype under ``-i`` rule (e.g.
-       several Variable segment variants when ``-i nt`` is set), only the
-       most frequent form is selected as a **representative** clonotype 
-       to final output.        
-
-+-------------------+------------------------------------------------------------------------------+
-| Column            | Description                                                                  |
-+===================+==============================================================================+
-| count             | Normalized clonotype count                                                   |
-+-------------------+------------------------------------------------------------------------------+
-| freq              | Normalized clonotype frequency                                               |
-+-------------------+------------------------------------------------------------------------------+
-| cdr3nt            | Representative CDR3 nucleotide sequence                                      |
-+-------------------+------------------------------------------------------------------------------+
-| cdr3aa            | Representative CDR3 amino acid sequence                                      |
-+-------------------+------------------------------------------------------------------------------+
-| v                 | Representative Variable segment                                              |
-+-------------------+------------------------------------------------------------------------------+
-| d                 | Representative Diversity segment                                             |
-+-------------------+------------------------------------------------------------------------------+
-| j                 | Representative Joining segment                                               |
-+-------------------+------------------------------------------------------------------------------+
-| peak              | Index of a time point at which given clonotype reaches its maximum frequency |
-+-------------------+------------------------------------------------------------------------------+
-| occurrences       | Number of samples the joint clonotype was detected in                        |
-+-------------------+------------------------------------------------------------------------------+
-| <*sample name*\ > | Frequency of a joint clonotype at corresponding sample                       |
-+-------------------+------------------------------------------------------------------------------+
-| ...               |                                                                              |
-+-------------------+------------------------------------------------------------------------------+
+See :ref:`joint_table_structure` for a detailed description of table columns.
 
 **Graphical output**
 

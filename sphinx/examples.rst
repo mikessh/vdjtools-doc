@@ -14,7 +14,7 @@ example datasets.
 
 For more details on individual VDJtools routines see the :ref:`modules` section.
 
-.. note:: 
+.. important:: 
     Samples in the repository are already converted to :ref:`vdjtools_format`. 
 
     We assume that you have set the following variable pointing to VDJtools executable JAR file:

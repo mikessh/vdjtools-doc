@@ -85,17 +85,12 @@ Clonotype table operations
    Pools clonotypes from several samples together
 -  :ref:`JoinsSamples`
    Joins several samples and generates clonotype abundance profiles for a set of samples
-
-:ref:`annotate`
-~~~~~~~~~~~~~~~
-
-Clonotype annotation
-
--  :ref:`ScanDatabase`
-   Queries a database containing clonotype of known antigen specificity
    
 :ref:`util`
 ~~~~~~~~~~~
+
+-  :ref:`ScanDatabase`
+   Queries a database containing clonotype of known antigen specificity
 
 -  :ref:`convert`
    Converts from one software format to another
@@ -106,14 +101,15 @@ Clonotype annotation
 Each routine generates a comprehensive tabular output and some 
 produce optional graphical output.
 
-.. warning::
+.. attention::
 
     When exporting a table into R use the following command to parse 
     the input correctly:
     
     .. code:: r
         
-        read.table("some_table.txt", header=T, comment="", quote="")
+        read.table("some_table.txt", 
+                   header=T, comment="", quote="", sep = "\t")
 
 .. _common_params:
 

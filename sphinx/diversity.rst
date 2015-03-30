@@ -195,7 +195,7 @@ dataset).
    trends (see `this <http://www.ncbi.nlm.nih.gov/pubmed/24510963>`__
    paper).
 
-.. note::
+.. hint::
     
     In our recent experience the observed diversity and LBTD estimates
     computed on re-sampled data provide best results for between-sample

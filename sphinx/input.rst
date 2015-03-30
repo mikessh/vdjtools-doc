@@ -31,11 +31,11 @@ VDJtools **clonotype** specification includes the following fields:
 
 -  Somatic hypermutations (*SHMs*) in the variable segment (antibody only, **planned**).
 
-.. note::
+.. important::
    For ambiguous segment assignments encoded by a comma separated list 
    of segment names only the first one is selected.
 
-.. note::
+.. hint::
    In case of non-coding CDR3 sequences, the convention is to
    translate in both directions: upstream from V segment 
    reference point and downstream from J segment reference point.
@@ -59,7 +59,7 @@ statistics and visualization:
 -  *Vend*, *Dstart*, *Dend* and *Jstart* - marking V, D and J segment
    boundaries within CDR3 nucleotide sequence (inclusive)
 
-.. note::
+.. tip::
    VDJtools accepts `gzip <http://www.gzip.org/>`__-compressed
    files, such files should have an ``.gz`` suffix. Input data 
    should be provided in a form of tab-delimited table.
@@ -143,7 +143,7 @@ assay. We have implemented a parser for clonotype tables as returned by
    implemented additional algorithms for CDR3 extraction and "virtual" translation 
    to tell out-of-frame clonotypes from partially read ones.
 
-.. note::
+.. attention::
    Some of the clonotype entries will dropped during conversion as they contain an incomplete 
    CDR3 sequence (lacking J segment), which is due to short reads used in immunoSEQ assay, 
    see this `blog post <http://www.immunoseq.com/comparing-adaptive-data-and-imgt-data-on-cdr3-region-amino-acid-sequences/>`__ 
@@ -161,7 +161,7 @@ Another commonly used RepSeq processing tool is the
 Please refer to the official `documentation <http://www.imgt.org/HighV-QUEST/help.action?section=doc>`__ 
 to see the description of more than a hundred of output columns present in the original output file.
 
-.. warning:: 
+.. tip:: 
     The output for each submission consists of several files and only 
     
     .. code:: bash

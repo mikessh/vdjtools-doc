@@ -45,7 +45,7 @@ intuitive suffix and extension.
     If insufficient amount memory is allocated, the Java Virtual Machine
     could drop with a *Java Heap Space Out of Memory* error.
 
-.. note::
+.. tip::
 
     Some routines could be memory demanding, especially when running sample 
     intersection/joining/pooling with a high number of large (~1,000,000 clonotypes)

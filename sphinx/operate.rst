@@ -11,7 +11,7 @@ Joint clonotype holds information on all clonotypes that match under a certain
 comparison criteria (e.g. identical CDR3nt and V segment), their samples of origin 
 and corresponding abundances.
 
-.. warning:: This is the most memory-demanding routine, especially for a large number of samples.
+.. attention:: This is the most memory-demanding routine, especially for a large number of samples.
 
 Command line usage
 ~~~~~~~~~~~~~~~~~~
@@ -76,8 +76,8 @@ clonotype abundance table, they are computed as follows:
    
    .. note::
        
-       A joint clonotype is comprised of all clonotypes in all
-       samples that match under the specified ``-i`` rule.
+       Joint clonotype is formed as a union of all clonotype variants
+       in all samples that match under the specified ``-i`` rule.
    
 -  Normalized count is calculated by scaling normalized frequencies
    so that the joint clonotypes with smallest frequency has a count 
@@ -91,7 +91,7 @@ clonotype abundance table, they are computed as follows:
        When several clonotype variants are present in samples that
        correspond to the same clonotype under ``-i`` rule (e.g.
        several Variable segment variants when ``-i nt`` is set), only the
-       most frequent form is selected as a **representative** clonotype 
+       most abundant form is selected as a **representative** clonotype 
        to final output.        
 
 +-------------------+------------------------------------------------------------------------------+
