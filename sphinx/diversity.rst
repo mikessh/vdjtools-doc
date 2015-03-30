@@ -160,21 +160,18 @@ CalcDiversityStats
 
 Computes a set of diversity statistics, including 
 
--  `Observed diversity`, the total number of clonotypes in a sample
--  `Chao <http://viceroy.eeb.uconn.edu/estimates/EstimateSPages/EstSUsersGuide/References/ColwellEtAl2012.pdf>`__
-    (denoted ``chao1``) and `Efron-Thisted <www.jstor.org/stable/2335721>`__ lower bound total
-    diversity (LBTD) estimates
--  `Shannon-Weaver <http://www.esajournals.org/doi/abs/10.2307/1934352>`__
-    and `Inverse
-    Simpson <http://www.esajournals.org/doi/abs/10.2307/1934352>`__
-    diversity indices
--  `Extrapolated Chao diversity 
-    estimate <http://viceroy.eeb.uconn.edu/estimates/EstimateSPages/EstSUsersGuide/References/ColwellEtAl2012.pdf>`__ 
-    denoted ``chaoE`` here.
+-  **Observed diversity**, the total number of clonotypes in a sample
+-  Lower bound total diversity (LBTD) estimates, 
+   `Chao estimate <http://viceroy.eeb.uconn.edu/estimates/EstimateSPages/EstSUsersGuide/References/ColwellEtAl2012.pdf>`__ 
+   (denoted ``chao1``) and `Efron-Thisted estimate <www.jstor.org/stable/2335721>`__ 
+-  Diversity indices, `Shannon-Weaver index <http://www.esajournals.org/doi/abs/10.2307/1934352>`__ and 
+   `inverse Simpson index<http://www.esajournals.org/doi/abs/10.2307/1934352>`__
+-  `Extrapolated Chao diversity estimate <http://viceroy.eeb.uconn.edu/estimates/EstimateSPages/EstSUsersGuide/References/ColwellEtAl2012.pdf>`__ 
+   denoted ``chaoE`` here.
 -  `d50 index <http://www.google.com/patents/WO2012097374A1?cl=en>`__, 
-    a recently developed immune diversity estimate
+   a recently developed immune diversity estimate
 
-Diversity stats are computed in two modes: using original data and via
+Diversity estimates are computed in two modes: using original data and via
 several re-sampling steps (usually down-sampling to the size of smallest
 dataset).
 
@@ -255,9 +252,7 @@ Here is an example column layout, similar between both output tables:
 +--------------------------------------+---------------------------------------------------------------------------------------------------------------+
 | <*name*\ >\_std                      | Standard deviation of the diversity estimate <*name*\ >                                                       |
 +--------------------------------------+---------------------------------------------------------------------------------------------------------------+
-| ...\_mean                            |                                                                                                               |
-+--------------------------------------+---------------------------------------------------------------------------------------------------------------+
-| ...\_std                             |                                                                                                               |
+| ...                                  |                                                                                                               |
 +--------------------------------------+---------------------------------------------------------------------------------------------------------------+
 
 Graphical output
