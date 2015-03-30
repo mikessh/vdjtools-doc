@@ -38,7 +38,7 @@ repertoire characteristics changes as we age. Post-analysis
 can be performed using the following commands:
 
 .. code:: bash
-    
+
     # Basic analysis
     # Generate summary tables
     $VDJTOOLS CalcBasicStats -m metadata.txt out/0
@@ -50,7 +50,7 @@ can be performed using the following commands:
     $VDJTOOLS PlotFancySpectratype ../samples/A4-i125.txt.gz out/3
     $VDJTOOLS PlotSpectratypeV ../samples/A4-i125.txt.gz out/4
     $VDJTOOLS PlotFancyVJUsage ../samples/A4-i125.txt.gz out/5
-    
+
     # Diversity estimation    
     # Plot clonality for a single sample
     $VDJTOOLS PlotQuantileStats ../samples/A4-i125.txt.gz out/6
@@ -58,7 +58,7 @@ can be performed using the following commands:
     $VDJTOOLS CalcDiversityStats -m metadata.txt out/7
     # Perform rarefaction, -l specifies metadata column used as label
     $VDJTOOLS RarefactionPlot -m metadata.txt -f age -n -l sample.id out/8
-    
+
     # Sample overlapping
     # Overlap two replicate samples coming from the same donor
     $VDJTOOLS OverlapPair -p ../samples/A4-i189.txt.gz ../samples/A4-i190.txt.gz out/9
@@ -70,12 +70,12 @@ can be performed using the following commands:
     $VDJTOOLS ClusterSamples -p -f age -n -l sample.id out/10 out/10.age
     # here we use Variable segment Jensen-Shannon divergence and sex as discrete factor
     $VDJTOOLS ClusterSamples -p -e vJSD -f sex -l sample.id out/10 out/10.sex
-    
+
     # Check for EBV specific clonotypes
     # you can use flexible filter for scanning dataset that accepts regexp syntax, 
     # '__' marks the column in annotation database aka VDJdb
     $VDJTOOLS ScanDatabase -m metadata.txt -f --filter "__origin__=~/EBV/" out/11
-    
+
     # Demonstrate sample operations and filtering
     # Remove cross-sample contamination
     $VDJTOOLS Decontaminate -m metadata.txt -c out/dec/
@@ -112,12 +112,12 @@ Post-analysis can be performed using the following commands:
     $VDJTOOLS CalcBasicStats -m metadata.txt out/0
     $VDJTOOLS CalcSpectratype -m metadata.txt out/1
     $VDJTOOLS CalcSegmentUsage -m metadata.txt -p -f "Time post HSCT, months" -n out/2
-    
+
     # Diversity estimates
     # Note that selecting the factor having spaces in its name requires using double quotes
     $VDJTOOLS CalcDiversityStats -m metadata.txt out/3
     $VDJTOOLS RarefactionPlot -m metadata.txt -f "Time post HSCT, months" -n -l sample.id out/4
-    
+
     # Clonotype tracking
     # Show repertoire changes that happen directly after HSCT
     $VDJTOOLS OverlapPair -p ../samples/minus48months.txt.gz ../samples/4months.txt.gz out/5
@@ -125,7 +125,7 @@ Post-analysis can be performed using the following commands:
     # and builds a time course for them, 
     # but here we trace clonotypes from first time point setting -x 0
     $VDJTOOLS TrackClonotypes -m metadata.txt -f "Time post HSCT, months" -x 0 -p out/6 
-    
+
     # Annotation
     # can also use Groovy/Java syntax in filter
     $VDJTOOLS ScanDatabase -m metadata.txt -f \
@@ -156,22 +156,22 @@ Still some high-level repertoire features such as diversity and segment usage
 are distinct between affected persons and healthy donors.
 
 .. code:: bash
-    
+
     # Diversity estimation
     # Shows higher clonality for MS samples
     $VDJTOOLS RarefactionPlot -m metadata.txt -l sample_id -f state diversity/
     $VDJTOOLS CalcDiversityStats -metadata.txt diversity/
-    
+
     # Shows the private nature of MS clonotypes 
     # (MS cluster is not that compact as healthy donors),
     # as well as separation of immune repertoires of MS patients and healthy donors
     $VDJTOOLS CalcPairwiseDistances -m metadata.txt /overlap/
     $VDJTOOLS ClusterSamples -p -f state overlap/
-    
+
     # Shows details of repertoire changes for MS8 patient that has
     # undergone a HSCT (MS14 is a post-HSCT blood sample)
     $VDJTOOLS OverlapPair -p ../samples/MS8.txt.gz ../samples/MS14.txt.gz overlap/
-    
+
     # Shows V usage level trends and cluster samples based on V usage profiles
     $VDJTOOLS BatchIntersectPairPlot -m vJSD -f state overlap/ vusage/
     $VDJTOOLS CalcSegmentUsage -m metadata.txt -p -f state vusage/

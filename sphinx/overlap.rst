@@ -36,7 +36,7 @@ Two joint clonotype abundance tables with
 ``paired.[intersection type shorthand].table.txt`` and
 ``paired.[intersection type shorthand].table.collapsed.txt`` suffices
 are generated. The latter one is collapsed up to top N clonotypes. See
-**tabular output** in :ref:`TrackClonotypes` section below for detailed 
+:ref:`track_clonotypes_tabular` in :ref:`TrackClonotypes` section below for detailed 
 description of table fields.
 
 A summary table (``paired.[intersection type shorthand].summary.txt``
@@ -320,32 +320,25 @@ suffixed
 
 [[/images/modules/intersect-batch-mds.png]]
 
-A plot showing the significance of sample distances within- and
-between-groups is generated in case the factor is non-numeric (``-n``).
-It contains a histogram of distances obtained using permutations with
-red vertical line indicating the observed distance and P-value. The file
-is suffixed ``perms.[value of -i argument].[value of -e argument].pdf``.
-
-[[/images/modules/intersect-batch-perms.png]]
-
 --------------
 
-IntersectSequential
-~~~~~~~~~~~~~~~~~~~
+TrackClonotypes
+^^^^^^^^^^^^^^^
 
 This routine performs an all-vs-all intersection between an ordered list
 of samples for clonotype tracking purposes. Users can specify clonotypes
 from which sample to trace, e.g. the pre-therapy sample. Alternatively,
 the output will contain all clonotypes present in at lease 2+ samples.
 
-**Command line usage**
+Command line usage
+~~~~~~~~~~~~~~~~~~
 
 ::
 
     $VDJTOOLS IntersectSequential \
     [options] [sample1.txt sample2.txt sample3.txt ... if -m is not specified] output_prefix
 
-**Parameters**
+Parameters:
 
 +-------------+------------------------+-------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | Shorthand   |      Long name         | Argument          | Description                                                                                                                                                                                                                                                                                                                                        |
@@ -369,7 +362,10 @@ the output will contain all clonotypes present in at lease 2+ samples.
 | ``-h``      | ``--help``             |                   | Display help message                                                                                                                                                                                                                                                                                                                               |
 +-------------+------------------------+-------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
-**Tabular output**
+.. _track_clonotypes_tabularЖ
+
+Tabular output
+~~~~~~~~~~~~~~
 
 Summary table suffixed ``sequential.[value of -i argument].summary.txt``
 is created with the following columns.
@@ -398,33 +394,47 @@ Two joint clonotype abundance tables with
 ``sequential.[intersection type shorthand].table.txt`` and
 ``sequential.[intersection type shorthand].table.collapsed.txt``
 suffices are generated. The latter one is collapsed up to top N
-clonotypes. Those tables contain the following columns.
+clonotypes, with two additional rows containing summary count and frequency 
+for non-overlapping and hiddent clonotypes.
 
-    NOTE: When several clonotype variants are present in samples that
+Those tables start with the same columns as 
+
+.. note::
+
+    When several clonotype variants are present in samples that
     correspond to the same clonotype under ``-i`` conditions (e.g.
     several Variable segment variants when ``-i nt`` is set), only the
-    most frequent form is taket to final output.
+    most frequent form is selected as a **representative** clonotype 
+    to final output.
+    
+    Representative frequency is computed as geometric mean 
+    of clonotype frequencies in intersected samples. 
+    If clonotype is missing, its frequency is set to ``1e-9``.
+    
+    Representative count is calculated from the frequencies so
+    that normalized so that clonotypes with smallest frequency have count 
+    of ``1``.
 
 +-----------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | Column          | Description                                                                                                                                                  |
 +=================+==============================================================================================================================================================+
-| count           | Clonotype count, normalized so that clonotypes with smallest frequency have count of ``1``                                                                   |
+| count             | Clonotype count, normalized so that clonotypes with smallest frequency have count of ``1``                                                                   |
 +-----------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| freq            | Clonotype frequency, computed as geometric mean of clonotype frequencies in intersected samples. If clonotype is missing, its frequency is set to ``1e-9``   |
+| freq              | Clonotype frequency,    |
 +-----------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| cdr3nt          | CDR3 nucleotide sequence, see `Input <https://github.com/mikessh/vdjtools/wiki/Input>`__ section                                                             |
+| cdr3nt            | CDR3 nucleotide sequence, see `Input <https://github.com/mikessh/vdjtools/wiki/Input>`__ section                                                             |
 +-----------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| cdr3aa          | CDR3 amino acid sequence                                                                                                                                     |
+| cdr3aa            | CDR3 amino acid sequence                                                                                                                                     |
 +-----------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| v               | Variable segment                                                                                                                                             |
+| v                 | Variable segment                                                                                                                                             |
 +-----------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| d               | Diversity segment                                                                                                                                            |
+| d                 | Diversity segment                                                                                                                                            |
 +-----------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| j               | Joining segment                                                                                                                                              |
+| j                 | Joining segment                                                                                                                                              |
 +-----------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| peak            | Index of a time point at which given clonotype reaches its maximum frequency                                                                                 |
+| peak              | Index of a time point at which given clonotype reaches its maximum frequency                                                                                 |
 +-----------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| <sample name>   | Frequency of a given clonotype at corresponding sample                                                                                                       |
+| <*sample name*\ > | Frequency of a given clonotype at corresponding sample                                                                                                       |
 +-----------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | ...             |
 +-----------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------+
@@ -457,7 +467,3 @@ Clonotypes that are missing in a given sample are shown with grey.
 
 --------------
 
-PoolSamples
-~~~~~~~~~~~
-
-<*UNDER DEVELOPMENT*\ >
