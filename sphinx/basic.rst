@@ -137,8 +137,9 @@ with default clustering parameters.
 
 .. figure:: _static/images/modules/basic-segmentusage.png
     :align: center
+    :scale: 50 %
     
-    Sample clustering based on Variable segment usage.
+    *Sample clustering based on Variable segment usage.*
     
     Weighted Variable usage profiles are used, hierarchical clustering is
     performed using euclidean distance. A continuous factor is displayed 
@@ -258,8 +259,9 @@ The following image file with ``.fancyspectra.pdf`` suffix,
 
 .. figure:: _static/images/modules/basic-fancyspectra.png
     :align: center
+    :scale: 50 %
     
-    Spectratype with additional detalization.
+    *Spectratype with additional detalization.*
     
     Most abundant clonotypes are explicitly shown.
 
@@ -305,6 +307,7 @@ An image having the same name as the output table, with the exception of
 
 .. figure:: _static/images/modules/basic-fancyvj.png
     :align: center
+    :scale: 50 %
     
     V-J junction circos plot for a single sample.
     
@@ -370,7 +373,8 @@ The following image file with
 
 .. figure:: _static/images/modules/basic-spectrav.png
     :align: center
+    :scale: 50 %
     
-    Stacked spectratypes by Variable segment for a single sample.
+    *Stacked spectratypes by Variable segment for a single sample.*
     
     Most frequent Variable segments are highlighted.

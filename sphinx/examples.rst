@@ -92,6 +92,7 @@ Below is an example of ``CalcSegmentUsage`` graphical output:
 
 .. figure:: _static/images/age-vusage.png
     :align: center
+    :scale: 50 %
 
 --------------
 
@@ -100,7 +101,6 @@ HSCT
 
 .. figure:: _static/images/hsct-logo.jpg
     :align: center
-
 
 Hematopoietic stem cell transfer (HSCT) is a great model for clonotype tracking and 
 studying how the diversity of immune repertoire restores following myeloablation.
@@ -141,6 +141,7 @@ abundance of top 100 clonotypes is displayed below:
 
 .. figure:: _static/images/hsct-stackplot.png
     :align: center
+    :scale: 50 %
 
 Multiple sclerosis (MS)
 ^^^^^^^^^^^^^^^^^^^^^^^
