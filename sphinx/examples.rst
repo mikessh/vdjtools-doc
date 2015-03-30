@@ -14,10 +14,9 @@ example datasets.
 
 For more details on individual VDJtools routines see the :ref:`modules` section.
 
-.. note:: Samples in the repository are already converted to VDJtools format (see :ref:`vdjtools_format`). 
+.. note:: 
+    Samples in the repository are already converted to :ref:`vdjtools_format`. 
 
-.. note::
-    
     We assume that you have set the following variable pointing to VDJtools executable JAR file:
 
     .. code:: bash
@@ -152,7 +151,7 @@ Multiple sclerosis (MS)
 
 MS is a complex autoimmune disorder that does not 
 show a strong T-cell clonotype bias (see 
-`Turner *et al.* <http://www.nature.com/nri/journal/v6/n12/full/nri1977.html>`__).
+`Turner et al. <http://www.nature.com/nri/journal/v6/n12/full/nri1977.html>`__).
 Still some high-level repertoire features such as diversity and segment usage 
 are distinct between affected persons and healthy donors.
 
