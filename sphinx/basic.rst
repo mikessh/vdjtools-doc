@@ -1,5 +1,5 @@
-Modules/Basic
--------------
+Basic analysis
+--------------
 
 CalcBasicStats
 ^^^^^^^^^^^^^^

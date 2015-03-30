@@ -39,3 +39,4 @@ Table of Contents
    examples
    input
    modules
+   basic

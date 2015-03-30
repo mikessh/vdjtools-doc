@@ -102,6 +102,18 @@ Clonotype annotation
    
 -  :ref:`rinstall`
    Installs necessary R dependencies
+   
+Each routine generates a comprehensive tabular output and some 
+produce optional graphical output.
+
+.. warning::
+
+    When exporting a table into R use the following command to parse 
+    the input correctly:
+    
+    .. code:: r
+        
+        read.table("some_table.txt", header=T, comment="", quote="")
 
 .. _common_params:
 
@@ -117,6 +129,8 @@ routines:
 | ``-h``      | ``--help``             |            | Brings up the help message for selected routine                                                                                                                                                                                                                                                                                                   |
 +-------------+------------------------+------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | ``-m``      | ``--metadata``         | path       | Path to metadata file. Should point to a tab-delimited file with the first two columns containing sample path and sample id respectively, and the remaining columns containing user-specified data. See :ref:`metadata` section                                                                                                                   |
++-------------+------------------------+------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| ``-u``      | ``--unweighted``       |            | If present as an option and not set, all statistics will be weighted by clonotype frequency                                                                                                                                                                                                                                                       |
 +-------------+------------------------+------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | ``-i``      | ``--intersect-type``   | string     | :ref:`overlap_type`, that specifies which clonotype features (CDR3 sequence, V/J segments, hypermutations) will be compared when checking if two clonotypes match. Allowed values: ``strict``,\ ``nt``,\ ``ntV``,\ ``ntVJ``,\ ``aa``,\ ``aaV``,\ ``aaVJ`` and ``aa!nt``.                                                                          |
 +-------------+------------------------+------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
