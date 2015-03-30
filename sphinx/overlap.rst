@@ -54,7 +54,6 @@ A composite scatterplot plot having
 generated.
 
 .. figure:: _static/images/modules/intersect-pair-scatter.png
-    :align: center
     :scale: 50 %
     
     **Clonotype scatterplot**
@@ -477,6 +476,8 @@ Summary table is visualized in a plot file suffixed
 **Clonotype tracking summary**. Count, frequency and diversity 
 panels correspond to the read count, frequency (both non-symmetric) 
 and the total number of clonotypes that are shared between samples.
+Rows and columns of each matrix are sorted according to time point
+sequence.
 
 A plot file with
 ``.sequential.[value of -i argument].stackplot.pdf`` suffix
