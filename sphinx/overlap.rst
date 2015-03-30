@@ -35,9 +35,11 @@ Tabular output
 Two joint clonotype abundance tables with
 ``paired.[intersection type shorthand].table.txt`` and
 ``paired.[intersection type shorthand].table.collapsed.txt`` suffices
-are generated. The latter one is collapsed up to top N clonotypes. See
-:ref:`track_clonotypes_tabular` in :ref:`TrackClonotypes` section below for detailed 
-description of table fields.
+are generated. Tables are written in :ref:`vdjtools_format`. 
+Collapsed table contains rows corresponding to top N clonotypes and 
+summary abundances for non-overlapping and hidden clonotypes.
+See :ref:`track_clonotypes_tabular` in :ref:`TrackClonotypes` section 
+below for detailed description of table fields.
 
 A summary table (``paired.[intersection type shorthand].summary.txt``
 suffix) containing information on sample overlap size, etc, is also
@@ -55,12 +57,14 @@ generated.
     :align: center
     :scale: 50 %
     
-    **Clonotype scatterplot** Main frame contains a scatterplot of 
-    clonotype abundances (overlapping clonotypes only) and a linear regression. 
-    Point size is scaled to clonotype abundance. Two marginal histograms 
-    show the overlapping (red) and total clonotype (grey) abundance
-    distributions in corresponding sample. Histograms are weighted by
-    clonotype abundance, i.e. they display read distribution by clonotype size.
+    **Clonotype scatterplot**
+    
+    Main frame contains a scatterplot of clonotype abundances (overlapping 
+    clonotypes only) and a linear regression. Point size is scaled to clonotype 
+    abundance. Two marginal histograms show the overlapping (red) and total 
+    clonotype (grey) abundance distributions in corresponding sample. 
+    Histograms are weighted by clonotype abundance, i.e. they display 
+    read distribution by clonotype size.
 
 The second plot file with
 ``.paired.[intersection type shorthand].table.collapsed.pdf`` suffix
@@ -107,9 +111,9 @@ Repertoire similarity measures include
 -  `Jensen-Shannon divergence 
    <https://www.cise.ufl.edu/~anand/sp06/jensen-shannon.pdf>`__ between 
    Variable segment usage profiles 
-   **(will be moved to :ref:`CalcSegmentUsage` in near future)**
--  `Jaccard index <http://en.wikipedia.org/wiki/Jaccard_index>`__
--  `Morisita-Horm index <http://en.wikipedia.org/wiki/Morisita's_overlap_index>`__
+   (will be moved to :ref:`CalcSegmentUsage` in near future).
+-  `Jaccard index <http://en.wikipedia.org/wiki/Jaccard_index>`__.
+-  `Morisita-Horm index <http://en.wikipedia.org/wiki/Morisita's_overlap_index>`__.
 
 :ref:`ClusterSamples` routine can be additionally run for CalcPairwiseDistances
 results.
@@ -292,8 +296,8 @@ Two output files are generated:
    
 .. note::
 
-    Hierarchical clustering and MDS are performed using ``hclust`` and
-    ``isoMDS`` (`MASS package <http://cran.r-project.org/web/packages/MASS>`__) R functions. 
+    Hierarchical clustering and MDS are performed using ``hclust()`` and
+    ``isoMDS()`` (`MASS package <http://cran.r-project.org/web/packages/MASS>`__) R functions. 
     Default parameters are used for those algorithms.
     
     Distances are scaled as ``-log10(.)`` and ``(1-.)/2`` for relative overlap and
@@ -305,11 +309,12 @@ Graphical output
 
 Hierarchical clustering output is stored in a file suffixed
 ``hc.[value of -i argument].[value of -e argument].pdf``. Clustering is
-performed using ``hcl`` util in R with default parameters. Node colors correspond to factor value.
+performed using ``hclust()`` util in R with default parameters. 
+Node colors correspond to factor value.
 
 [[/images/modules/intersect-batch-dendro.png]]
 
-Multi-dimensional scaling is performed using ``isoMDS`` function from
+Multi-dimensional scaling is performed using ``isoMDS()`` function from
 ``MASS`` R package with number of dimensions set as ``k=2``. The file is
 suffixed
 ``mds.coords.[value of -i argument].[value of -e argument].pdf``.
@@ -317,6 +322,8 @@ suffixed
 [[/images/modules/intersect-batch-mds.png]]
 
 --------------
+
+.. _TrackClonotypes:
 
 TrackClonotypes
 ^^^^^^^^^^^^^^^
@@ -358,7 +365,7 @@ Parameters:
 | ``-h``      | ``--help``             |                   | Display help message                                                                                                                                                                                                                                                                                                                               |
 +-------------+------------------------+-------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
-.. _track_clonotypes_tabularЖ
+.. _track_clonotypes_tabular:
 
 Tabular output
 ~~~~~~~~~~~~~~
