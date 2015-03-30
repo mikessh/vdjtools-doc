@@ -38,8 +38,8 @@ Two joint clonotype abundance tables with
 are generated. Tables are written in :ref:`vdjtools_format`. 
 Collapsed table contains rows corresponding to top N clonotypes and 
 summary abundances for non-overlapping and hidden clonotypes.
-See :ref:`track_clonotypes_tabular` in :ref:`TrackClonotypes` section 
-below for detailed description of table fields.
+
+See :ref:`joint_table_structure` section for a detailed description of table fields.
 
 A summary table (``paired.[intersection type shorthand].summary.txt``
 suffix) containing information on sample overlap size, etc, is also
@@ -74,11 +74,11 @@ contains a clonotype stack area plot.
     :align: center
     :scale: 50 %
     
-    **Shared clonotype abundance plot** Plot shows details for top 20 clonotypes 
-    shared between samples, as well as collapsed (**NotShown**) and non-overlapping
-    (**NonOverlapping**) clonotypes. Clonotype CDR3 amino acid sequence is
-    plotted against the sample where the clonotype reaches maximum
-    abundance.
+**Shared clonotype abundance plot**. Plot shows details for top 20 clonotypes 
+shared between samples, as well as collapsed ("NotShown") and non-overlapping
+("NonOverlapping") clonotypes. Clonotype CDR3 amino acid sequence is
+plotted against the sample where the clonotype reaches maximum
+abundance.
 
 --------------
 
@@ -99,15 +99,15 @@ Repertoire similarity measures include
    .. math:: D_{ij} = \frac{d_{ij}}{d_{i}d_{j}}
    
    where :math:`d_{ij}` is the number of clonotypes present in both samples 
-   and :math:`d_{i}` is the diversity of *i*-th sample. See 
+   and :math:`d_{i}` is the diversity of sample :math:`i`. See 
    `this paper <http://www.ncbi.nlm.nih.gov/pmc/articles/PMC3872297/>`__ 
    for the rationale behind normalization.   
 -  Relative overlap frequency, computed as a geometric mean
 
    .. math:: F_{ij} = \sqrt{f_{ij}f_{ji}}
    
-   where :math:`f_{ij}` is the total frequency of clonotypes that are present 
-   in both samples according to *i*-th sample.
+   where :math:`f_{ij}` is the total frequency of clonotypes that overlap
+   between samples :math:`i` and :math:`j` in sample :math:`i`.
 -  `Jensen-Shannon divergence 
    <https://www.cise.ufl.edu/~anand/sp06/jensen-shannon.pdf>`__ between 
    Variable segment usage profiles 
@@ -234,11 +234,11 @@ Circos plots showing pairwise overlap are stored in a file suffixed
     :align: center
     :scale: 50 %
     
-    **Pairwise overlap circos plot** Count, frequency and diversity 
-    panels correspond to the read count, frequency (non-symmetric) 
-    and the total number of clonotypes that are shared between samples.
-    Pairwise overlaps are stacked, i.e. segment arc length is not equal
-    to sample size.
+**Pairwise overlap circos plot**. Count, frequency and diversity 
+panels correspond to the read count, frequency (both non-symmetric) 
+and the total number of clonotypes that are shared between samples.
+Pairwise overlaps are stacked, i.e. segment arc length is not equal
+to sample size.
 
 --------------
 
@@ -307,19 +307,27 @@ Two output files are generated:
 Graphical output
 ~~~~~~~~~~~~~~~~
 
-Hierarchical clustering output is stored in a file suffixed
-``hc.[value of -i argument].[value of -e argument].pdf``. Clustering is
-performed using ``hclust()`` util in R with default parameters. 
-Node colors correspond to factor value.
+Hierarchical clustering plot is stored in a file suffixed
+``hc.[value of -i argument].[value of -e argument].pdf``. 
 
-[[/images/modules/intersect-batch-dendro.png]]
+.. figure:: _static/images/modules/intersect-batch-dendro.png
+    :align: center
+    :scale: 50 %
+    
+**Hierarchical clustering**. Dendrogram of samples, branch 
+length shows the distance between repertoires. Node colors 
+correspond to factor value, continuous scale is used in 
+present case (``-n -f age`` argument).    
 
-Multi-dimensional scaling is performed using ``isoMDS()`` function from
-``MASS`` R package with number of dimensions set as ``k=2``. The file is
-suffixed
-``mds.coords.[value of -i argument].[value of -e argument].pdf``.
+.. figure:: _static/images/modules/intersect-batch-mds.png
+    :align: center
+    :scale: 50 %
+    
+**Hierarchical clustering**. Dendrogram of samples, branch 
+length shows the distance between repertoires. Node colors 
+correspond to factor value, continuous scale is used in 
+present case (``-n -f age`` argument).
 
-[[/images/modules/intersect-batch-mds.png]]
 
 --------------
 
@@ -329,43 +337,40 @@ TrackClonotypes
 ^^^^^^^^^^^^^^^
 
 This routine performs an all-vs-all intersection between an ordered list
-of samples for clonotype tracking purposes. Users can specify clonotypes
-from which sample to trace, e.g. the pre-therapy sample. Alternatively,
-the output will contain all clonotypes present in at lease 2+ samples.
+of samples for clonotype tracking purposes. User can specify sample which
+clonotypes will be traced, e.g. the pre-therapy sample.
 
 Command line usage
 ~~~~~~~~~~~~~~~~~~
 
 ::
 
-    $VDJTOOLS IntersectSequential \
+    $VDJTOOLS TrackClonotypes \
     [options] [sample1.txt sample2.txt sample3.txt ... if -m is not specified] output_prefix
 
 Parameters:
 
-+-------------+------------------------+-------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| Shorthand   |      Long name         | Argument          | Description                                                                                                                                                                                                                                                                                                                                        |
-+=============+========================+===================+====================================================================================================================================================================================================================================================================================================================================================+
-| ``-S``      | ``--software``         | string            | Input format. See `Common parameters <https://github.com/mikessh/vdjtools/wiki/Modules#common-parameters>`__                                                                                                                                                                                                                                       |
-+-------------+------------------------+-------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| ``-m``      | ``--metadata``         | path              | Path to metadata file. See `Common parameters <https://github.com/mikessh/vdjtools/wiki/Modules#common-parameters>`__                                                                                                                                                                                                                              |
-+-------------+------------------------+-------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| ``-i``      | ``--intersect-type``   | string            | Sample intersection rule. Defaults to ``strict``. See `Common parameters <https://github.com/mikessh/vdjtools/wiki/Modules#common-parameters>`__                                                                                                                                                                                                   |
-+-------------+------------------------+-------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| ``-f``      | ``--factor``           | string            | Specifies factor that should be treated as time variable. Factor values should be numeric. Defaults to 'time'. If such column is not present in metadata, time points are taken either from values provided with ``-s`` argument or sample order. See `Common parameters <https://github.com/mikessh/vdjtools/wiki/Modules#common-parameters>`__   |
-+-------------+------------------------+-------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| ``-x``      | ``--track-sample``     | integer           | A zero-based index of time point to track. If not provided, will consider all clonotypes that were detected in 2+ samples                                                                                                                                                                                                                          |
-+-------------+------------------------+-------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| ``-s``      | ``--sequence``         | ``[t1,t2,...]``   | Time point sequence. Unused if -m is specified. If not specified, either time values from metadata, or sample indexes (as in command line) are used.                                                                                                                                                                                               |
-+-------------+------------------------+-------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| ``-t``      | ``--top``              | int               | Number of top clonotypes to visualize explicitly on stack are plot and provide in the collapsed joint table. Should not exceed 100, default is 200                                                                                                                                                                                                 |
-+-------------+------------------------+-------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| ``-p``      | ``--plot``             |                   | Turns on plotting. See `Common parameters <https://github.com/mikessh/vdjtools/wiki/Modules#common-parameters>`__                                                                                                                                                                                                                                  |
-+-------------+------------------------+-------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| ``-h``      | ``--help``             |                   | Display help message                                                                                                                                                                                                                                                                                                                               |
-+-------------+------------------------+-------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-
-.. _track_clonotypes_tabular:
++-------------+------------------------+-------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Shorthand   |      Long name         | Argument          | Description                                                                                                                                                                                                                               |
++=============+========================+===================+===========================================================================================================================================================================================================================================+
+| ``-m``      | ``--metadata``         | path              | Path to metadata file. See See :ref:`common_params`                                                                                                                                                                                       |
++-------------+------------------------+-------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| ``-i``      | ``--intersect-type``   | string            | Sample intersection rule. Defaults to ``strict``. See :ref:`common_params`                                                                                                                                                                |
++-------------+------------------------+-------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| ``-f``      | ``--factor``           | string            | Specifies factor that should be treated as ``time`` variable. Factor values should be numeric. If such column not set, time points are taken either from values provided with ``-s`` argument or sample order. See :ref:`common_params`   |
++-------------+------------------------+-------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| ``-x``      | ``--track-sample``     | integer           | A zero-based index of time point to track. If not provided, will consider all clonotypes that were detected in 2+ samples                                                                                                                 |
++-------------+------------------------+-------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| ``-s``      | ``--sequence``         | ``[t1,t2,...]``   | Time point sequence. Unused if -m is specified. If not specified, either ``time`` column values from metadata, or sample indexes (as in command line) are used.                                                                           |
++-------------+------------------------+-------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| ``-t``      | ``--top``              | integer           | Number of top clonotypes to visualize explicitly on stack are plot and provide in the collapsed joint table. Should not exceed 100, default is 200                                                                                        |
++-------------+------------------------+-------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| ``-p``      | ``--plot``             |                   | Turns on plotting. See :ref:`common_params`                                                                                                                                                                                               |
++-------------+------------------------+-------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| ``-p``      | ``--plot``             |                   | Compressed output for clonotype table. See :ref:`common_params`                                                                                                                                                                           |
++-------------+------------------------+-------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| ``-h``      | ``--help``             |                   | Display help message                                                                                                                                                                                                                      |
++-------------+------------------------+-------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
 Tabular output
 ~~~~~~~~~~~~~~
@@ -388,7 +393,7 @@ is created with the following columns.
 +-----------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | 2\_time         | Time value for the second sample                                                                                                                                                                                                                                                                          |
 +-----------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| 1\_...          | First sample metadata columns. See `Metadata <https://github.com/mikessh/vdjtools/wiki/Input#metadata>`__ section                                                                                                                                                                                         |
+| 1\_...          | First sample metadata columns. See :ref:`metadata` section                                                                                                                                                                                                                                                |
 +-----------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | 2\_...          | Second sample metadata columns                                                                                                                                                                                                                                                                            |
 +-----------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
@@ -396,77 +401,104 @@ is created with the following columns.
 Two joint clonotype abundance tables with
 ``sequential.[intersection type shorthand].table.txt`` and
 ``sequential.[intersection type shorthand].table.collapsed.txt``
-suffices are generated. The latter one is collapsed up to top N
+suffices are generated. The latter contains top ``-t``
 clonotypes, with two additional rows containing summary count and frequency 
-for non-overlapping and hiddent clonotypes.
+for non-overlapping and collapsed clonotypes. Table structure is given in next
+section.
 
-Those tables start with the same columns as 
+.. _joint_table_structure:
 
-.. note::
+Joint clonotype abundance table structure
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-    When several clonotype variants are present in samples that
-    correspond to the same clonotype under ``-i`` conditions (e.g.
-    several Variable segment variants when ``-i nt`` is set), only the
-    most frequent form is selected as a **representative** clonotype 
-    to final output.
-    
-    Representative frequency is computed as geometric mean 
-    of clonotype frequencies in intersected samples. 
-    If clonotype is missing, its frequency is set to ``1e-9``.
-    
-    Representative count is calculated from the frequencies so
-    that normalized so that clonotypes with smallest frequency have count 
-    of ``1``.
+First columns are the same as in canonical :ref:`vdjtools_format`, 
+they are computed as follows:
 
-+-----------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| Column          | Description                                                                                                                                                  |
-+=================+==============================================================================================================================================================+
-| count             | Clonotype count, normalized so that clonotypes with smallest frequency have count of ``1``                                                                   |
-+-----------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| freq              | Clonotype frequency,    |
-+-----------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| cdr3nt            | CDR3 nucleotide sequence, see `Input <https://github.com/mikessh/vdjtools/wiki/Input>`__ section                                                             |
-+-----------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| cdr3aa            | CDR3 amino acid sequence                                                                                                                                     |
-+-----------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| v                 | Variable segment                                                                                                                                             |
-+-----------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| d                 | Diversity segment                                                                                                                                            |
-+-----------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| j                 | Joining segment                                                                                                                                              |
-+-----------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| peak              | Index of a time point at which given clonotype reaches its maximum frequency                                                                                 |
-+-----------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| <*sample name*\ > | Frequency of a given clonotype at corresponding sample                                                                                                       |
-+-----------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| ...             |
-+-----------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------+
+-  Normalized frequency is computed as geometric mean 
+   of clonotype frequencies that comprise a given joint clonotype
+   in intersected samples. If clonotype is missing, its frequency 
+   is set to ``1e-9``.
+   
+   .. note::
+       
+       A joint clonotype is comprised of all clonotypes in all
+       samples that match under the specified ``-i`` rule.
+   
+-  Normalized count is calculated by scaling normalized frequencies
+   so that the joint clonotypes with smallest frequency has a count 
+   of ``1``.
+   
+-  Clonotype signature (CDR3nt, CDR3aa, V, D and J) is taken from a
+   representative clonotype.
+
+   .. note::
+
+       When several clonotype variants are present in samples that
+       correspond to the same clonotype under ``-i`` rule (e.g.
+       several Variable segment variants when ``-i nt`` is set), only the
+       most frequent form is selected as a **representative** clonotype 
+       to final output.        
+
++-------------------+------------------------------------------------------------------------------+
+| Column            | Description                                                                  |
++===================+==============================================================================+
+| count             | Normalized clonotype count                                                   |
++-------------------+------------------------------------------------------------------------------+
+| freq              | Normalized clonotype frequency                                               |
++-------------------+------------------------------------------------------------------------------+
+| cdr3nt            | Representative CDR3 nucleotide sequence                                      |
++-------------------+------------------------------------------------------------------------------+
+| cdr3aa            | Representative CDR3 amino acid sequence                                      |
++-------------------+------------------------------------------------------------------------------+
+| v                 | Representative Variable segment                                              |
++-------------------+------------------------------------------------------------------------------+
+| d                 | Representative Diversity segment                                             |
++-------------------+------------------------------------------------------------------------------+
+| j                 | Representative Joining segment                                               |
++-------------------+------------------------------------------------------------------------------+
+| peak              | Index of a time point at which given clonotype reaches its maximum frequency |
++-------------------+------------------------------------------------------------------------------+
+| occurrences       | Number of samples the joint clonotype was detected in                        |
++-------------------+------------------------------------------------------------------------------+
+| <*sample name*\ > | Frequency of a joint clonotype at corresponding sample                       |
++-------------------+------------------------------------------------------------------------------+
+| ...               |                                                                              |
++-------------------+------------------------------------------------------------------------------+
 
 **Graphical output**
 
 Summary table is visualized in a plot file suffixed
 ``sequential.[value of -i argument].summary.pdf``.
 
-[[/images/modules/intersect-seq-summary.png]]
+.. figure:: _static/images/modules/intersect-seq-summary.png
+    :align: center
+    :scale: 50 %
+
+**Clonotype tracking summary**. Count, frequency and diversity 
+panels correspond to the read count, frequency (both non-symmetric) 
+and the total number of clonotypes that are shared between samples.
 
 A plot file with
-``.sequential.[intersection type shorthand].stackplot.pdf`` suffix
-contains a clonotype abundance stack area plot. It shows details for top
-N clonotypes, as well as collapsed ("NotShown") and non-overlapping
+``.sequential.[value of -i argument].stackplot.pdf`` suffix
+contains a clonotype abundance stack area plot.
+
+.. figure:: _static/images/modules/intersect-seq-stackplot.png
+    :align: center
+    :scale: 50 %
+    
+**Clonotype tracking stackplot**. Contains detailed profiles for top
+``-t`` clonotypes, as well as collapsed ("NotShown") and non-overlapping
 ("NonOverlapping") clonotypes. Clonotype CDR3 amino acid sequence is
 plotted against the sample where the clonotype reaches maximum
 abundance. Clonotypes are colored by the peak position of their
 abundance profile.
 
-[[/images/modules/intersect-seq-stackplot.png]]
+The same is also visualized using a heatmap, 
+(``.sequential.[value of -i argument].heatplot.pdf``).
 
-Clonotype abundance for top N clonotypes is also visualized using
-heatmap (``.sequential.[intersection type shorthand].heatplot.pdf``). It
-also includes a dendrogram showing the clustering of clonotype abundance
-profiles. suffix contains a clonotype abundance stack area plot.
-Clonotypes that are missing in a given sample are shown with grey.
+.. figure:: _static/images/modules/intersect-seq-heatplot.png
+    :align: center
+    :scale: 50 %
 
-[[/images/modules/intersect-seq-heatplot.png]]
-
---------------
+**Clonotype tracking heatmap**. Shows top ``-t`` clonotypes.
 
