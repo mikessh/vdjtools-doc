@@ -38,3 +38,4 @@ Table of Contents
    usage
    examples
    input
+   modules

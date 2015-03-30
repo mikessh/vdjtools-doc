@@ -8,6 +8,11 @@ The processing stage of RepSeq analysis starts with mapping of Variable,
 Diversity and Joining segments. Mapped reads are then assembled into clonotypes
 and stored as a clonotype abundance tables.
 
+.. _clonotype_spec:
+
+Clonotype
+~~~~~~~~~
+
 VDJtools **clonotype** specification includes the following fields:
 
 -  Variable (*V*) segment name.
@@ -124,7 +129,7 @@ assay. We have implemented a parser for clonotype tables as returned by
 
 -  Example datasets in this format could be found in the 
    `Supplementary Data <http://ard.bmj.com/content/suppl/2014/12/11/annrheumdis-2014-206226.DC1/annrheumdis-2014-206226supp_tcr-primary-data.zip>`__ 
-   section of `Spreafico R *et al.* Ann Rheum Dis. 2014 <http://ard.bmj.com/content/early/2014/12/11/annrheumdis-2014-206226.full>`__.
+   section of `Spreafico R et al. Ann Rheum Dis. 2014 <http://ard.bmj.com/content/early/2014/12/11/annrheumdis-2014-206226.full>`__.
 
 -  Column header information was taken from **page 24** of the immunoSEQ Analyzer 
    `manual <https://clients.adaptivebiotech.com/assets/downloads/immunoSEQ_AnalyzerManual.pdf>`__
@@ -161,7 +166,7 @@ to see the description of more than a hundred of output columns present in the o
     
     .. code:: bash
     
-    6_Junction_${chain}_${sx}_${date}.txt
+        6_Junction_${chain}_${sx}_${date}.txt
     
     should be used as an input for VDJtools :ref:`convert` routine. 
     
