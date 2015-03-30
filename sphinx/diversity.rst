@@ -160,8 +160,7 @@ CalcDiversityStats
 
 Computes a set of diversity statistics, including 
 
--  **Observed diversity**, the total number of clonotypes in a sample
-
+-  Observed diversity, the total number of clonotypes in a sample
 -  Lower bound total diversity (LBTD) estimates
    
    -  `Chao estimate <http://viceroy.eeb.uconn.edu/estimates/EstimateSPages/EstSUsersGuide/References/ColwellEtAl2012.pdf>`__ 
@@ -170,13 +169,12 @@ Computes a set of diversity statistics, including
 
 -  Diversity indices
 
-   -  `Shannon-Weaver index <http://www.esajournals.org/doi/abs/10.2307/1934352>`__
-   
+   -  `Shannon-Weaver index <http://www.esajournals.org/doi/abs/10.2307/1934352>`__   
    -  `Inverse Simpson index <http://www.esajournals.org/doi/abs/10.2307/1934352>`__
 
--  `Extrapolated Chao diversity estimate <http://viceroy.eeb.uconn.edu/estimates/EstimateSPages/EstSUsersGuide/References/ColwellEtAl2012.pdf>`__ 
+-  `Extrapolated Chao diversity estimate 
+   <http://viceroy.eeb.uconn.edu/estimates/EstimateSPages/EstSUsersGuide/References/ColwellEtAl2012.pdf>`__, 
    denoted *chaoE* here.
-
 -  The `d50 index <http://www.google.com/patents/WO2012097374A1?cl=en>`__, 
    a recently developed immune diversity estimate
 

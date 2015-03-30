@@ -90,7 +90,6 @@ Repertoire similarity measures include
 
 -  Pearson correlation of clonotype frequencies. 
    Computed only for clonotypes that are present in both samples.
-
 -  Relative overlap diversity, computed with the following normalization 
 
    .. math:: D_{ij} = \frac{d_{ij}}{d_{i}d_{j}}
@@ -98,20 +97,18 @@ Repertoire similarity measures include
    where :math:`d_{ij}` is the number of clonotypes present in both samples 
    and :math:`d_{i}` is the diversity of *i*-th sample. See 
    `this paper <http://www.ncbi.nlm.nih.gov/pmc/articles/PMC3872297/>`__ 
-   for the rationale behind normalization.
-   
+   for the rationale behind normalization.   
 -  Relative overlap frequency, computed as a geometric mean
 
    .. math:: F_{ij} = \sqrt{f_{ij}f_{ji}}
    
    where :math:`f_{ij}` is the total frequency of clonotypes that are present 
    in both samples according to *i*-th sample.
-
--  `Jensen-Shannon divergence <https://www.cise.ufl.edu/~anand/sp06/jensen-shannon.pdf>`__
-    between Variable segment usage profiles (will be moved to :ref:`CalcSegmentUsage` in near future)
-   
+-  `Jensen-Shannon divergence 
+   <https://www.cise.ufl.edu/~anand/sp06/jensen-shannon.pdf>`__ between 
+   Variable segment usage profiles 
+   **(will be moved to :ref:`CalcSegmentUsage` in near future)**
 -  `Jaccard index <http://en.wikipedia.org/wiki/Jaccard_index>`__
-
 -  `Morisita-Horm index <http://en.wikipedia.org/wiki/Morisita's_overlap_index>`__
 
 :ref:`ClusterSamples` routine can be additionally run for CalcPairwiseDistances
@@ -198,15 +195,15 @@ Table layout is given below in three parts.
 +---------------+--------------------------------------------------------------------+
 | F             | Relative overlap frequency                                         |
 +---------------+--------------------------------------------------------------------+
-| F2            | *experimental*                                                     |
+| F2            | <*experimental*\ >                                                 |
 +---------------+--------------------------------------------------------------------+
 | vJSD          | Jensen-Shannon divergence of Variable segment usage distributions  | 
 +---------------+--------------------------------------------------------------------+
-| vjJSD         | *experimental*                                                     |
+| vjJSD         | <*experimental*\ >                                                 |
 +---------------+--------------------------------------------------------------------+
-| vj2JSD        | *experimental*                                                     |
+| vj2JSD        | <*experimental*\ >                                                 |
 +---------------+--------------------------------------------------------------------+
-| sJSD          | *experimental*                                                     |
+| sJSD          | <*experimental*\ >                                                 |
 +---------------+--------------------------------------------------------------------+
 | Jaccard       | Jaccard index                                                      |
 +---------------+--------------------------------------------------------------------+
@@ -288,8 +285,7 @@ Two output files are generated:
 -  Table suffixed ``mds.[value of -i argument].[value of -e argument].txt``
    that contains coordinates of samples computed using 
    multi-dimensional scaling (MDS), i.e. the coordinates of samples 
-   projected to a 2D plane in a manner that pairwise sample distances are preserved.
-   
+   projected to a 2D plane in a manner that pairwise sample distances are preserved.   
 -  A file in `Newick format <http://en.wikipedia.org/wiki/Newick_format>`__ suffixed
    ``hc.[value of -i argument].[value of -e argument].newick`` is
    generated that contains sample dendrogram produced by hierarchical clustering.
