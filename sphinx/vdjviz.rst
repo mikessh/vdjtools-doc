@@ -21,7 +21,7 @@ some RepSeq files in any supported format.
     most 10,000 clonotypes, so the :ref:`DownSample` routine
     could come in handy
 
-.. figure:: _static/images/workflow.png
+.. figure:: _static/images/vdjviz.png
     :align: center
     
     **VDJviz clonotype browser panel**
