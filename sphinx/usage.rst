@@ -4,9 +4,7 @@ Usage
 Command line usage
 ^^^^^^^^^^^^^^^^^^
 
-General way to execute VDJtools
-`routines <https://github.com/mikessh/vdjtools/wiki/Modules>`__ would be
-the following,
+General way to execute VDJtools routines would be the following,
 
 .. code:: bash
 
