@@ -48,9 +48,9 @@ Parameters:
 | ``-h``      | ``--help``            |                  | Display help message                                                                                                                                                              |
 +-------------+-----------------------+------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
-.. note:: Database filter
+.. note:: 
     
-    Logical expressions argument should evaluate to boolean value and contain 
+    Database filter is a logical expression that contains
     reference to input table columns. Database column name references should 
     be surrounded with double underscores (``__``). Syntax supports Regex and 
     standard Java/Groovy functions such as ``.contains()``, ``.startsWith()``, 
