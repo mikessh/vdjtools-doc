@@ -67,7 +67,7 @@ Following plot with ``.qstat.pdf`` prefix is generated,
     :align: center
     :scale: 50 %
     
-    **Sample clonality plot.**
+**Sample clonality plot**. See above for the description of plot structure.
 
 --------------
 
@@ -152,10 +152,9 @@ provided.
     :align: center
     :scale: 50 %
 
-    **Rarefaction plot** 
-    Solid and dashed lines mark interpolated and extrapolated
-    regions of rarefaction curves respectively, points mark exact sample
-    size and diversity. Shaded areas mark 95% confidence intervals.
+**Rarefaction plot**. Solid and dashed lines mark interpolated and extrapolated 
+regions of rarefaction curves respectively, points mark exact sample 
+size and diversity. Shaded areas mark 95% confidence intervals.
 
 --------------
 

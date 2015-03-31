@@ -145,10 +145,10 @@ with default clustering parameters.
     :align: center
     :scale: 50 %
     
-    **Sample clustering based on Variable segment usage.** 
-    Weighted Variable usage profiles are used, hierarchical clustering is
-    performed using euclidean distance. A continuous factor is displayed 
-    (``-n -f age`` argument).
+**Sample clustering based on Variable segment usage**. Weighted 
+Variable usage profiles are used, hierarchical clustering is
+performed using euclidean distance. A continuous factor is displayed 
+(``-n -f age`` argument).
 
 --------------
 
@@ -270,8 +270,8 @@ The following image file with ``.fancyspectra.pdf`` suffix,
     :align: center
     :scale: 50 %
     
-    **Spectratype with additional detalization.** 
-    Most abundant clonotypes are explicitly shown.
+**Spectratype with additional detalization.** 
+Most abundant clonotypes are explicitly shown.
 
 --------------
 
@@ -386,5 +386,5 @@ The following image file with
     :align: center
     :scale: 50 %
     
-    **Stacked spectratypes by Variable segment for a single sample.**
-    Most frequent Variable segments are highlighted.
+**Stacked spectratypes by Variable segment for a single sample.** 
+Most frequent Variable segments are highlighted.
