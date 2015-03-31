@@ -11,6 +11,10 @@ the following,
 .. code:: bash
 
     java -Xmx16G -jar vdjtools.jar RoutineName [arguments] -m metadata.txt output/prefix
+    
+Output prefix could be either an output directory name (if ended with
+``/``) or an output file prefix. Most VDJtools routines will append 
+the prefix with an intuitive suffix and extension.    
 
 The ``-m metadata.txt`` argument specifies a metadata file with relative sample paths, 
 sample names and any other information to provide this information later in analysis.
@@ -23,14 +27,10 @@ space-separated list of files, e.g.
 
     java -Xmx16G -jar vdjtools.jar RoutineName sample1.txt[.gz] sample2.txt[.gz] ... output/prefix
 
-Whether not explicitly used (such as in "*Plot" routines) and applicable, 
+Whether not explicitly used (such as in "...Plot" routines) and applicable, 
 plotting is turned on with ``-p`` argument.
 
 The ``-h`` argument will bring up help message for specified routine.
-
-Output prefix could be either an output directory name (if ended with
-``/``) or an output file prefix, which would be appended with an
-intuitive suffix and extension.
 
 .. warning:: 
 

@@ -39,7 +39,8 @@ programming language and make sure that the
 
 runs successfully. All R scripts were tested under R version 3.1.0.
 
-Then install all dependencies to a local library automatically using
+Then install all dependencies to a local library automatically using the 
+:ref:`rinstall` routine:
 
 .. code:: bash
 

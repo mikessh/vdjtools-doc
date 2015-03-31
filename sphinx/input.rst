@@ -81,6 +81,8 @@ prior to analysis. Columns 8-10 are optional.
 | 1176      | 9.90E-02    | TGTGCCAGC...AAGCTTTCTTT   | CAST...EAFF      | TRBV12-4   | TRBD1     | TRBJ1-1   | 11         | 14        | 16        | 23        |
 +-----------+-------------+---------------------------+------------------+------------+-----------+-----------+------------+-----------+-----------+-----------+
 
+.. _supported_input:
+
 Formats supported for conversion
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
