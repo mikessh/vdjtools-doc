@@ -24,4 +24,9 @@ some RepSeq files in any supported format.
 .. figure:: _static/images/vdjviz.png
     :align: center
     
-    **VDJviz clonotype browser panel**
+    Clonotype browser panel
+    
+.. figure:: _static/images/vdjviz1.png
+    :align: center
+    
+    Interactive graphs
