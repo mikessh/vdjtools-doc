@@ -14,7 +14,7 @@ the following,
     
 Output prefix could be either an output directory name (if ended with
 ``/``) or an output file prefix. Most VDJtools routines will append 
-the prefix with an intuitive suffix and extension.    
+the prefix with an intuitive suffix and extension.
 
 The ``-m metadata.txt`` argument specifies a metadata file with relative sample paths, 
 sample names and any other information to provide this information later in analysis.

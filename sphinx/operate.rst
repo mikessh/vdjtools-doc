@@ -3,9 +3,9 @@
 Operate on clonotype tables
 ---------------------------
 
-.. _JointSamples:
+.. _JoinSamples:
 
-JointSamples
+JoinSamples
 ^^^^^^^^^^^^
 
 Joins several clonotype tables together to form a joint clonotype abundance table.
@@ -20,7 +20,7 @@ Command line usage
 
 ::
 
-    $VDJTOOLS JointSamples \
+    $VDJTOOLS JoinSamples \
     [options] [sample1.txt sample2.txt sample3.txt ... if -m is not specified] output_prefix
 
 Parameters:
