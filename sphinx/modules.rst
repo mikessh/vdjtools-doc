@@ -84,7 +84,7 @@ Clonotype table operations
 -  :ref:`PoolSamples`
    Pools clonotypes from several samples together
 -  :ref:`JoinSamples`
-   Joins several samples and generates clonotype abundance profiles for a set of samples
+   Joins a set of samples and generates clonotype abundance profiles
    
 :ref:`util`
 ~~~~~~~~~~~
