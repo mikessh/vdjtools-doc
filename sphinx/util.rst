@@ -1,7 +1,7 @@
-.. _util::
+.. _util:
 
-Utility routines
-----------------
+Utilities
+---------
 
 .. _ScanDatabase:
 
@@ -50,10 +50,11 @@ Parameters:
 
 .. note:: Database filter
     
-    Logical expressions argument should evaluate to boolean value and contain reference to 
-    input table columns, i.e. ``f(col1,col2,...) -> boolean". Note that database column names 
-    should be surrounded with ``__``. Syntax supports Regex and standard Java/Groovy functions
-    such as ``.contains()``, ``.startsWith()``, etc. Here are some examples:
+    Logical expressions argument should evaluate to boolean value and contain 
+    reference to input table columns. Database column name references should 
+    be surrounded with double underscores (``__``). Syntax supports Regex and 
+    standard Java/Groovy functions such as ``.contains()``, ``.startsWith()``, 
+    etc. Here are some examples:
     
     .. code:: groovy    
         
@@ -125,6 +126,8 @@ Graphical output
 
 none
 
+-------------
+
 .. _convert:
 
 Covert
@@ -158,6 +161,8 @@ Tabular output
 Outputs converted samples to the path specified by output prefix and creates a 
 corresponding metadata file. Will also append ``conv:[-S value]`` to ``..filter..`` 
 metadata column.
+
+-------------
 
 .. _rinstall:
 
