@@ -137,7 +137,7 @@ R package.
     :scale: 50 %
     
 **Overlap of clonotype sets**. See `Venn diagram wiki article 
-<http://en.wikipedia.org/wiki/Venn_diagram>` for the description.
+<http://en.wikipedia.org/wiki/Venn_diagram>`__ for the description.
 
 -----------
 
