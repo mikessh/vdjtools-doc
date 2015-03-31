@@ -86,7 +86,7 @@ can be performed using the following commands:
     # Join samples into a single clonotype abundance matrix
     $VDJTOOLS JoinSamples -p -m metadata.small.txt out/12
     # Pool samples together
-    $VDJTOOLS PoolSamples -w -m metadata.small.txt out/13
+    $VDJTOOLS PoolSamples -m metadata.small.txt out/13
 
 Below is an example of ``CalcSegmentUsage`` graphical output:
 
