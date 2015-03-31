@@ -45,3 +45,4 @@ Table of Contents
    preprocess
    operate
    util
+   vdjviz
