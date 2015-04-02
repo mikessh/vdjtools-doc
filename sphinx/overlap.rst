@@ -389,7 +389,8 @@ Permutation summary plot is generated having the
     :align: center
     :scale: 50 %
     
-**Cluster clustering**. Average repertoire similarity values for 
+**Testing compactness and separation of sample clustering for a given factor**. 
+Average repertoire similarity values for 
 sample pairs in which both samples have the same (within panel) 
 and different (between panel) factor levels. Each row correspond 
 to a specific factor level. Red lines show observed values, 
