@@ -130,8 +130,8 @@ none
 
 .. _convert:
 
-Covert
-^^^^^^
+Convert
+^^^^^^^
 
 Converts datasets from an arbitrary supported format to :ref:`vdjtools_format`.
 

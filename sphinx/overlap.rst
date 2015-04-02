@@ -245,12 +245,13 @@ to sample size.
 ClusterSamples
 ^^^^^^^^^^^^^^
 
-This routine provides additional cluster analysis (hierarchical clustering), 
-multi-dimensional scaling (MDS)
+This routine provides additional cluster analysis (hierarchical 
+clustering), multi-dimensional scaling (MDS)
 and plotting for :ref:`CalcPairwiseDistances` output. 
-Note that this routine requires that
 
--  Input file prefix is set to the same value 
+Note that this routine requires the following parameter setting:
+
+-  Input file prefix (``input_prefix``) is set to the same value 
    as the output prefix of :ref:`CalcPairwiseDistances`
    
 -  The ``-i`` argument setting is the same as in :ref:`CalcPairwiseDistances`
@@ -260,26 +261,26 @@ Command line usage
 
 ::
 
-    $VDJTOOLS CalcPairwiseDistances \
-    [options] batch_intersect_pair_output_prefix [output_prefix]
+    $VDJTOOLS ClusterSamples \
+    [options] input_prefix [output_prefix]    
 
 Parameters:
 
-+-------------+------------------------+------------+----------------------------------------------------------------------------------------------------------------------------------+
-| Shorthand   |      Long name         | Argument   | Description                                                                                                                      |
-+=============+========================+============+==================================================================================================================================+
-| ``-e``      | ``--measure``          | string     | Sample overlap metric, should match column name of **Overlap metrics** section of :ref:`CalcPairwiseDistances` tabular output    |
-+-------------+------------------------+------------+----------------------------------------------------------------------------------------------------------------------------------+
-| ``-i``      | ``--intersect-type``   | string     | Intersection type, should be the same as used in BatchIntersectPair. Defaults to ``aa``. See :ref:`common_params`                |
-+-------------+------------------------+------------+----------------------------------------------------------------------------------------------------------------------------------+
-| ``-f``      | ``--factor``           | string     | Specifies metadata column with plotting factor (is used to color for sample labels and figure legend). See :ref:`common_params`  |
-+-------------+------------------------+------------+----------------------------------------------------------------------------------------------------------------------------------+
-| ``-n``      | ``--numeric``          |            | Specifies if plotting factor is continuous. See :ref:`common_params`                                                             |
-+-------------+------------------------+------------+----------------------------------------------------------------------------------------------------------------------------------+
-| ``-l``      | ``--label``            | string     | Specifies metadata column with sample labelslabel . See :ref:`common_params`                                                     |
-+-------------+------------------------+------------+----------------------------------------------------------------------------------------------------------------------------------+
-| ``-h``      | ``--help``             |            | Display help message                                                                                                             |
-+-------------+------------------------+------------+----------------------------------------------------------------------------------------------------------------------------------+
++-------------+------------------------+------------+---------------------------------------------------------------------------------------------------------------------------------------------+
+| Shorthand   |      Long name         | Argument   | Description                                                                                                                                 |
++=============+========================+============+=============================================================================================================================================+
+| ``-e``      | ``--measure``          | string     | Sample overlap metric, see **Overlap metrics** section of :ref:`CalcPairwiseDistances` tabular output for allowed values. Defaults to ``F`` |
++-------------+------------------------+------------+---------------------------------------------------------------------------------------------------------------------------------------------+
+| ``-i``      | ``--intersect-type``   | string     | Intersection type, defaults to ``aa``. See :ref:`common_params`                                                                             |
++-------------+------------------------+------------+---------------------------------------------------------------------------------------------------------------------------------------------+
+| ``-f``      | ``--factor``           | string     | Specifies metadata column with plotting factor (is used to color for sample labels and figure legend). See :ref:`common_params`             |
++-------------+------------------------+------------+---------------------------------------------------------------------------------------------------------------------------------------------+
+| ``-n``      | ``--numeric``          |            | Specifies if plotting factor is continuous. See :ref:`common_params`                                                                        |
++-------------+------------------------+------------+---------------------------------------------------------------------------------------------------------------------------------------------+
+| ``-l``      | ``--label``            | string     | Specifies metadata column with sample labelslabel . See :ref:`common_params`                                                                |
++-------------+------------------------+------------+---------------------------------------------------------------------------------------------------------------------------------------------+
+| ``-h``      | ``--help``             |            | Display help message                                                                                                                        |
++-------------+------------------------+------------+---------------------------------------------------------------------------------------------------------------------------------------------+
 
 Tabular output
 ~~~~~~~~~~~~~~
@@ -329,6 +330,72 @@ present case (``-n -f age`` argument).
 between points reflects the distance between repertoires. 
 Points are colored by factor value.
 
+--------------
+
+.. _TestClusters:
+
+TestClusters
+^^^^^^^^^^^^
+
+This routine allows to test whether a given factor influences 
+repertoire clustering. It assesses compactness of samples that 
+have the same factor level and separation between samples with 
+distinct factor levels for the factor specified in 
+:ref:`ClusterSamples`.
+
+Performs post-hoc permutation testing 
+based on MDS coordinates generated by :ref:`ClusterSamples` routine. 
+Can only be performed if a discrete factor (``-f``) was specified 
+in :ref:`ClusterSamples`.  
+
+Note that this routine requires the following parameter setting:
+
+-  Input file prefix (``input_prefix``) is set to the same value 
+   as the output prefix of :ref:`ClusterSamples`
+   
+-  The ``-i`` and ``-e`` argument setting is the 
+   same as in :ref:`ClusterSamples`
+
+Command line usage
+~~~~~~~~~~~~~~~~~~
+
+::
+
+    $VDJTOOLS TestClusters \
+    [options] input_prefix [output_prefix]
+
+Parameters:
+
++-------------+------------------------+------------+---------------------------------------------------------------------------------------------------------------------------------------------+
+| Shorthand   |      Long name         | Argument   | Description                                                                                                                                 |
++=============+========================+============+=============================================================================================================================================+
+| ``-e``      | ``--measure``          | string     | Sample overlap metric, see **Overlap metrics** section of :ref:`CalcPairwiseDistances` tabular output for allowed values. Defaults to ``F`` |
++-------------+------------------------+------------+---------------------------------------------------------------------------------------------------------------------------------------------+
+| ``-i``      | ``--intersect-type``   | string     | Intersection type, defaults to ``aa``. See :ref:`common_params`                                                                             |
++-------------+------------------------+------------+---------------------------------------------------------------------------------------------------------------------------------------------+
+
+Tabular output
+~~~~~~~~~~~~~~
+
+none
+
+Graphical output
+~~~~~~~~~~~~~~~~
+
+Permutation summary plot is generated having the 
+``perms.[value of -i argument].[value of -e argument].pdf`` suffix. 
+
+.. figure:: _static/images/modules/test-clusters.png
+    :align: center
+    :scale: 50 %
+    
+**Cluster clustering**. Average repertoire similarity values for 
+sample pairs in which both samples have the same (within panel) 
+and different (between panel) factor levels. Each row correspond 
+to a specific factor level. Red lines show observed values, 
+histograms correspond to values generated by randomly permuting 
+factor levels. Numbers near red lines indicate P-values for 
+n=10000 permutations.
 
 --------------
 
