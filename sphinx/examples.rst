@@ -88,7 +88,7 @@ can be performed using the following commands:
     # Pool samples together
     $VDJTOOLS PoolSamples -m metadata.small.txt out/13
 
-Below is an example of ``CalcSegmentUsage`` graphical output:
+Below is an example of :ref:`CalcSegmentUsage` graphical output:
 
 .. figure:: _static/images/age-vusage.png
     :align: center
@@ -132,8 +132,8 @@ Post-analysis can be performed using the following commands:
     --filter "__origin__.contains('CMV')||__origin__.contains('EBV')" \
     ./out/7
 
-Rarefaction plot shows how repertoire diversity is lost and restored
-during post-HSCT period. The output of ``ScanDatabase`` displays that
+:ref:`RarefactionPlot` output shows how repertoire diversity is lost and restored
+during post-HSCT period. The output of :ref:`ScanDatabase` displays that
 CMV- and EBV-specific clonotypes start to dominate in the repertoire:
 they comprise ~4% of repertoire prior to HSCT, but increase more than
 2-fold in post-HSCT period. Stackplot showing time course for the
@@ -158,20 +158,32 @@ are distinct between affected persons and healthy donors.
 .. code:: bash
 
     # Diversity estimation
-    # Shows higher clonality for MS samples
-    $VDJTOOLS RarefactionPlot -m metadata.txt -l sample_id -f state diversity/
-    $VDJTOOLS CalcDiversityStats -metadata.txt diversity/
+    # Perform rarefaction analysis and compare repertoire diversity 
+    # between MS patients and healthy donors
+	$VDJTOOLS RarefactionPlot -m metadata.txt -l sample_id -f state diversity/
+	$VDJTOOLS CalcDiversityStats -m metadata.txt diversity/
 
-    # Shows the private nature of MS clonotypes 
-    # (MS cluster is not that compact as healthy donors),
-    # as well as separation of immune repertoires of MS patients and healthy donors
-    $VDJTOOLS CalcPairwiseDistances -m metadata.txt /overlap/
-    $VDJTOOLS ClusterSamples -p -f state overlap/
+    # Shows that MS cluster is not that compact as the 
+    # cluster of healthy donors suggesting 
+    # private nature of MS clonotypes
+    # -i aa!nt is used to discard CDR3 nucleotide sequence matches
+    # and focus on amino-acid matches as strong cross-contamination is present
+    $VDJTOOLS CalcPairwiseDistances -i aa!nt -m metadata.txt overlap/
+    $VDJTOOLS ClusterSamples -p -f state -i aa!nt overlap/ overlap/state
+    $VDJTOOLS TestClusters -i aa!nt overlap/state overlap/state
 
+    # Shows V usage level trends and cluster samples based on V usage profiles    
+    $VDJTOOLS CalcSegmentUsage -m metadata.txt -p -f state vusage/
+    
     # Shows details of repertoire changes for MS8 patient that has
     # undergone a HSCT (MS14 is a post-HSCT blood sample)
     $VDJTOOLS OverlapPair -p ../samples/MS8.txt.gz ../samples/MS14.txt.gz overlap/
+    $VDJTOOLS PlotFancyVJUsage ../samples/MS8.txt.gz hsct/MS8
+    $VDJTOOLS PlotFancyVJUsage ../samples/MS14.txt.gz hsct/MS8-HSCT
+    
+Below is an example of :ref:`RarefactionPlot` graphical output, note that 
+rarefaction curves for MS patients are lower than those for healthy donors.
 
-    # Shows V usage level trends and cluster samples based on V usage profiles
-    $VDJTOOLS BatchIntersectPairPlot -m vJSD -f state overlap/ vusage/
-    $VDJTOOLS CalcSegmentUsage -m metadata.txt -p -f state vusage/
+.. figure:: _static/images/ms-rarefaction.png
+    :align: center
+    :scale: 50 %
