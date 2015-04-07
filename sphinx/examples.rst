@@ -37,7 +37,7 @@ for details). This example allows to have a look at how a diverse set of
 repertoire characteristics changes as we age. Post-analysis
 can be performed using the following commands:
 
-.. code:: bash
+.. code-block:: bash
 
     # Basic analysis
     # Generate summary tables
@@ -88,11 +88,21 @@ can be performed using the following commands:
     # Pool samples together
     $VDJTOOLS PoolSamples -m metadata.small.txt out/13
 
-Below is an example of :ref:`CalcSegmentUsage` graphical output:
+The code block above shows example usage for nearly all available commands. 
+Rarefaction plot in the aging case displays a strong age-related diversity decrease. 
+If running on a server with ~24GB of available RAM one can try out 
+repertoire clustering for the whole experiment (replace ``metadata.small.txt`` with 
+``metadata.txt`` for corresponding routines) which will show some interesting age-related 
+trends.
 
 .. figure:: _static/images/age-vusage.png
     :align: center
     :scale: 50 %
+    
+**Variable segment usage in healthy donors of various age** Note non-random 
+sample grouping within dendrogram which can be attributed to stochastic 
+antigen-driven expansion of clonotypes as we age. See :ref:`CalcSegmentUsage` for a 
+detailed description of this plot.
 
 --------------
 
@@ -106,7 +116,7 @@ Hematopoietic stem cell transfer (HSCT) is a great model for clonotype tracking 
 studying how the diversity of immune repertoire restores following myeloablation.
 Post-analysis can be performed using the following commands:
 
-.. code:: bash
+.. code-block:: bash
 
     # Some basic analysis, same as above
     $VDJTOOLS CalcBasicStats -m metadata.txt out/0
@@ -136,12 +146,16 @@ Post-analysis can be performed using the following commands:
 during post-HSCT period. The output of :ref:`ScanDatabase` displays that
 CMV- and EBV-specific clonotypes start to dominate in the repertoire:
 they comprise ~4% of repertoire prior to HSCT, but increase more than
-2-fold in post-HSCT period. Stackplot showing time course for the
-abundance of top 100 clonotypes is displayed below:
+2-fold in post-HSCT period.
 
 .. figure:: _static/images/hsct-stackplot.png
     :align: center
     :scale: 50 %
+
+**Clonotype abundance plot** Stacked abundance for top 100 clonotypes 
+at different time points is shown.
+    
+--------------
 
 Multiple sclerosis (MS)
 ^^^^^^^^^^^^^^^^^^^^^^^
@@ -155,13 +169,13 @@ show a strong T-cell clonotype bias (see
 Still some high-level repertoire features such as diversity and segment usage 
 are distinct between affected persons and healthy donors.
 
-.. code:: bash
+.. code-block:: bash
 
     # Diversity estimation
     # Perform rarefaction analysis and compare repertoire diversity 
     # between MS patients and healthy donors
-	$VDJTOOLS RarefactionPlot -m metadata.txt -l sample_id -f state diversity/
-	$VDJTOOLS CalcDiversityStats -m metadata.txt diversity/
+    $VDJTOOLS RarefactionPlot -m metadata.txt -l sample_id -f state diversity/
+    $VDJTOOLS CalcDiversityStats -m metadata.txt diversity/
 
     # Shows that MS cluster is not that compact as the 
     # cluster of healthy donors suggesting 
