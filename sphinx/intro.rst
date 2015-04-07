@@ -4,7 +4,7 @@ Introduction
 Features and workflow
 ^^^^^^^^^^^^^^^^^^^^^
 
-.. figure:: _static/images/workflow.png
+.. figure:: _static/images/framework.png
     :align: center
 
 Prerequisites
