@@ -99,7 +99,7 @@ trends.
     :align: center
     :scale: 50 %
     
-**Variable segment usage in healthy donors of various age** Note non-random 
+**Variable segment usage in healthy donors of various age.** Note non-random 
 sample grouping within dendrogram which can be attributed to stochastic 
 antigen-driven expansion of clonotypes as we age. See :ref:`CalcSegmentUsage` for a 
 detailed description of this plot.
@@ -152,7 +152,7 @@ they comprise ~4% of repertoire prior to HSCT, but increase more than
     :align: center
     :scale: 50 %
 
-**Clonotype abundance plot** Stacked abundance for top 100 clonotypes 
+**Clonotype abundance plot.** Stacked abundance for top 100 clonotypes 
 at different time points is shown.
     
 --------------
@@ -195,9 +195,12 @@ are distinct between affected persons and healthy donors.
     $VDJTOOLS PlotFancyVJUsage ../samples/MS8.txt.gz hsct/MS8
     $VDJTOOLS PlotFancyVJUsage ../samples/MS14.txt.gz hsct/MS8-HSCT
     
-Below is an example of :ref:`RarefactionPlot` graphical output, note that 
-rarefaction curves for MS patients are lower than those for healthy donors.
+Below is an example of :ref:`RarefactionPlot` graphical output.
 
 .. figure:: _static/images/ms-rarefaction.png
     :align: center
     :scale: 50 %
+
+**Rarefaction analysis of MS and healthy donor repertoires.** Note that 
+rarefaction curves for MS patients are generally lower than those for healthy 
+donors, indicating the presence of clonal expansion in former.
