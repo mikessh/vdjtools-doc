@@ -14,7 +14,7 @@ counts, number of clonotypes, etc.
 Command line usage
 ~~~~~~~~~~~~~~~~~~
 
-::
+.. code-block:: bash
 
     $VDJTOOLS CalcBasicStats \
     [options] [sample1.txt sample2.txt ... if -m is not specified] output_prefix
@@ -84,7 +84,7 @@ for V/J usage vectors and samples *à la* gene expression analysis.
 Command line usage
 ~~~~~~~~~~~~~~~~~~
 
-::
+.. code-block:: bash
 
     $VDJTOOLS CalcSegmentUsage \
     [options] [sample1.txt sample2.txt ... if -m is not specified] output_prefix
@@ -167,7 +167,7 @@ symmetric gaussian-like distribution.
 Command line usage
 ~~~~~~~~~~~~~~~~~~
 
-::
+.. code-block:: bash
 
     $VDJTOOLS CalcSpectratype \
     [options] [sample1.txt sample2.txt ... if -m is not specified] output_prefix
@@ -228,7 +228,7 @@ clonotypes.
 Command line usage
 ~~~~~~~~~~~~~~~~~~
 
-::
+.. code-block:: bash
 
     $VDJTOOLS PlotFancySpectratype [options] sample.txt output_prefix
 
@@ -286,7 +286,7 @@ the frequency of various V-J junctions.
 Command line usage
 ~~~~~~~~~~~~~~~~~~
 
-::
+.. code-block:: bash
 
     $VDJTOOLS PlotFancyVJUsage [options] sample.txt output_prefix
 
@@ -340,7 +340,7 @@ that could arise under pathological conditions.
 Command line usage
 ~~~~~~~~~~~~~~~~~~
 
-::
+.. code-block:: bash
 
     $VDJTOOLS PlotSpectratypeV [options] sample.txt output_prefix
 

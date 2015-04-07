@@ -21,7 +21,7 @@ sequences are used in database querying.
 Command line usage
 ~~~~~~~~~~~~~~~~~~
 
-::
+.. code-block:: bash
 
     $VDJTOOLS ScanDatabase \
     [options] [sample1.txt sample2.txt ... if -m is not specified] output_prefix
@@ -56,7 +56,7 @@ Parameters:
     standard Java/Groovy functions such as ``.contains()``, ``.startsWith()``, 
     etc. Here are some examples:
     
-    .. code:: groovy    
+    .. code-block:: groovy    
         
         __origin__=~/EBV/
         !(__origin__=~/CMV/)
@@ -138,7 +138,7 @@ Converts datasets from an arbitrary supported format to :ref:`vdjtools_format`.
 Command line usage
 ~~~~~~~~~~~~~~~~~~
 
-::
+.. code-block:: bash
 
     $VDJTOOLS Convert \
     [options] [sample1.txt sample2.txt ... if -m is not specified] output_prefix
@@ -177,6 +177,6 @@ packages that failed to deploy is required.
 Command line usage
 ~~~~~~~~~~~~~~~~~~
 
-::
+.. code-block:: bash
 
     $VDJTOOLS RInstall

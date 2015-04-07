@@ -19,7 +19,7 @@ For more details on individual VDJtools routines see the :ref:`modules` section.
 
     We assume that you have set the following variable pointing to VDJtools executable JAR file:
 
-    .. code:: bash
+    .. code-block:: bash
 
         # Point to VDJtools executable and allocate enough memory for JVM
         VDJTOOLS="java -Xmx20G -jar vdjtools.jar"

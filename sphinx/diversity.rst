@@ -29,7 +29,7 @@ Plots a three-layer donut chart to visualize the repertoire clonality.
 Command line usage
 ~~~~~~~~~~~~~~~~~~
 
-::
+.. code-block:: bash
 
     java -Xmx4G -jar vdjtools.jar PlotQuantileStats [options] sample.txt output_prefix
 
@@ -88,7 +88,7 @@ for details.
 Command line usage
 ~~~~~~~~~~~~~~~~~~
 
-::
+.. code-block:: bash
 
     java -Xmx4G -jar vdjtools.jar RarefactionPlot \
     [options] [sample1.txt sample2.txt ... if -m is not specified] output_prefix
@@ -209,7 +209,7 @@ dataset).
 Command line usage
 ~~~~~~~~~~~~~~~~~~
 
-::
+.. code-block:: bash
 
     java -Xmx4G -jar vdjtools.jar CalcDiversityStats \
     [options] [sample1.txt sample2.txt ... if -m is not specified] output_prefix

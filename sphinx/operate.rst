@@ -18,7 +18,7 @@ and corresponding abundances.
 Command line usage
 ~~~~~~~~~~~~~~~~~~
 
-::
+.. code-block:: bash
 
     $VDJTOOLS JoinSamples \
     [options] [sample1.txt sample2.txt sample3.txt ... if -m is not specified] output_prefix
@@ -152,7 +152,7 @@ that match under a certain comparison criteria (e.g. identical CDR3nt and V segm
 Command line usage
 ~~~~~~~~~~~~~~~~~~
 
-::
+.. code-block:: bash
 
     $VDJTOOLS PoolSamples \
     [options] [sample1.txt sample2.txt sample3.txt ... if -m is not specified] output_prefix

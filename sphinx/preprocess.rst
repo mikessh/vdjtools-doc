@@ -17,7 +17,7 @@ not pass thymic selection.
 Command line usage
 ~~~~~~~~~~~~~~~~~~
 
-::
+.. code-block:: bash
 
     $VDJTOOLS FilterNonFunctional \
     [options] [sample1.txt sample2.txt ... if -m is not specified] output_prefix
@@ -69,7 +69,7 @@ a pre-defined number of reads. This routine could be useful for
 Command line usage
 ~~~~~~~~~~~~~~~~~~
 
-::
+.. code-block:: bash
 
     $VDJTOOLS DownSample \
     [options] [sample1.txt sample2.txt ... if -m is not specified] output_prefix
@@ -114,7 +114,7 @@ e.g. tumor-infiltrating T-cells or sorted tetramer+ T-cells.
 Command line usage
 ~~~~~~~~~~~~~~~~~~
 
-::
+.. code-block:: bash
 
     $VDJTOOLS ApplySampleAsFilter \
     [options] [sample1.txt sample2.txt ... if -m is not specified] filter_sample output_prefix
@@ -168,7 +168,7 @@ in a different sample which is ``-r`` times more abundant.
 Command line usage
 ~~~~~~~~~~~~~~~~~~
 
-::
+.. code-block:: bash
 
     $VDJTOOLS Decontaminate \
     [options] [sample1.txt sample2.txt ... if -m is not specified] filter_sample output_prefix
@@ -216,7 +216,7 @@ Filters clonotypes that have V/D/J segments that match a specified segment set.
 Command line usage
 ~~~~~~~~~~~~~~~~~~
 
-::
+.. code-block:: bash
 
     $VDJTOOLS FilterBySegment \
     [options] [sample1.txt sample2.txt ... if -m is not specified] output_prefix

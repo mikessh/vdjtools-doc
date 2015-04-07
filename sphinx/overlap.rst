@@ -13,7 +13,7 @@ Performs a comprehensive analysis of clonotype sharing for a pair of samples.
 Command line usage
 ~~~~~~~~~~~~~~~~~~
 
-::
+.. code-block:: bash
 
     $VDJTOOLS OverlapPair [options] sample1.txt sample2.txt output_prefix
 
@@ -121,7 +121,7 @@ results.
 Command line usage
 ~~~~~~~~~~~~~~~~~~
 
-::
+.. code-block:: bash
 
     $VDJTOOLS CalcPairwiseDistances \
     [options] [sample1.txt sample2.txt sample3.txt ... if -m is not specified] output_prefix
@@ -259,7 +259,7 @@ Note that this routine requires the following parameter setting:
 Command line usage
 ~~~~~~~~~~~~~~~~~~
 
-::
+.. code-block:: bash
 
     $VDJTOOLS ClusterSamples \
     [options] input_prefix [output_prefix]    
@@ -359,7 +359,7 @@ Note that this routine requires the following parameter setting:
 Command line usage
 ~~~~~~~~~~~~~~~~~~
 
-::
+.. code-block:: bash
 
     $VDJTOOLS TestClusters \
     [options] input_prefix [output_prefix]
@@ -412,7 +412,7 @@ clonotypes will be traced, e.g. the pre-therapy sample.
 Command line usage
 ~~~~~~~~~~~~~~~~~~
 
-::
+.. code-block:: bash
 
     $VDJTOOLS TrackClonotypes \
     [options] [sample1.txt sample2.txt sample3.txt ... if -m is not specified] output_prefix

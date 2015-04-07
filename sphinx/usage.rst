@@ -6,7 +6,7 @@ Command line usage
 
 General way to execute VDJtools routines would be the following,
 
-.. code:: bash
+.. code-block:: bash
 
     java -Xmx16G -jar vdjtools.jar RoutineName [arguments] -m metadata.txt output/prefix
     
@@ -21,7 +21,7 @@ For more details, see the :ref:`metadata` section.
 Alternatively, ``-m`` argument could be substituted with a
 space-separated list of files, e.g.
 
-.. code:: bash
+.. code-block:: bash
 
     java -Xmx16G -jar vdjtools.jar RoutineName sample1.txt[.gz] sample2.txt[.gz] ... output/prefix
 
@@ -36,7 +36,7 @@ The ``-h`` argument will bring up help message for specified routine.
     when running the pipeline. To do so, execute the java with the 
     ``-Xmx`` argument, e.g.: 
     
-    .. code:: bash
+    .. code-block:: bash
     
         java -Xmx16G -jar vdjtools.jar RoutineName [arguments] 
     
@@ -59,13 +59,13 @@ Importing clonotype tables
 In order to proceed with VDJtools analysis datasets should be converted to
 VDJtools format (see :ref:`vdjtools_format`). To do this run either of the following commands:
 
-.. code:: bash
+.. code-block:: bash
 
     java -Xmx16G -jar vdjtools.jar Convert -S software -m metadata.txt ... output_dir/
     
 or
 
-.. code:: bash
+.. code-block:: bash
 
     java -Xmx16G -jar vdjtools.jar Convert -S software sample1.txt[.gz] sample2.txt[.gz] ... output_dir/
     
