@@ -26,6 +26,8 @@ The main aims of the **VDJtools Project** are:
    analysis applications
 -  To provide a simple enough command line tool so it could be used by
    immunologists and biologists with little computational background
+   
+VDJtools source code and binaries are located `here <https://github.com/mikessh/vdjtools>`__.
 
 Table of Contents
 -----------------
