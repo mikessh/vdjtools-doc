@@ -98,7 +98,7 @@ Repertoire similarity measures include
 
    where :math:`k=1..N` are the indices of overlapping clonotypes, 
    :math:`\phi_{ik}` is the frequency of clonotype :math:`k` in sample :math:`i` and 
-   :math:`\hat{\phi_{i}` is the average frequency of overlapping clonotypes in sample :math:`i`.
+   :math:`\hat{\phi_{i}}` is the average frequency of overlapping clonotypes in sample :math:`i`.
 -  Relative overlap diversity, computed with the following normalization 
 
    .. math:: D_{ij} = \frac{d_{ij}}{d_{i}d_{j}}
@@ -107,21 +107,17 @@ Repertoire similarity measures include
    and :math:`d_{i}` is the diversity of sample :math:`i`. See 
    `this paper <http://www.ncbi.nlm.nih.gov/pmc/articles/PMC3872297/>`__ 
    for the rationale behind normalization.   
--  Relative overlap frequency, computed as a geometric mean of 
-total frequencies of overlapping clonotypes
+-  Geometric mean of relative overlap frequencies
 
-   .. math:: F_{ij} = \sqrt{f_{ij}f_{ji}} = \sqrt{\sum^N_{k=1}\phi_{ik}\sum^N_{k=1}\phi_{jk}}
+   .. math:: F_{ij} = \sqrt{f_{ij}f_{ji}}
    
-   where :math:`f_{ij}` is the total frequency of clonotypes that overlap
+   where :math:`f_{ij}=\sum^N_{k=1}\phi_{ik}` is the total frequency of clonotypes that overlap
    between samples :math:`i` and :math:`j` in sample :math:`i`.
--  Relative overlap frequency, computed as a sum of geometric means 
-of frequencies of overlapping clonotypes
+-  Sum of clonotype-wise geometric mean frequencies
 
-   .. math:: _2F_{ij} = \sum^N_{k=1}\sqrt{\phi_{ik}\phi_{jk}}
+   .. math:: F2_{ij} = \sum^N_{k=1}\sqrt{\phi_{ik}\phi_{jk}}
    
-   where :math:`k=1..N` are the indices of overlapping clonotypes and 
-   :math:`\phi_{ik}` is the frequency of clonotype :math:`k` in sample :math:`i`.
-   Note: this measure performs similar to :math:`F` and provides slightly more robust 
+   Note that this measure performs similar to :math:`F` and provides slightly more robust 
    results in case cross-sample contamination is present.
 -  `Jensen-Shannon divergence 
    <https://www.cise.ufl.edu/~anand/sp06/jensen-shannon.pdf>`__ between 
