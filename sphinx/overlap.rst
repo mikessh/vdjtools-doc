@@ -92,8 +92,13 @@ as it will load all samples into memory at once (unless used with ``--low-mem`` 
 
 Repertoire similarity measures include
 
--  Pearson correlation of clonotype frequencies. 
-   Computed only for clonotypes that are present in both samples.
+-  Pearson correlation of clonotype frequencies, restricted only to the overlapping clonotypes 
+
+   .. math:: R_{ij} = \frac{\sum^N_{k=1} \left(\phi _{ik} - \bar{\phi _{i}} \right ) \left(\phi _{jk} - \bar{\phi _{j}} \right )}{\sqrt{\sum^N_{k=1} \left(\phi _{ik} - \bar{\phi _{i}} \right )^2 \sum^N_{k=1}  \left(\phi _{jk} - \bar{\phi _{j}} \right )^2}}
+
+   where :math:`k=1..N` are the indices of overlapping clonotypes, 
+   :math:`\phi_{ik}` is the frequency of clonotype :math:`k` in sample :math:`i` and 
+   :math:`\hat{\phi_{i}` is the average frequency of overlapping clonotypes in sample :math:`i`.
 -  Relative overlap diversity, computed with the following normalization 
 
    .. math:: D_{ij} = \frac{d_{ij}}{d_{i}d_{j}}
@@ -102,12 +107,22 @@ Repertoire similarity measures include
    and :math:`d_{i}` is the diversity of sample :math:`i`. See 
    `this paper <http://www.ncbi.nlm.nih.gov/pmc/articles/PMC3872297/>`__ 
    for the rationale behind normalization.   
--  Relative overlap frequency, computed as a geometric mean
+-  Relative overlap frequency, computed as a geometric mean of 
+total frequencies of overlapping clonotypes
 
-   .. math:: F_{ij} = \sqrt{f_{ij}f_{ji}}
+   .. math:: F_{ij} = \sqrt{f_{ij}f_{ji}} = \sqrt{\sum^N_{k=1}\phi_{ik}\sum^N_{k=1}\phi_{jk}}
    
    where :math:`f_{ij}` is the total frequency of clonotypes that overlap
    between samples :math:`i` and :math:`j` in sample :math:`i`.
+-  Relative overlap frequency, computed as a sum of geometric means 
+of frequencies of overlapping clonotypes
+
+   .. math:: _2F_{ij} = \sum^N_{k=1}\sqrt{\phi_{ik}\phi_{jk}}
+   
+   where :math:`k=1..N` are the indices of overlapping clonotypes and 
+   :math:`\phi_{ik}` is the frequency of clonotype :math:`k` in sample :math:`i`.
+   Note: this measure performs similar to :math:`F` and provides slightly more robust 
+   results in case cross-sample contamination is present.
 -  `Jensen-Shannon divergence 
    <https://www.cise.ufl.edu/~anand/sp06/jensen-shannon.pdf>`__ between 
    Variable segment usage profiles 
@@ -188,29 +203,29 @@ Table layout is given below in three parts.
 
 **Overlap metrics**
 
-+---------------+--------------------------------------------------------------------+
-| Column        | Description                                                        |
-+===============+====================================================================+
-| R             | Pearson correlation                                                |
-+---------------+--------------------------------------------------------------------+
-| D             | Relative overlap diversity                                         |
-+---------------+--------------------------------------------------------------------+
-| F             | Relative overlap frequency                                         |
-+---------------+--------------------------------------------------------------------+
-| F2            | <*experimental*\ >                                                 |
-+---------------+--------------------------------------------------------------------+
-| vJSD          | Jensen-Shannon divergence of Variable segment usage distributions  | 
-+---------------+--------------------------------------------------------------------+
-| vjJSD         | <*experimental*\ >                                                 |
-+---------------+--------------------------------------------------------------------+
-| vj2JSD        | <*experimental*\ >                                                 |
-+---------------+--------------------------------------------------------------------+
-| sJSD          | <*experimental*\ >                                                 |
-+---------------+--------------------------------------------------------------------+
-| Jaccard       | Jaccard index                                                      |
-+---------------+--------------------------------------------------------------------+
-| MorisitaHorn  | Morisita-Horn index                                                |
-+---------------+--------------------------------------------------------------------+
++---------------+--------------------------------------------------------------------------------------------+
+| Column        | Description                                                                                |
++===============+============================================================================================+
+| R             | Pearson correlation                                                                        |
++---------------+--------------------------------------------------------------------------------------------+
+| D             | Relative overlap diversity                                                                 |
++---------------+--------------------------------------------------------------------------------------------+
+| F             | Relative overlap frequency. Geometric mean of total frequencies of overlapping clonotypes. |
++---------------+--------------------------------------------------------------------------------------------+
+| F2            | Relative overlap frequency. Sum of geometric means of overlapping clonotype frequencies.   |
++---------------+--------------------------------------------------------------------------------------------+
+| vJSD          | Jensen-Shannon divergence of Variable segment usage distributions                          | 
++---------------+--------------------------------------------------------------------------------------------+
+| vjJSD         | <*experimental*\ >                                                                         |
++---------------+--------------------------------------------------------------------------------------------+
+| vj2JSD        | <*experimental*\ >                                                                         |
++---------------+--------------------------------------------------------------------------------------------+
+| sJSD          | <*experimental*\ >                                                                         |
++---------------+--------------------------------------------------------------------------------------------+
+| Jaccard       | Jaccard index                                                                              |
++---------------+--------------------------------------------------------------------------------------------+
+| MorisitaHorn  | Morisita-Horn index                                                                        |
++---------------+--------------------------------------------------------------------------------------------+
 
 **Sample metadata**
 
