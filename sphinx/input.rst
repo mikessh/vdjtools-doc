@@ -175,6 +175,15 @@ to see the description of more than a hundred of output columns present in the o
 Run :ref:`convert` routine with ``-S imgthighvquest`` argument to prepare datasets 
 in this format for VDJtools analysis.
 
+MiXCR
+~~~~~
+
+Output from `MiXCR <mixcr.milaboratory.com>`__ software ``export`` routine 
+in ``full`` (default) mode can be used without any pre-processing. 
+
+Run :ref:`convert` routine with ``-S mixcr`` argument to prepare datasets 
+in this format for VDJtools analysis.
+
 .. _metadata:
 
 Metadata

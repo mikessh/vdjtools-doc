@@ -44,6 +44,7 @@ following V-(D)-J junction mapping software:
 -  `IgBlast <http://www.ncbi.nlm.nih.gov/igblast/igblast.cgi>`__ (via our `wrapper <https://github.com/mikessh/igblastwrp>`__)
 -  `IMGT <http://www.imgt.org/IMGTindex/IMGTHighV-QUEST.html>`__
 -  `ImmunoSEQ <http://marketing.adaptivebiotech.com/content/immunoseq-0>`__
+-  `MiXCR <http://mixcr.milaboratory.com/>`__
 
 For more details see the :ref:`software` section. VDJtools converts those files to 
 its internal format (see :ref:`vdjtools_format`) which is used throughout the pipeline.
