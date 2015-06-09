@@ -206,9 +206,9 @@ Table layout is given below in three parts.
 +---------------+--------------------------------------------------------------------------------------------+
 | D             | Relative overlap diversity                                                                 |
 +---------------+--------------------------------------------------------------------------------------------+
-| F             | Relative overlap frequency. Geometric mean of total frequencies of overlapping clonotypes. |
+| F             | Geometric mean of relative overlap frequencies                                             |
 +---------------+--------------------------------------------------------------------------------------------+
-| F2            | Relative overlap frequency. Sum of geometric means of overlapping clonotype frequencies.   |
+| F2            | Sum of geometric means of overlapping clonotype frequencies.                               |
 +---------------+--------------------------------------------------------------------------------------------+
 | vJSD          | Jensen-Shannon divergence of Variable segment usage distributions                          | 
 +---------------+--------------------------------------------------------------------------------------------+
