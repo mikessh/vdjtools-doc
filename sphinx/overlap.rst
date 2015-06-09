@@ -98,7 +98,7 @@ Repertoire similarity measures include
 
    where :math:`k=1..N` are the indices of overlapping clonotypes, 
    :math:`\phi_{ik}` is the frequency of clonotype :math:`k` in sample :math:`i` and 
-   :math:`\hat{\phi_{i}}` is the average frequency of overlapping clonotypes in sample :math:`i`.
+   :math:`\bar{\phi_{i}}` is the average frequency of overlapping clonotypes in sample :math:`i`.
 -  Relative overlap diversity, computed with the following normalization 
 
    .. math:: D_{ij} = \frac{d_{ij}}{d_{i}d_{j}}
