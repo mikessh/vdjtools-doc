@@ -113,7 +113,7 @@ Repertoire similarity measures include
    
    where :math:`f_{ij}=\sum^N_{k=1}\phi_{ik}` is the total frequency of clonotypes that overlap
    between samples :math:`i` and :math:`j` in sample :math:`i`.
--  Sum of clonotype-wise geometric mean frequencies
+-  Сlonotype-wise sum of geometric mean frequencies
 
    .. math:: F2_{ij} = \sum^N_{k=1}\sqrt{\phi_{ik}\phi_{jk}}
    
