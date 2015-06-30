@@ -46,5 +46,6 @@ Table of Contents
    overlap
    preprocess
    operate
+   annotate
    util
    vdjviz

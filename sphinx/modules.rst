@@ -86,15 +86,19 @@ Clonotype table operations
 -  :ref:`JoinSamples`
    Joins a set of samples and generates clonotype abundance profiles
    
+:ref:`annotate`
+~~~~~~~~~~~~~~~
+
+-  :ref:`ScanDatabase`
+   Queries a database containing clonotype of known antigen specificity 
+-  :ref:`CalcCdrAAProfile`
+   Builds a profile of CDR3 regions (V germline, V-D junction, ...) using a set of amino-acid physical properties
+   
 :ref:`util`
 ~~~~~~~~~~~
 
--  :ref:`ScanDatabase`
-   Queries a database containing clonotype of known antigen specificity
-
 -  :ref:`convert`
    Converts from one software format to another
-   
 -  :ref:`rinstall`
    Installs necessary R dependencies
    
@@ -130,6 +134,8 @@ routines:
 | ``-i``      | ``--intersect-type``   | string     | :ref:`overlap_type`, that specifies which clonotype features (CDR3 sequence, V/J segments, hypermutations) will be compared when checking if two clonotypes match. Allowed values: ``strict``,\ ``nt``,\ ``ntV``,\ ``ntVJ``,\ ``aa``,\ ``aaV``,\ ``aaVJ`` and ``aa!nt``.                                                                          |
 +-------------+------------------------+------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | ``-p``      | ``--plot``             |            | [*plotting*] Enable plotting for routines that supports it.                                                                                                                                                                                                                                                                                       |
++-------------+------------------------+------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+|             | ``--plot-type``        | <pdf|png>  | [*plotting*] Specifies whether to generate a PDF or PNG file. While latter could be easily embedded, PDF plots have superior quality.                                                                                                                                                                                                             |
 +-------------+------------------------+------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | ``-f``      | ``--factor``           | string     | [*plotting*] Name of the sample metadata column that should be treated as factor. If the name contains spaces, the argument should be surrounded with double quotes, e.g. ``-f "Treatment type"``                                                                                                                                                 |
 +-------------+------------------------+------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
