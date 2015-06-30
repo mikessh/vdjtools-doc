@@ -65,20 +65,20 @@ Supported CDR3 sub-regions:
 +-----------+--------------------------------------------------------------------------+
 
 Supported amino acid physical properties:
-
-+------------+-----------------------------------------------------------+--------------+
-| Name       | Description                                               | Reference    |
-+============+===========================================================+==============+
-| strength   | Rate of amino acids with strong self antigen recognition  | PMID:XXXXXXX |
-+------------+-----------------------------------------------------------+--------------+
-| hydropathy | Hydropathy, according to the Kyte-Doolitle scale          |              |
-+------------+-----------------------------------------------------------+--------------+
-| disorder   | Intrinsic structural disorder                             |              |
-+------------+-----------------------------------------------------------+--------------+
-| volume     | Amino acid volume                                         |              |
-+------------+-----------------------------------------------------------+--------------+
-| polarity   | Rate of polar amino acids                                 |              |
-+------------+-----------------------------------------------------------+--------------+
+`here <https://github.com/mikessh/vdjtools>`__
++------------+-----------------------------------------------------------+-----------------------------------------------------------------+
+| Name       | Description                                               | Reference                                                       |
++============+===========================================================+=================================================================+
+| strength   | Rate of amino acids with strong self antigen recognition  | `PMID:18946038 <http://www.ncbi.nlm.nih.gov/pubmed/18946038>`__ |
++------------+-----------------------------------------------------------+-----------------------------------------------------------------+
+| disorder   | Intrinsic structural disorder                             | `PMID:16301309 <http://www.ncbi.nlm.nih.gov/pubmed/16301309>`__ |
++------------+-----------------------------------------------------------+-----------------------------------------------------------------+
+| hydropathy | Hydropathy, according to the Kyte-Doolitle scale          | `PMID:14872534 <http://www.ncbi.nlm.nih.gov/pubmed/14872534>`__ |
++------------+-----------------------------------------------------------+-----------------------------------------------------------------+
+| volume     | Amino acid volume                                         | `PMID:14872534 <http://www.ncbi.nlm.nih.gov/pubmed/14872534>`__ |
++------------+-----------------------------------------------------------+-----------------------------------------------------------------+
+| polarity   | Rate of polar amino acids                                 | `PMID:14872534 <http://www.ncbi.nlm.nih.gov/pubmed/14872534>`__ |
++------------+-----------------------------------------------------------+-----------------------------------------------------------------+
 
 .. note:: 
     
@@ -120,7 +120,7 @@ Graphical output
 
 A plot file with ``cdr3aa.profile.[wt or unwt based on -u].pdf`` suffix is generated. 
 Rows and columns correspond to amino acid properties and CDR3 sub-regions respectively. 
-Normalized values (`$value/$total` from output table) are grouped by specified factor (`-f`).
+Normalized values (``value``/``total`` from output table) are grouped by specified factor (``-f``).
 
 .. figure:: _static/images/modules/annotate-aaprofile.png
     :align: center
