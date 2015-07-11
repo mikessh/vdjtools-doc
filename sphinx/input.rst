@@ -168,7 +168,7 @@ to see the description of more than a hundred of output columns present in the o
     
     .. code:: bash
     
-        6_Junction_${chain}_${sx}_${date}.txt
+        3_Nt-sequences_${chain}_${sx}_${date}.txt
     
     should be used as an input for VDJtools :ref:`convert` routine. 
     
