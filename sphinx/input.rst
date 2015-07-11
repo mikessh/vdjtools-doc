@@ -39,8 +39,8 @@ VDJtools **clonotype** specification includes the following fields:
    In case of non-coding CDR3 sequences, the convention is to
    translate in both directions: upstream from V segment 
    reference point and downstream from J segment reference point.
-   The resulting sequence (e.g. ``CASSLA~TNEKFF``) 
-   is linked by a ``~`` symbol that marks the incomplete codon.
+   The resulting sequence (e.g. ``CASSLA_TNEKFF``) 
+   is linked by a ``_`` symbol that marks the incomplete codon.
 
 Clonotype **abundance** data is represented by *count* and *frequency* fields:
 
