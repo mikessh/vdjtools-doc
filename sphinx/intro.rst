@@ -45,6 +45,7 @@ following V-(D)-J junction mapping software:
 -  `IMGT <http://www.imgt.org/IMGTindex/IMGTHighV-QUEST.html>`__
 -  `ImmunoSEQ <http://marketing.adaptivebiotech.com/content/immunoseq-0>`__
 -  `MiXCR <http://mixcr.milaboratory.com/>`__
+-  `ImSEQ <http://www.imtools.org/>`__
 
 For more details see the :ref:`software` section. VDJtools converts those files to 
 its internal format (see :ref:`vdjtools_format`) which is used throughout the pipeline.

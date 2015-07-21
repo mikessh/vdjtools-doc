@@ -31,13 +31,15 @@ Parameters:
 +-------------+-----------------------+--------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------+
 | ``-u``      | ``--unweighted``      |                    | If set, will not weight amino acid physical property averages by clonotype frequency. Weighing is performed by default.                                  |
 +-------------+-----------------------+--------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------+
-| ``-p``      | ``--plot``            |                    | Turns on plotting. See :ref:`_common_params`                                                                                                             |
+| ``-p``      | ``--plot``            |                    | Turns on plotting. See :ref:`common_params`                                                                                                              |
 +-------------+-----------------------+--------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------+
-| ``-f``      | ``--factor``          | string             | Specifies plotting factor. See :ref:`_common_params`                                                                                                     |
+|             | ``--plot-normalized`` |                    | Will normalize regions by the total number of AAs in them. Not recommended as longer CDR3s are inherently more self-reactive.                            |
 +-------------+-----------------------+--------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------+
-| ``-r``      | ``--region-list``     | region1:nbins1,... | Comma-separated list of "region:bin" pairs, a CDR3 sub-region (see below) followed by the number of length bins. Default: `V-germ:5,VJ-junc:3,J-germ:5`  |
+| ``-f``      | ``--factor``          | string             | Specifies plotting factor. See :ref:`common_params`                                                                                                      |
 +-------------+-----------------------+--------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------+
-| ``-o``      | ``--property-list``   | property1,...      | List of amino acid physical properties to use, see below for allowed value. Uses all available properties by default.                                    |
+| ``-r``      | ``--region-list``     | region1:nbins1,... | Comma-separated list of "region:bin" pairs, a CDR3 sub-region (see below) followed by the number of length bins. Default: ``V-germ:1,VJ-junc:1,J-germ:1``|
++-------------+-----------------------+--------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------+
+| ``-o``      | ``--property-list``   | property1,...      | List of amino acid physical properties to use, see below for allowed value. Uses `count` by default.                                                     |
 +-------------+-----------------------+--------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------+
 |             | ``--include-cfw``     |                    | Consider first and last AAs of CDR3, which are normally conserved C and F/W. By default those are discarded.                                             |
 +-------------+-----------------------+--------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------+
@@ -77,18 +79,23 @@ Supported amino acid physical properties:
 +------------+-----------------------------------------------------------+-----------------------------------------------------------------+
 | volume     | Amino acid volume                                         | `PMID:14872534 <http://www.ncbi.nlm.nih.gov/pubmed/14872534>`__ |
 +------------+-----------------------------------------------------------+-----------------------------------------------------------------+
-| polarity   | Rate of polar amino acids                                 | `PMID:14872534 <http://www.ncbi.nlm.nih.gov/pubmed/14872534>`__ |
+| polarity   | Number of polar amino acids                               | `PMID:14872534 <http://www.ncbi.nlm.nih.gov/pubmed/14872534>`__ |
++------------+-----------------------------------------------------------+-----------------------------------------------------------------+
+| charge     | Total charge of amino acids                               | `PMID:14872534 <http://www.ncbi.nlm.nih.gov/pubmed/14872534>`__ |
++------------+-----------------------------------------------------------+-----------------------------------------------------------------+
+| count      | Total number of amino acids                               | `PMID:14872534 <http://www.ncbi.nlm.nih.gov/pubmed/14872534>`__ |
 +------------+-----------------------------------------------------------+-----------------------------------------------------------------+
 
 .. note:: 
     
-    The following binning scheme is used by default, ``-r V-germ:5,VJ-junc:3,J-germ:5``.
-    It means that the amino acid sequence of Variable segment part of CDR3 is split into 
+    CDR3 binning scheme is quite flexible, for example changing the default 
+    ``-r V-germ:1,VJ-junc:1,J-germ:1`` to ``-r V-germ:5,VJ-junc:3,J-germ:5`` 
+    means that the amino acid sequence of Variable segment part of CDR3 is split into 
     5 equally-sized bins and so on.    
     This can be changed to ``-r V-germ:5,VD-junc:1,D-germ:1,DJ-junc:1,J-germ:5`` for 
     analysis of chains that have Diversity segment (TRB, TRD, IGH).
     In case of very small average insert size (short V-J junction), one should consider 
-    using a single bin for this sub-region, ``VJ-junc:1``.
+    always using a single bin for this sub-region, ``VJ-junc:1``.
     
 Tabular output
 ~~~~~~~~~~~~~~
@@ -119,16 +126,15 @@ Graphical output
 ~~~~~~~~~~~~~~~~
 
 A plot file with ``cdr3aa.profile.[wt or unwt based on -u].pdf`` suffix is generated. 
-Rows and columns correspond to amino acid properties and CDR3 sub-regions respectively. 
-Normalized values (``value``/``total`` from output table) are grouped by specified factor (``-f``).
+Columns and rows correspond to amino acid properties and CDR3 sub-regions. 
+Values are grouped by specified factor (``-f``).
 
 .. figure:: _static/images/modules/annotate-aaprofile.png
     :align: center
     :scale: 50 %
     
-**Amino acid hydrophathy and strength profiles**. Germline CDR3 parts corresponding 
-to V, D and J segments are used (4, 4 and 2 length bins respectively), 
-as well as V-D and D-J junctions (1 length bin respectively). 
+**Amino acid count in specified regions**. Length of germline CDR3 parts corresponding 
+to V and J segments and length of random VJ junction is shown. 
 
 .. _ScanDatabase:
 
