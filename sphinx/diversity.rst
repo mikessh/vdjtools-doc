@@ -174,7 +174,7 @@ Computes a set of diversity statistics, including
 
 -  Diversity indices
 
-   -  `Shannon-Weaver index <http://www.esajournals.org/doi/abs/10.2307/1934352>`__   
+   -  `Shannon-Wiener index <http://www.esajournals.org/doi/abs/10.2307/1934352>`__   
    -  `Inverse Simpson index <http://www.esajournals.org/doi/abs/10.2307/1934352>`__
 
 -  `Extrapolated Chao diversity estimate 
