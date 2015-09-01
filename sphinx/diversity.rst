@@ -5,7 +5,7 @@ Diversity estimation
 
 .. note::
 
-    Application of routines described in this section is described in the following `tutorial <http://repseq-tutorial.readthedocs.org/>`__.
+    Application of routines from this section is described in the following `tutorial <http://repseq-tutorial.readthedocs.org/>`__.
 
 .. _PlotQuantileStats:
 
