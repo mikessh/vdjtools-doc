@@ -3,6 +3,8 @@
 Diversity estimation
 --------------------
 
+Usage of routines described in this section is also present in the following `tutorial <http://repseq-tutorial.readthedocs.org/>`__.
+
 .. _PlotQuantileStats:
 
 PlotQuantileStats
