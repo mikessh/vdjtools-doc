@@ -3,6 +3,62 @@
 Pre-processing
 --------------
 
+.. _Correct:
+
+Correct
+^^^^^^^
+
+Performs frequency-based correction to eliminate erroneous clonotypes. Searches the sample for 
+clonotype pairs that differ by one, two ... (up to specified depth) mismatches. In case 
+the ratio of smallest to largest clonotype abundances is lower than the threshold specified 
+as ``ratio ^ number_of_mismatches`` correction is performed. Largest clonotype in pair 
+increases its abundance by the read count of the smaller one and the smaller 
+one is discarded. Note that the original sample is not changed during correction, so 
+all comparisons are performed with original count values and erroneous clonotypes are only 
+removed after search procedure is finished. It is also possible to restrict correction to 
+clonotypes with identical V/J segments using ``-a`` option.
+
+Command line usage
+~~~~~~~~~~~~~~~~~~
+
+.. code-block:: bash
+
+    $VDJTOOLS Correct \
+    [options] [sample1.txt sample2.txt ... if -m is not specified] output_prefix
+
+Parameters:
+
++-----------+---------------------+----------+---------------------------------------------------------------------------------------------------------------------+
+| Shorthand | Long name           | Argument | Description                                                                                                         |
++===========+=====================+==========+=====================================================================================================================+
+| ``-m``    | ``--metadata``      | path     | Path to metadata file. See :ref:`common_params`                                                                     |
++-----------+---------------------+----------+---------------------------------------------------------------------------------------------------------------------+
+| ``-d``    | ``--depth``         | 1+       | Maximum number of mismatches allowed between clonotypes being compared. Default is 2                                |
++-----------+---------------------+----------+---------------------------------------------------------------------------------------------------------------------+
+| ``-r``    | ``--ratio``         | [0, 1)   | Child-to-parent clonotype size ratio threshold under which child clonotype is considered erroneous. Default is 0.05 |
++-----------+---------------------+----------+---------------------------------------------------------------------------------------------------------------------+
+| ``-a``    | ``--match-segment`` |          | Check for erroneous clonotypes only among those that have identical V and J assignments                             |
++-----------+---------------------+----------+---------------------------------------------------------------------------------------------------------------------+
+| ``-c``    | ``--compress``      |          | Compress output sample files                                                                                        |
++-----------+---------------------+----------+---------------------------------------------------------------------------------------------------------------------+
+| ``-h``    | ``--help``          |          | Display help message                                                                                                |
++-----------+---------------------+----------+---------------------------------------------------------------------------------------------------------------------+
+
+Tabular output
+~~~~~~~~~~~~~~
+
+Outputs corrected samples to the path specified by output prefix and
+creates a corresponding metadata file. Will also append
+``corr:[-d option value]:[-r option value]:['vjmatch' or 'all' based on -a option]`` to 
+``..filter..`` metadata column.
+
+Graphical output
+~~~~~~~~~~~~~~~~
+
+none
+
+--------------
+
 .. _FilterNonFunctional:
 
 FilterNonFunctional

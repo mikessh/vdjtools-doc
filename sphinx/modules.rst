@@ -64,6 +64,8 @@ Clonotype sharing between samples
 
 Filtering and resampling
 
+-  :ref:`Correct`
+   Performs a frequency-based erroneous clonotype correction
 -  :ref:`FilterNonFunctional`
    Filters non-functional clonotypes
 -  :ref:`DownSample`
