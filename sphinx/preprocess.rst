@@ -10,9 +10,9 @@ Correct
 
 Performs frequency-based correction to eliminate erroneous clonotypes. Searches the sample for 
 clonotype pairs that differ by one, two ... (up to specified depth) mismatches. In case 
-the ratio of smallest to largest clonotype abundances is lower than the threshold specified 
+the ratio of smallest to largest clonotype sizes is lower than the threshold specified 
 as ``ratio ^ number_of_mismatches`` correction is performed. Largest clonotype in pair 
-increases its abundance by the read count of the smaller one and the smaller 
+increases its size by the read count of the smaller one and the smaller 
 one is discarded. Note that the original sample is not changed during correction, so 
 all comparisons are performed with original count values and erroneous clonotypes are only 
 removed after search procedure is finished. It is also possible to restrict correction to 
