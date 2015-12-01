@@ -117,7 +117,7 @@ DownSample
 ^^^^^^^^^^
 
 Down-samples a list of clonotype abundance tables by randomly selecting
-a pre-defined number of reads. This routine could be useful for
+a pre-defined number of reads or clonotypes. This routine could be useful for
 
 -  normalizing samples for further highly-sensitive comparison
 -  speeding up computation / decreasing file size and memory footprint.
@@ -132,12 +132,59 @@ Command line usage
 
 Parameters:
 
++-------------+-----------------------+------------+--------------------------------------------------+
+| Shorthand   |      Long name        | Argument   | Description                                      |
++=============+=======================+============+==================================================+
+| ``-m``      | ``--metadata``        | path       | Path to metadata file. See :ref:`common_params`  |
++-------------+-----------------------+------------+--------------------------------------------------+
+| ``-x``      | ``--size``            | integer    | Number of reads/clonotypes to take. **Required** |
++-------------+-----------------------+------------+--------------------------------------------------+
+| ``-u``      | ``--unweighted``      |            | Will not weight clonotypes by frequency          |
++-------------+-----------------------+------------+--------------------------------------------------+
+| ``-c``      | ``--compress``        |            | Compress output sample files                     |
++-------------+-----------------------+------------+--------------------------------------------------+
+| ``-h``      | ``--help``            |            | Display help message                             |
++-------------+-----------------------+------------+--------------------------------------------------+
+
+Tabular output
+~~~~~~~~~~~~~~
+
+Outputs sub-samples to the path specified by output prefix and
+creates a corresponding metadata file. Will also append
+``ds:[-x value]`` to ``..filter..`` metadata column.
+
+Graphical output
+~~~~~~~~~~~~~~~~
+
+none
+
+--------------
+
+.. _SelectTop:
+
+SelectTop
+^^^^^^^^^
+
+Selects top N clonotypes from the sample. Useful for studying exapanded clonotypes 
+and clonotypes with strong convergent recombination bias, as well as robust computing 
+of unweighted statistics.
+
+Command line usage
+~~~~~~~~~~~~~~~~~~
+
+.. code-block:: bash
+
+    $VDJTOOLS SelectTop \
+    [options] [sample1.txt sample2.txt ... if -m is not specified] output_prefix
+
+Parameters:
+
 +-------------+-----------------------+------------+-------------------------------------------------+
 | Shorthand   |      Long name        | Argument   | Description                                     |
 +=============+=======================+============+=================================================+
 | ``-m``      | ``--metadata``        | path       | Path to metadata file. See :ref:`common_params` |
 +-------------+-----------------------+------------+-------------------------------------------------+
-| ``-x``      | ``--num-reads``       | integer    | Number of reads to take. **Required**           |
+| ``-x``      | ``--top``             | integer    | Number of top clonotypes to take. **Required**  |
 +-------------+-----------------------+------------+-------------------------------------------------+
 | ``-c``      | ``--compress``        |            | Compress output sample files                    |
 +-------------+-----------------------+------------+-------------------------------------------------+
@@ -147,9 +194,9 @@ Parameters:
 Tabular output
 ~~~~~~~~~~~~~~
 
-Outputs filtered samples to the path specified by output prefix and
+Outputs sub-samples to the path specified by output prefix and
 creates a corresponding metadata file. Will also append
-``ds:[-x value]`` to ``..filter..`` metadata column.
+``top:[-x value]`` to ``..filter..`` metadata column.
 
 Graphical output
 ~~~~~~~~~~~~~~~~
@@ -279,23 +326,23 @@ Command line usage
 
 Parameters:
 
-+-------------+-----------------------+------------+----------------------------------------------------------------------+
-| Shorthand   |      Long name        | Argument   | Description                                                          |
-+=============+=======================+============+======================================================================+
-| ``-m``      | ``--metadata``        | path       | Path to metadata file. See :ref:`common_params`                      |
-+-------------+-----------------------+------------+----------------------------------------------------------------------+
-| ``-e``      | ``--negative``        |            | Retain only clonotypes that lack specified V/D/J segments.           |
-+-------------+-----------------------+------------+----------------------------------------------------------------------+
-| ``-v``      | ``--v-segments``      | v1,v2,...  | A comma-separated list of Variable segment names                     |
-+-------------+-----------------------+------------+----------------------------------------------------------------------+
-| ``-d``      | ``--d-segments``      | d1,d2,...  | A comma-separated list of Diversity segment names                    |
-+-------------+-----------------------+------------+----------------------------------------------------------------------+
-| ``-j``      | ``--j-segments``      | j1,j2,...  | A comma-separated list of Joining segment names                      |
-+-------------+-----------------------+------------+----------------------------------------------------------------------+
-| ``-c``      | ``--compress``        |            | Compress output sample files                                         |
-+-------------+-----------------------+------------+----------------------------------------------------------------------+
-| ``-h``      | ``--help``            |            | Display help message                                                 |
-+-------------+-----------------------+------------+----------------------------------------------------------------------+
++-------------+-----------------------+------------+-------------------------------------------------------------------------------------------------------------+
+| Shorthand   |      Long name        | Argument   | Description                                                                                                 |
++=============+=======================+============+=============================================================================================================+
+| ``-m``      | ``--metadata``        | path       | Path to metadata file. See :ref:`common_params`                                                             |
++-------------+-----------------------+------------+-------------------------------------------------------------------------------------------------------------+
+| ``-n``      | ``--negative``        |            | Retain only clonotypes that lack specified V/D/J segments.                                                  |
++-------------+-----------------------+------------+-------------------------------------------------------------------------------------------------------------+
+| ``-v``      | ``--v-segments``      | v1,v2,...  | A comma-separated list of Variable segment names. Non-matching incomplete names will be partially matched.  |
++-------------+-----------------------+------------+-------------------------------------------------------------------------------------------------------------+
+| ``-d``      | ``--d-segments``      | d1,d2,...  | A comma-separated list of Diversity segment names. Non-matching incomplete names will be partially matched. |
++-------------+-----------------------+------------+-------------------------------------------------------------------------------------------------------------+
+| ``-j``      | ``--j-segments``      | j1,j2,...  | A comma-separated list of Joining segment names. Non-matching incomplete names will be partially matched.   |
++-------------+-----------------------+------------+-------------------------------------------------------------------------------------------------------------+
+| ``-c``      | ``--compress``        |            | Compress output sample files                                                                                |
++-------------+-----------------------+------------+-------------------------------------------------------------------------------------------------------------+
+| ``-h``      | ``--help``            |            | Display help message                                                                                        |
++-------------+-----------------------+------------+-------------------------------------------------------------------------------------------------------------+
 
 Tabular output
 ~~~~~~~~~~~~~~

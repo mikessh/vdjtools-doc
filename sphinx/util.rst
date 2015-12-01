@@ -3,7 +3,76 @@
 Utilities
 ---------
 
-.. _convert:
+.. _SplitMetadata:
+
+SplitMetadata
+^^^^^^^^^^^^^
+
+Splits metadata file into separate metadata files according to the set of values in specified column(s). 
+Can be handly for implementing pipelines using VDJtools.
+
+Command line usage
+~~~~~~~~~~~~~~~~~~
+
+.. code-block:: bash
+
+    $VDJTOOLS SplitMetadata [options] metadata.txt output_dir
+    
+Parameters:
+
++-------------+------------------------+---------------------+-----------------------------------------------------------------+
+| Shorthand   |      Long name         | Argument            | Description                                                     |
++=============+========================+=====================+=================================================================+
+| ``-c``      | ``--columns``          | string1,string2,... | A comma separated list of column name(s) to split metadata by.  |
++-------------+------------------------+---------------------+-----------------------------------------------------------------+
+
+Tabular output
+~~~~~~~~~~~~~~
+
+Output resulting metadata files to specified folder. Unique combinations of metadata entries in specified columns will be appended to names of corresponding metadata files,
+relative sample paths will be handled appropriately.
+
+-------------
+
+.. _Convert:
+
+FilterMetadata
+^^^^^^^^^^^^^^
+
+Filters metadata by evaluating expression over values in specified metadata columns, e.g.:
+
+.. code-block:: groovy
+
+    "__chain__=~/TR[AB]/"
+    "__chain__=='TRA'||__chain__=='TRB'"
+    "__chain__.contains('TRA')"
+    "!__condition__.startsWith('control')"
+
+Both Java and Groovy syntax are supported, column names should be marked by double underscores before and after the name.
+
+Command line usage
+~~~~~~~~~~~~~~~~~~
+
+.. code-block:: bash
+
+    $VDJTOOLS FilterMetadata [options] metadata.txt output_dir output_suffix
+    
+Parameters:
+
++-------------+------------------------+--------------+-------------------------------------------------------------------------------------------------------------------+
+| Shorthand   |      Long name         | Argument     | Description                                                                                                       |
++=============+========================+==============+===================================================================================================================+
+| ``-f``      | ``--filter``           | expression   | Filter expression, should be surrounded with quotation marks, metadata column names should be marked with ``__``. |
++-------------+------------------------+--------------+-------------------------------------------------------------------------------------------------------------------+
+
+Tabular output
+~~~~~~~~~~~~~~
+
+Filtered metadata table with corresponding suffix will be created in the specified folder, relative sample paths will be handled appropriately.
+
+-------------
+
+.. _Convert:
 
 Convert
 ^^^^^^^
@@ -39,7 +108,7 @@ metadata column.
 
 -------------
 
-.. _rinstall:
+.. _Rinstall:
 
 RInstall
 ^^^^^^^^

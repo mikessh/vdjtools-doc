@@ -69,14 +69,15 @@ Filtering and resampling
 -  :ref:`FilterNonFunctional`
    Filters non-functional clonotypes
 -  :ref:`DownSample`
-   Performs down-sampling, i.e. takes a subset of random reads from a sample
+   Performs down-sampling, i.e. takes a subset of random reads from sample(s)
+-  :ref:`SelectTop`
+   Selects a fixed number of top (most abundant) clonotypes from sample(s)
 -  :ref:`ApplySampleAsFilter`
-   Given a list of samples filters clonotypes that are present in a
-   specified sample
+   Filters clonotypes that are present in a specified sample from sample(s)
 -  :ref:`Decontaminate`
-   Filters possible cross-sample contamination
+   Filters possible cross-sample contaminations in a set of samples
 -  :ref:`FilterBySegment`
-   Filters clonotype according to their V/D/J segment
+   Filters clonotypes according to their V/D/J segment
 
 :ref:`operate`
 ~~~~~~~~~~~~~~
@@ -92,16 +93,20 @@ Clonotype table operations
 ~~~~~~~~~~~~~~~
 
 -  :ref:`ScanDatabase`
-   Queries a database containing clonotype of known antigen specificity 
+   Queries a database containing clonotype of known antigen specificity. 
 -  :ref:`CalcCdrAAProfile`
    Builds a profile of CDR3 regions (V germline, V-D junction, ...) using a set of amino-acid physical properties
    
 :ref:`util`
 ~~~~~~~~~~~
 
--  :ref:`convert`
+-  :ref:`FilterMetadata`
+   Filters metadata file by values in specified column
+-  :ref:`SplitMetadata`
+   Splits metadata file by specified columns
+-  :ref:`Convert`
    Converts from one software format to another
--  :ref:`rinstall`
+-  :ref:`Rinstall`
    Installs necessary R dependencies
    
 Each routine generates a comprehensive tabular output and some 
@@ -114,7 +119,7 @@ produce optional graphical output.
     
     .. code:: r
         
-        read.table("some_table.txt", header=T, comment="", quote="", sep = "\t")
+        read.table("some_table.txt", header=T, quote="", sep = "\t")
 
 .. _common_params:
 

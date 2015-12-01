@@ -141,9 +141,14 @@ to V and J segments and length of random VJ junction is shown.
 ScanDatabase
 ^^^^^^^^^^^^
 
+.. important::
+
+    This feature has moved to a separate software, 
+    `VDJdb <https://github.com/antigenomics/vdjdb>`__, since VDJtools v1.0.5.
+
 Annotates a set of samples using immune receptor database based on
 V-(D)-J junction matching. By default uses
-`VDJdb <https://github.com/mikessh/vdjdb>`__, which contains CDR3
+`VDJdb <https://github.com/antigenomics/vdjdb>`__, which contains CDR3
 sequences, Variable and Joining segments of known specificity obtained
 using literature mining. This routine supports user-provided databases
 and allows flexible filtering of results based on database fields. The
