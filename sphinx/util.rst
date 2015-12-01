@@ -34,14 +34,14 @@ relative sample paths will be handled appropriately.
 
 -------------
 
-.. _Convert:
+.. _FilterMetadata:
 
 FilterMetadata
 ^^^^^^^^^^^^^^
 
 Filters metadata by evaluating expression over values in specified metadata columns, e.g.:
 
-.. code-block:: groovy
+.. code-block:: java
 
     "__chain__=~/TR[AB]/"
     "__chain__=='TRA'||__chain__=='TRB'"
