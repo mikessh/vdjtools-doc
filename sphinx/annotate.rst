@@ -46,23 +46,25 @@ Parameters:
 
 Supported CDR3 sub-regions:
 
-+-----------+--------------------------------------------------------------------------+
-| Name      | Description                                                              |
-+===========+==========================================================================+
-| CDR3-full | Complete CDR3 region                                                     |
-+-----------+--------------------------------------------------------------------------+
-| V-germ    | Germline part of CDR3 region corresponding to Variable segment           |
-+-----------+--------------------------------------------------------------------------+
-| D-germ    | Germline part of CDR3 region corresponding to Diversity segment          |
-+-----------+--------------------------------------------------------------------------+
-| J-germ    | Germline part of CDR3 region corresponding to Joining segment            |
-+-----------+--------------------------------------------------------------------------+
-| VD-junc   | Variable-Diversity segment junction, applicable when D segment is mapped |
-+-----------+--------------------------------------------------------------------------+
-| DJ-junc   | Diversity-Joining segment junction, applicable when D segment is mapped  |
-+-----------+--------------------------------------------------------------------------+
-| VJ-junc   | Variable-Joining segment junction, including D segment if it is mapped   |
-+-----------+--------------------------------------------------------------------------+
++-------------+--------------------------------------------------------------------------+
+| Name        | Description                                                              |
++=============+==========================================================================+
+| CDR3-full   | Complete CDR3 region                                                     |
++-------------+--------------------------------------------------------------------------+
+| CDR3-center | Central 3 amino acids of CDR                                             |
++-------------+--------------------------------------------------------------------------+
+| V-germ      | Germline part of CDR3 region corresponding to Variable segment           |
++-------------+--------------------------------------------------------------------------+
+| D-germ      | Germline part of CDR3 region corresponding to Diversity segment          |
++-------------+--------------------------------------------------------------------------+
+| J-germ      | Germline part of CDR3 region corresponding to Joining segment            |
++-------------+--------------------------------------------------------------------------+
+| VD-junc     | Variable-Diversity segment junction, applicable when D segment is mapped |
++-------------+--------------------------------------------------------------------------+
+| DJ-junc     | Diversity-Joining segment junction, applicable when D segment is mapped  |
++-------------+--------------------------------------------------------------------------+
+| VJ-junc     | Variable-Joining segment junction, including D segment if it is mapped   |
++-------------+--------------------------------------------------------------------------+
 
 Supported amino acid physical properties:
 
@@ -73,11 +75,13 @@ Supported amino acid physical properties:
 +------------+-----------------------------------------------------------+-----------------------------------------------------------------+
 | disorder   | Intrinsic structural disorder                             | `PMID:16301309 <http://www.ncbi.nlm.nih.gov/pubmed/16301309>`__ |
 +------------+-----------------------------------------------------------+-----------------------------------------------------------------+
+| polarity   | Polar/non-polar amino acids                               | `PMID:14872534 <http://www.ncbi.nlm.nih.gov/pubmed/14872534>`__ |
++------------+-----------------------------------------------------------+-----------------------------------------------------------------+
 | hydropathy | Hydropathy, according to the Kyte-Doolitle scale          | `PMID:14872534 <http://www.ncbi.nlm.nih.gov/pubmed/14872534>`__ |
 +------------+-----------------------------------------------------------+-----------------------------------------------------------------+
 | volume     | Amino acid volume                                         | `PMID:14872534 <http://www.ncbi.nlm.nih.gov/pubmed/14872534>`__ |
 +------------+-----------------------------------------------------------+-----------------------------------------------------------------+
-| polarity   | Rate of polar amino acids                                 | `PMID:14872534 <http://www.ncbi.nlm.nih.gov/pubmed/14872534>`__ |
+| charge     | Charged/non-charged amino acids                           | `PMID:14872534 <http://www.ncbi.nlm.nih.gov/pubmed/14872534>`__ |
 +------------+-----------------------------------------------------------+-----------------------------------------------------------------+
 
 .. note:: 
