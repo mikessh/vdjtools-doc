@@ -269,7 +269,7 @@ This routine filters out all clonotypes that have a matching clonotype
 in a different sample which is ``-r`` times more abundant. Clonotype fractions 
 within samples are considered, which is good for dealing with FACS-related contaminations.
 In case of dealing with cross-sample contaminations in samples coming from the same 
-sequencing lane use ``--read-based`` option that tells the routine to compareclonotype read counts.
+sequencing lane use ``--read-based`` option that tells the routine to compare read counts.
 
 Command line usage
 ~~~~~~~~~~~~~~~~~~
@@ -287,7 +287,7 @@ Parameters
 +=============+=======================+============+==========================================================================================================================+
 | ``-S``      | ``--software``        | string     | Input format. See :ref:`common_params`                                                                                   |
 +-------------+-----------------------+------------+--------------------------------------------------------------------------------------------------------------------------+
-|             | ``--read-based``      | string     | If set will compare clonotype read counts. Clonotype fractions within each sample are compared by default.               |
+|             | ``--read-based``      | string     | If set will compare clonotype read counts. Clonotype fractions in corresponding samples are compared by default.         |
 +-------------+-----------------------+------------+--------------------------------------------------------------------------------------------------------------------------+
 | ``-m``      | ``--metadata``        | path       | Path to metadata file. See :ref:`common_params`                                                                          |
 +-------------+-----------------------+------------+--------------------------------------------------------------------------------------------------------------------------+
