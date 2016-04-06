@@ -28,6 +28,8 @@ Parameters:
 +-------------+------------------------+------------+-----------------------------------------------------------------------------------------------------------------------------------------------------+
 | ``-p``      | ``--plot``             |            | Turns on plotting. See :ref:`common_params`                                                                                                         |
 +-------------+------------------------+------------+-----------------------------------------------------------------------------------------------------------------------------------------------------+
+|             | ``--plot-area-v2``     |            | Alternative plotting mode, clonotype CDR3 sequences are shown at plot sides and connected to corresponding areas with lines.                        |
++-------------+------------------------+------------+-----------------------------------------------------------------------------------------------------------------------------------------------------+
 | ``-h``      | ``--help``             |            | Display help message                                                                                                                                |
 +-------------+------------------------+------------+-----------------------------------------------------------------------------------------------------------------------------------------------------+
 
@@ -62,10 +64,10 @@ contains a clonotype stack area plot.
     :scale: 50 %
     
 **Clonotype scatterplot**. Main frame contains a scatterplot of clonotype abundances (overlapping 
-clonotypes only) and a linear regression. Point size is scaled to clonotype 
-abundance. Two marginal histograms show the overlapping (red) and total 
-clonotype (grey) abundance distributions in corresponding sample. 
-Histograms are weighted by clonotype abundance, i.e. they display 
+clonotypes only) and a linear regression. Point size is scaled to the geometric mean of clonotype 
+frequency in both samples. Scatterplot axes represent log10 clonotype frequencies in each sample. 
+Two marginal histograms show the overlapping (red) and total clonotype (grey) abundance distributions 
+in corresponding sample. Histograms are weighted by clonotype abundance, i.e. they display 
 read distribution by clonotype size.
 
 .. figure:: _static/images/modules/intersect-pair-stack.png

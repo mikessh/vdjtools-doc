@@ -184,6 +184,16 @@ in ``full`` (default) mode can be used without any pre-processing.
 Run :ref:`convert` routine with ``-S mixcr`` argument to prepare datasets 
 in this format for VDJtools analysis.
 
+IMSEQ
+~~~~~
+
+Output from `IMSEQ <http://www.imtools.org/>`__ software can be used 
+if results are collapsed to nucleotide-level clonotypes using
+``-on`` option. 
+
+Run :ref:`convert` routine with ``-S imseq`` argument to prepare datasets 
+in this format for VDJtools analysis.
+
 .. _metadata:
 
 Metadata
