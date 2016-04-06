@@ -266,7 +266,10 @@ barcoding) is applied, it is highly recommended to filter those before
 performing any kind of cross-sample analysis.
 
 This routine filters out all clonotypes that have a matching clonotype
-in a different sample which is ``-r`` times more abundant.
+in a different sample which is ``-r`` times more abundant. Clonotype fractions 
+within samples are considered, which is good for dealing with FACS-related contaminations.
+In case of dealing with cross-sample contaminations in samples coming from the same 
+sequencing lane use ``--read-based`` option that tells the routine to compareclonotype read counts.
 
 Command line usage
 ~~~~~~~~~~~~~~~~~~
@@ -283,6 +286,8 @@ Parameters
 | Shorthand   |      Long name        | Argument   | Description                                                                                                              |
 +=============+=======================+============+==========================================================================================================================+
 | ``-S``      | ``--software``        | string     | Input format. See :ref:`common_params`                                                                                   |
++-------------+-----------------------+------------+--------------------------------------------------------------------------------------------------------------------------+
+|             | ``--read-based``      | string     | If set will compare clonotype read counts. Clonotype fractions within each sample are compared by default.               |
 +-------------+-----------------------+------------+--------------------------------------------------------------------------------------------------------------------------+
 | ``-m``      | ``--metadata``        | path       | Path to metadata file. See :ref:`common_params`                                                                          |
 +-------------+-----------------------+------------+--------------------------------------------------------------------------------------------------------------------------+
