@@ -35,9 +35,9 @@ Parameters:
 +-------------+-----------------------+--------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------+
 | ``-f``      | ``--factor``          | string             | Specifies plotting factor. See :ref:`_common_params`                                                                                                     |
 +-------------+-----------------------+--------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------+
-| ``-r``      | ``--region-list``     | region1:nbins1,... | Comma-separated list of "region:bin" pairs, a CDR3 sub-region (see below) followed by the number of length bins. Default: `V-germ:5,VJ-junc:3,J-germ:5`  |
+| ``-r``      | ``--region-list``     | region1:nbins1,... | Comma-separated list of "region:bin" pairs, a CDR3 sub-region (see below) followed by the number of length bins. Default: `V-germ:1,VJ-junc:1,J-germ:1`  |
 +-------------+-----------------------+--------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------+
-| ``-o``      | ``--property-list``   | property1,...      | List of amino acid physical properties to use, see below for allowed value. Uses all available properties by default.                                    |
+| ``-o``      | ``--property-list``   | property1,...      | List of amino acid physical properties to use, see below for allowed value. Uses "strength","hydropathy" and "core".                                    |
 +-------------+-----------------------+--------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------+
 |             | ``--include-cfw``     |                    | Consider first and last AAs of CDR3, which are normally conserved C and F/W. By default those are discarded.                                             |
 +-------------+-----------------------+--------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------+
@@ -83,13 +83,19 @@ Supported amino acid physical properties:
 +------------+-----------------------------------------------------------+-----------------------------------------------------------------+
 | charge     | Charged/non-charged amino acids                           | `PMID:14872534 <http://www.ncbi.nlm.nih.gov/pubmed/14872534>`__ |
 +------------+-----------------------------------------------------------+-----------------------------------------------------------------+
+| charge     | Charged/non-charged amino acids                           | `PMID:14872534 <http://www.ncbi.nlm.nih.gov/pubmed/14872534>`__ |
++------------+-----------------------------------------------------------+-----------------------------------------------------------------+
+| charge     | Charged/non-charged amino acids                           | `PMID:14872534 <http://www.ncbi.nlm.nih.gov/pubmed/14872534>`__ |
++------------+-----------------------------------------------------------+-----------------------------------------------------------------+
+| charge     | Charged/non-charged amino acids                           | `PMID:14872534 <http://www.ncbi.nlm.nih.gov/pubmed/14872534>`__ |
++------------+-----------------------------------------------------------+-----------------------------------------------------------------+
 
 .. note:: 
     
-    The following binning scheme is used by default, ``-r V-germ:5,VJ-junc:3,J-germ:5``.
+    Consider an example binning scheme, ``-r V-germ:3,VJ-junc:1,J-germ:3``.
     It means that the amino acid sequence of Variable segment part of CDR3 is split into 
-    5 equally-sized bins and so on.    
-    This can be changed to ``-r V-germ:5,VD-junc:1,D-germ:1,DJ-junc:1,J-germ:5`` for 
+    3 equally-sized bins and so on.    
+    This can be changed to ``-r V-germ:3,VD-junc:1,D-germ:1,DJ-junc:1,J-germ:3`` for 
     analysis of chains that have Diversity segment (TRB, TRD, IGH).
     In case of very small average insert size (short V-J junction), one should consider 
     using a single bin for this sub-region, ``VJ-junc:1``.
@@ -118,6 +124,8 @@ the following columns:
 +---------------+---------------------------------------------------------------------------------------------------------------+
 | total         | Sum of amino acid counts in the bin, either weighted by clonotype frequency or not depending on `-u`          |
 +---------------+---------------------------------------------------------------------------------------------------------------+
+| sd            | Standard deviation of the value                                                                               |
++---------------+---------------------------------------------------------------------------------------------------------------+
 
 Graphical output
 ~~~~~~~~~~~~~~~~
@@ -136,8 +144,8 @@ as well as V-D and D-J junctions (1 length bin respectively).
 
 .. _ScanDatabase:
 
-ScanDatabase
-^^^^^^^^^^^^
+ScanDatabase (Available only up to v1.0.5, use `VDJdb <https://github.com/mikessh/vdjdb>`__)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Annotates a set of samples using immune receptor database based on
 V-(D)-J junction matching. By default uses

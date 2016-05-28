@@ -181,10 +181,11 @@ are distinct between affected persons and healthy donors.
     # cluster of healthy donors suggesting 
     # private nature of MS clonotypes
     # -i aa!nt is used to discard CDR3 nucleotide sequence matches
+	# (note the ! character should be escaped when running on Unix system: \!)
     # and focus on amino-acid matches as strong cross-contamination is present
-    $VDJTOOLS CalcPairwiseDistances -i aa!nt -m metadata.txt overlap/
-    $VDJTOOLS ClusterSamples -p -f state -i aa!nt overlap/ overlap/state
-    $VDJTOOLS TestClusters -i aa!nt overlap/state overlap/state
+    $VDJTOOLS CalcPairwiseDistances -i aa\!nt -m metadata.txt overlap/
+    $VDJTOOLS ClusterSamples -p -f state -i aa\!nt overlap/ overlap/state
+    $VDJTOOLS TestClusters -i aa\!nt overlap/state overlap/state
 
     # Shows V usage level trends and cluster samples based on V usage profiles    
     $VDJTOOLS CalcSegmentUsage -m metadata.txt -p -f state vusage/

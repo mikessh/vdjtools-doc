@@ -189,10 +189,17 @@ IMSEQ
 
 Output from `IMSEQ <http://www.imtools.org/>`__ software can be used 
 if results are collapsed to nucleotide-level clonotypes using
-``-on`` option. 
+``-on`` argument with IMSEQ. 
 
 Run :ref:`convert` routine with ``-S imseq`` argument to prepare datasets 
 in this format for VDJtools analysis.
+
+Vidjil
+~~~~~~
+
+VDJtools supports parsing output Json files produced by the 
+`Vidjil <http://www.vidjil.org/>`__ software. VDJtools will only use 
+top clonotypes which have V/D/J detalization in the output.
 
 .. _metadata:
 
