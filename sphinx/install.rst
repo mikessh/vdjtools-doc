@@ -6,9 +6,10 @@ Installing VDJtools
 Installing binaries
 ^^^^^^^^^^^^^^^^^^^
 
-First make sure that Java Runtime Environment (JRE) v1.7+, available
-`here <http://www.oracle.com/technetwork/java/javase/downloads/java-se-jre-7-download-432155.html>`__,
-is installed on your system. Then download and unpack the binaries from
+First make sure that you have installed Java Runtime Environment (JRE) v1.8 by running 
+``java -version`` (you can get it
+`here <http://www.oracle.com/technetwork/java/javase/downloads/java-se-jre-7-download-432155.html>`__). 
+Then download and unpack the binaries from
 the `latest
 release <https://github.com/mikessh/vdjtools/releases/latest>`__.
 
@@ -25,6 +26,26 @@ see the details (parameters, etc) for a specific routine execute
 .. code:: bash
 
     java -jar vdjtools.jar RoutineName -h    
+
+Windows
+~~~~~~~
+
+Dedicated VDJtools bundle can be downloaded from the 
+`release <https://github.com/mikessh/vdjtools/releases/latest>`__ section 
+and is marked with ``.win.zip`` suffix.
+
+Linux/MacOS
+~~~~~~~~~~~
+
+Installation can be performed using `Homebrew <http://brew.sh/>`__ package manager:
+
+.. code:: bash
+
+    brew tap mikessh/repseq
+    brew install vdjtools
+	
+Note that this sets ``vdjtools`` as a shortcut for ``java -jar vdjtools-X.X.X.jar``. JVM arguments
+such as ``-Xmx`` can be still passed to the script, e.g. ``vdjtools -Xmx20G CalcBasicStats ...``. 
 
 Setting up plotting routines
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -47,35 +68,27 @@ Then install all dependencies to a local library automatically using the
     java -jar vdjtools.jar Rinstall
 
 This would also print the list of required R modules, so in case
-``Rinstall`` fails, they could be installed manually. To skip this step
-run the following command in R:
+``Rinstall`` fails, they could be installed manually by running the following 
+command in R:
 
 .. code:: r
 
-    install.packages(c("ggplot2","reshape2","grid",
-                       "ape","MASS","plotrix",
-                       "RColorBrewer","FField","reshape",
-                       "gplots","gridExtra","circlize",
-                       "VennDiagram"))
+    install.packages(c("reshape2", "FField", "reshape", "gplots", 
+	                   "gridExtra", "circlize", "ggplot2", "grid", 
+					   "VennDiagram", "ape", "MASS", "plotrix", 
+					   "RColorBrewer", "scales"))
+					   
+Note that most issues with package installation can be resolved by switching to correct CRAN mirror.
 
+Dedicated windows binaries already have all R packages bundled, and the options summarized above 
+should be considered only when troubleshooting R script execution issues.
+					   
 Compiling from source
 ^^^^^^^^^^^^^^^^^^^^^
 
 VDJtools could be compiled from source code using `Apache
 Maven <http://maven.apache.org/>`__. Compilation should be performed
-under JRE v1.7.
-
-The only dependencies that need to be manually installed is
-`VDJdb <https://github.com/mikessh/vdjdb>`__, used for clonotype
-annotation purposes:
-
-.. code:: bash
-
-    git clone https://github.com/mikessh/vdjdb.git
-    cd vdjdb
-    mvn clean install
-
-Then proceed with compiling VDJtools itself:
+under JRE v1.8:
 
 .. code:: bash
 
@@ -83,4 +96,4 @@ Then proceed with compiling VDJtools itself:
     cd vdjtools
     mvn clean install
 
-Binaries could then be found at ``vdjtools/target/`` directory
+Binaries could then be found unders ``vdjtools/target/`` folder.
