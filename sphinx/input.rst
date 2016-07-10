@@ -89,11 +89,12 @@ Formats supported for conversion
 MiTCR
 ~~~~~
 
-Output from `MiTCR <mitcr.milaboratory.com>`__ software in ``full`` mode
-can be used without any pre-processing. The table shoul start with **two
-header lines** (default MiTCR output stores processing options and
-version in the first line), which are skipped by VDJtools. Clonotypes
-are then listed one at a line.
+Output from MiTCR software (`executable jar <http://files.milaboratory.com/mitcr/1.0.3.3-beta/mitcr.jar>`__, 
+`documentation <http://files.milaboratory.com/mitcr/Manual.pdf>`__) in 
+``full`` mode can be used without any pre-processing. Corresponding 
+table should start with **two header lines** (default MiTCR output 
+stores processing options and version in the first line), followed by a clonotype 
+list.
 
 Run :ref:`convert` routine with ``-S mitcr`` argument to prepare datasets 
 in this format for VDJtools analysis.
@@ -101,24 +102,25 @@ in this format for VDJtools analysis.
 MiGEC
 ~~~~~
 
-Default output of `MiGEC <https://github.com/mikessh/migec>`__ software
-can be directly used with VDJtools. The table should start with a
-**single header line**. The table should have the following columns:
+`MiGEC <https://github.com/mikessh/migec>`__ is a software for V/D/J mapping and CDR3 
+extraction that relies on BLAST algorithm for running alignments. MIGEC software 
+additionally implements processing of unique molecular identifier (UMI)-tagged libraries 
+for error correction and dataset normalization. Default output of MIGEC software 
+can be directly used with VDJtools.
 
 Run :ref:`convert` routine with ``-S migec`` argument to prepare datasets 
 in this format for VDJtools analysis.
 
-IgBlast
-~~~~~~~
+IgBlast (MIGMAP)
+~~~~~~~~~~~~~~~~
 
-As IgBlast doesn't compute a canonical clonotype abundance table
-generation, I wrote a small wrapper to handle this task (see
-`IgBlastWrapper <https://github.com/mikessh/igblastwrp>`__ repository).
-IgBlastWrapper should be run with ``-l 2`` argument to generate the full
-table.
+As IgBlast doesn't compute a canonical clonotype abundance table, 
+VDJtools supports output of `MIGMAP <https://github.com/mikessh/igblastwrp>`__, 
+a versatile IgBlast wrapper. Note that currently no somatic hypermutation (SHM) 
+information is imported by VDJtools, neither there are any dedicated VDJtools 
+routines to analyze SHM profiles, but you check out `post-analysis provided by MIGMAP <https://github.com/mikessh/migmap/tree/master/post>`__.
 
-See the IgBlastWrapper repository for details on hypermutation encoding.
-Run :ref:`convert` routine with ``-S igblast`` argument to prepare datasets 
+Run :ref:`convert` routine with ``-S migmap`` argument to prepare datasets 
 in this format for VDJtools analysis.
 
 ImmunoSEQ
@@ -126,7 +128,7 @@ ImmunoSEQ
 
 One of the most commonly used RepSeq data format, more than 90% of recently published studies  
 were performed using `immunoSEQ <http://www.adaptivebiotech.com/content/immunoseq-0>`__ 
-assay. We have implemented a parser for clonotype tables as returned by 
+assay. We have implemented a parser for clonotype tables as provided by 
 `Adaptive Biotechnologies <http://www.adaptivebiotech.com/>`__.
 
 -  Example datasets in this format could be found in the 
@@ -140,7 +142,7 @@ assay. We have implemented a parser for clonotype tables as returned by
    segment (`-X`) and allele (`-X*0Y`) information. 
    The clonotype table is then collapsed to handle unique V/J/CDR3 entries.
 
--  Clonotype tables in this format initially are missing CDR3 nucleotide sequence. 
+-  Raw clonotype tables in this format do not contain CDR3 nucleotide sequence. 
    Instead, an entire sequencing read (first column) is provided. Therefore, we have 
    implemented additional algorithms for CDR3 extraction and "virtual" translation 
    to tell out-of-frame clonotypes from partially read ones.
@@ -161,7 +163,7 @@ Another commonly used RepSeq processing tool is the
 `IMGT/HighV-QUEST <http://www.imgt.org/IMGTindex/IMGTHighV-QUEST.html>`__ web server.
 
 Please refer to the official `documentation <http://www.imgt.org/HighV-QUEST/help.action?section=doc>`__ 
-to see the description of more than a hundred of output columns present in the original output file.
+to see the description of output files and their formats.
 
 .. tip:: 
     The output for each submission consists of several files and only 
@@ -175,10 +177,37 @@ to see the description of more than a hundred of output columns present in the o
 Run :ref:`convert` routine with ``-S imgthighvquest`` argument to prepare datasets 
 in this format for VDJtools analysis.
 
+VDJdb
+~~~~~
+
+VDJtools has native support for the analysis of clonotype tables annotated 
+with `VDJdb <https://github.com/antigenomics/vdjdb-standalone>`__ software. 
+Note that as those tables can list the same clonotype several times with 
+different annotation, they should not be used directly in most VDJtools 
+routines (e.g. diversity statistics), check out 
+`VDJdb README <https://github.com/antigenomics/vdjdb-standalone#some-notes>`__ 
+for corresponding guidelines and workarounds.
+
+Vidjil
+~~~~~~
+
+VDJtools supports parsing output Json files produced by the 
+`Vidjil <http://www.vidjil.org/>`__ software. VDJtools will only use 
+top clonotypes which have V/D/J detalization in the output.
+
+RTCR
+~~~~
+
+VDJtools supports parsing the ``results.tsv`` table with clonotype list 
+generated by the `RTCR <https://github.com/uubram/RTCR>`__ software.
+
+Run :ref:`convert` routine with ``-S rtcr`` argument to prepare datasets 
+in this format for VDJtools analysis.
+
 MiXCR
 ~~~~~
 
-Output from `MiXCR <mixcr.milaboratory.com>`__ software ``export`` routine 
+Output from `MiXCR <https://github.com/milaboratory/mixcr>`__ software ``export`` routine 
 in ``full`` (default) mode can be used without any pre-processing. 
 
 Run :ref:`convert` routine with ``-S mixcr`` argument to prepare datasets 
@@ -193,13 +222,6 @@ if results are collapsed to nucleotide-level clonotypes using
 
 Run :ref:`convert` routine with ``-S imseq`` argument to prepare datasets 
 in this format for VDJtools analysis.
-
-Vidjil
-~~~~~~
-
-VDJtools supports parsing output Json files produced by the 
-`Vidjil <http://www.vidjil.org/>`__ software. VDJtools will only use 
-top clonotypes which have V/D/J detalization in the output.
 
 .. _metadata:
 

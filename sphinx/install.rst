@@ -41,6 +41,7 @@ Installation can be performed using `Homebrew <http://brew.sh/>`__ package manag
 
 .. code:: bash
 
+    brew tap homebrew/science
     brew tap mikessh/repseq
     brew install vdjtools
 	
@@ -58,10 +59,11 @@ programming language and make sure that the
 
     Rscript --version
 
-runs successfully. All R scripts were tested under R version 3.1.0.
+runs successfully. Note that all R scripts were tested under R version 3.1.0.
 
-Then install all dependencies to a local library automatically using the 
-:ref:`rinstall` routine:
+In case not using the pre-compiled ``*.win.zip`` package / Homebrew installation, 
+one needs to additionally install R dependencies to a local library by 
+running the :ref:`rinstall` routine:
 
 .. code:: bash
 
@@ -88,12 +90,12 @@ Compiling from source
 
 VDJtools could be compiled from source code using `Apache
 Maven <http://maven.apache.org/>`__. Compilation should be performed
-under JRE v1.8:
+under JRE v1.8 by running the following commands:
 
 .. code:: bash
 
     git clone https://github.com/mikessh/vdjtools.git
-    cd vdjtools
+    cd vdjtools/
     mvn clean install
 
-Binaries could then be found unders ``vdjtools/target/`` folder.
+Binaries could then be found under the ``vdjtools/target/`` folder.
