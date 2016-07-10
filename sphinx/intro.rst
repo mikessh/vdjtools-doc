@@ -36,17 +36,19 @@ repertoire snapshot of around 500,000 human T-cells on a UNIX server with
 Input
 ~~~~~
 
-The framework is currently capable to analyze the output of the
-following V-(D)-J junction mapping software:
+The framework is currently able to import and analyze the output of the
+following V-(D)-J junction mapping software and analysis platforms:
 
--  `MiTCR <http://mitcr.milaboratory.com/>`__
--  `MiGEC <https://github.com/mikessh/migec>`__/`CdrBlast <https://github.com/mikessh/migec#4-cdrblast-batch>`__
--  `IgBlast <http://www.ncbi.nlm.nih.gov/igblast/igblast.cgi>`__ (via our `wrapper <https://github.com/mikessh/igblastwrp>`__)
--  `IMGT <http://www.imgt.org/IMGTindex/IMGTHighV-QUEST.html>`__
--  `ImmunoSEQ <http://marketing.adaptivebiotech.com/content/immunoseq-0>`__
--  `MiXCR <http://mixcr.milaboratory.com/>`__
--  `ImSEQ <http://www.imtools.org/>`__
--  `Vidjil <http://www.vidjil.org/>`__
+-  MiTCR
+-  MiGEC
+-  IgBlast (via our MIGMAP wrapper)
+-  IMGT
+-  ImmunoSEQ
+-  VDJdb
+-  Vidjil
+-  RTCR
+-  MiXCR
+-  ImSEQ
 
 For more details see the :ref:`software` section. VDJtools converts those files to 
 its internal format (see :ref:`vdjtools_format`) which is used throughout the pipeline.

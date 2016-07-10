@@ -24,6 +24,13 @@ For more details on individual VDJtools routines see the :ref:`modules` section.
         # Point to VDJtools executable and allocate enough memory for JVM
         VDJTOOLS="java -Xmx20G -jar vdjtools.jar"
 
+    or in case the software was installed using HOMEBREW
+
+    .. code-block:: bash
+
+        # Point to VDJtools executable and allocate enough memory for JVM
+        VDJTOOLS="vdjtools -Xmx20G"
+
 Aging
 ^^^^^
 
@@ -71,13 +78,8 @@ can be performed using the following commands:
     # here we use Variable segment Jensen-Shannon divergence and sex as discrete factor
     $VDJTOOLS ClusterSamples -p -e vJSD -f sex -l sample.id out/10 out/10.sex
 
-    # Check for EBV specific clonotypes
-    # you can use flexible filter for scanning dataset that accepts regexp syntax, 
-    # '__' marks the column in annotation database aka VDJdb
-    $VDJTOOLS ScanDatabase -m metadata.txt -f --filter "__origin__=~/EBV/" out/11
-
     # Demonstrate sample operations and filtering
-    # Remove cross-sample contamination
+    # Remove cross-sample contamination (-c produces compressed output)
     $VDJTOOLS Decontaminate -m metadata.txt -c out/dec/
     # Down-sample datasets to 10,000 reads
     $VDJTOOLS Downsample -m metadata.txt -c -x 10000 out/ds/
@@ -87,6 +89,10 @@ can be performed using the following commands:
     $VDJTOOLS JoinSamples -p -m metadata.small.txt out/12
     # Pool samples together
     $VDJTOOLS PoolSamples -m metadata.small.txt out/13
+
+    # Annotate each clonotype in each sample with insert size,
+    # total CDR3 hydrophobicity and other basic and amino acid properties
+    $VDJTOOLS Annotate -m metadata.txt out/annot/
 
 The code block above shows example usage for nearly all available commands. 
 Rarefaction plot in the aging case displays a strong age-related diversity decrease. 
@@ -135,12 +141,6 @@ Post-analysis can be performed using the following commands:
     # and builds a time course for them, 
     # but here we trace clonotypes from first time point setting -x 0
     $VDJTOOLS TrackClonotypes -m metadata.txt -f "Time post HSCT, months" -x 0 -p out/6 
-
-    # Annotation
-    # can also use Groovy/Java syntax in filter
-    $VDJTOOLS ScanDatabase -m metadata.txt -f \
-    --filter "__origin__.contains('CMV')||__origin__.contains('EBV')" \
-    ./out/7
 
 :ref:`RarefactionPlot` output shows how repertoire diversity is lost and restored
 during post-HSCT period. The output of :ref:`ScanDatabase` displays that
@@ -205,3 +205,10 @@ Below is an example of :ref:`RarefactionPlot` graphical output.
 **Rarefaction analysis of MS and healthy donor repertoires.** Note that 
 rarefaction curves for MS patients are generally lower than those for healthy 
 donors, indicating the presence of clonal expansion in former.
+
+--------------
+
+See also
+^^^^^^^^
+
+A couple of VDJtools usage examples can be found in `Estimating the diversity of immune repertoires tutorial <http://repseq-tutorial.readthedocs.io/en/latest/>`__.
