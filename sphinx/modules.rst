@@ -100,7 +100,7 @@ Functional annotation of clonotype tables (antigen specificity, amino acid prope
    Queries a database containing clonotypes of known antigen specificity. 
 -  :ref:`CalcCdrAAProfile`
    Builds a profile of CDR3 regions (V germline, V-D junction, ...) using a set of amino-acid physical properties
--  :ref:`Annotate`
+-  :ref:`Annotate2`
    Computes a set of basic (insert size, ...) and amino acid physical properties (GRAVY, ...) for clonotypes
    
 :ref:`util`
