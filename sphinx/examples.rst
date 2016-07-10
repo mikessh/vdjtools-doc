@@ -24,11 +24,10 @@ For more details on individual VDJtools routines see the :ref:`modules` section.
         # Point to VDJtools executable and allocate enough memory for JVM
         VDJTOOLS="java -Xmx20G -jar vdjtools.jar"
 
-    or in case the software was installed using HOMEBREW
+    or in case the software was installed using Homebrew
 
     .. code-block:: bash
 
-        # Point to VDJtools executable and allocate enough memory for JVM
         VDJTOOLS="vdjtools -Xmx20G"
 
 Aging

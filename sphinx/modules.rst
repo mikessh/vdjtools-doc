@@ -66,16 +66,18 @@ Filtering and resampling
 
 -  :ref:`Correct`
    Performs a frequency-based erroneous clonotype correction
--  :ref:`FilterNonFunctional`
-   Filters non-functional clonotypes
--  :ref:`DownSample`
-   Performs down-sampling, i.e. takes a subset of random reads from sample(s)
--  :ref:`SelectTop`
-   Selects a fixed number of top (most abundant) clonotypes from sample(s)
--  :ref:`ApplySampleAsFilter`
-   Filters clonotypes that are present in a specified sample from sample(s)
 -  :ref:`Decontaminate`
    Filters possible cross-sample contaminations in a set of samples
+-  :ref:`DownSample`
+   Performs down-sampling, i.e. takes a subset of random reads from sample(s)
+-  :ref:`FilterNonFunctional`
+   Filters non-functional clonotypes
+-  :ref:`SelectTop`
+   Selects a fixed number of top (most abundant) clonotypes from sample(s)
+-  :ref:`FilterByFrequency`
+   Filters clonotypes based on a specified frequency threshold.
+-  :ref:`ApplySampleAsFilter`
+   Filters clonotypes that are present in a specified sample from sample(s)
 -  :ref:`FilterBySegment`
    Filters clonotypes according to their V/D/J segment
 
@@ -92,13 +94,19 @@ Clonotype table operations
 :ref:`annotate`
 ~~~~~~~~~~~~~~~
 
+Functional annotation of clonotype tables (antigen specificity, amino acid properties, etc)
+
 -  :ref:`ScanDatabase`
-   Queries a database containing clonotype of known antigen specificity. 
+   Queries a database containing clonotypes of known antigen specificity. 
 -  :ref:`CalcCdrAAProfile`
    Builds a profile of CDR3 regions (V germline, V-D junction, ...) using a set of amino-acid physical properties
+-  :ref:`Annotate`
+   Computes a set of basic (insert size, ...) and amino acid physical properties (GRAVY, ...) for clonotypes
    
 :ref:`util`
 ~~~~~~~~~~~
+
+Some useful utilities
 
 -  :ref:`FilterMetadata`
    Filters metadata file by values in specified column
@@ -129,27 +137,29 @@ Common parameters
 There are several parameters that are commonly used among analysis
 routines:
 
-+-------------+------------------------+------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| Shorthand   |      Long name         | Argument   | Description                                                                                                                                                                                                                                                                                                                                       |
-+=============+========================+============+===================================================================================================================================================================================================================================================================================================================================================+
-| ``-h``      | ``--help``             |            | Brings up the help message for selected routine                                                                                                                                                                                                                                                                                                   |
-+-------------+------------------------+------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| ``-m``      | ``--metadata``         | path       | Path to metadata file. Should point to a tab-delimited file with the first two columns containing sample path and sample id respectively, and the remaining columns containing user-specified data. See :ref:`metadata` section                                                                                                                   |
-+-------------+------------------------+------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| ``-u``      | ``--unweighted``       |            | If present as an option and not set, all statistics will be weighted by clonotype frequency                                                                                                                                                                                                                                                       |
-+-------------+------------------------+------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| ``-i``      | ``--intersect-type``   | string     | :ref:`overlap_type`, that specifies which clonotype features (CDR3 sequence, V/J segments, hypermutations) will be compared when checking if two clonotypes match. Allowed values: ``strict``,\ ``nt``,\ ``ntV``,\ ``ntVJ``,\ ``aa``,\ ``aaV``,\ ``aaVJ`` and ``aa!nt``.                                                                          |
-+-------------+------------------------+------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| ``-p``      | ``--plot``             |            | [*plotting*] Enable plotting for routines that supports it.                                                                                                                                                                                                                                                                                       |
-+-------------+------------------------+------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-|             | ``--plot-type``        | <pdf|png>  | [*plotting*] Specifies whether to generate a PDF or PNG file. While latter could be easily embedded, PDF plots have superior quality.                                                                                                                                                                                                             |
-+-------------+------------------------+------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| ``-f``      | ``--factor``           | string     | [*plotting*] Name of the sample metadata column that should be treated as factor. If the name contains spaces, the argument should be surrounded with double quotes, e.g. ``-f "Treatment type"``                                                                                                                                                 |
-+-------------+------------------------+------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| ``-n``      | ``--factor-numeric``   |            | [*plotting*] Treat the factor as numeric?                                                                                                                                                                                                                                                                                                         |
-+-------------+------------------------+------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| ``-l``      | ``--label``            | string     | [*plotting*] Name of the sample metadata column that should be treated as label. If the name contains spaces, the argument should be surrounded with double quotes, e.g. ``-l "Patient id"``                                                                                                                                                      |
-+-------------+------------------------+------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
++-------------+------------------------+------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Shorthand   |      Long name         | Argument   | Description                                                                                                                                                                                                                                                                 |
++=============+========================+============+=============================================================================================================================================================================================================================================================================+
+| ``-h``      | ``--help``             |            | Brings up the help message for selected routine                                                                                                                                                                                                                             |
++-------------+------------------------+------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| ``-m``      | ``--metadata``         | path       | Path to metadata file. Should point to a tab-delimited file with the first two columns containing sample path and sample id respectively, and the remaining columns containing user-specified data. See :ref:`metadata` section                                             |
++-------------+------------------------+------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| ``-u``      | ``--unweighted``       |            | If present as an option and not set, all statistics will be weighted by clonotype frequency                                                                                                                                                                                 |
++-------------+------------------------+------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| ``-i``      | ``--intersect-type``   | string     | :ref:`overlap_type`, that specifies which clonotype features (CDR3 sequence, V/J segments, hypermutations) will be compared when checking if two clonotypes match. Allowed values: ``strict``,\ ``nt``,\ ``ntV``,\ ``ntVJ``,\ ``aa``,\ ``aaV``,\ ``aaVJ`` and ``aa!nt``.    |
++-------------+------------------------+------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| ``-p``      | ``--plot``             |            | [*plotting*] Enable plotting for routines that supports it.                                                                                                                                                                                                                 |
++-------------+------------------------+------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+|             | ``--plot-type``        | <pdf|png>  | [*plotting*] Specifies whether to generate a PDF or PNG file. While latter could be easily embedded, PDF plots have superior quality.                                                                                                                                       |
++-------------+------------------------+------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| ``-f``      | ``--factor``           | string     | [*plotting*] Name of the sample metadata column that should be treated as factor. If the name contains spaces, the argument should be surrounded with double quotes, e.g. ``-f "Treatment type"``                                                                           |
++-------------+------------------------+------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| ``-n``      | ``--factor-numeric``   |            | [*plotting*] Treat the factor as numeric?                                                                                                                                                                                                                                   |
++-------------+------------------------+------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| ``-l``      | ``--label``            | string     | [*plotting*] Name of the sample metadata column that should be treated as label. If the name contains spaces, the argument should be surrounded with double quotes, e.g. ``-l "Patient id"``                                                                                |
++-------------+------------------------+------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| ``-c``      | ``--compress``         | path       | Compress resulting clonotype tables using GZIP.                                                                                                                                                                                                                             |
++-------------+------------------------+------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
 .. _overlap_type:
 
@@ -186,4 +196,6 @@ The list of strategies is defined below.
 | aa!nt       | **CDR3aa** (AND)((NOT) **CDR3nt** )               | Removes nearly all contamination bias from overlap results. Should not be used for samples from the same donor/tracking experiments   |
 +-------------+---------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------+
 
-See VDJtools :ref:`clonotype_spec` specification for details.
+As somatic hypermutations (SHMs) are currently not supported by VDJtools, 
+``strict`` and ``ntVJ`` options are identical. See VDJtools :ref:`clonotype_spec` 
+specification for details.
