@@ -277,8 +277,8 @@ none
 
 .. _FilterByFrequency:
 
-SelectTop
-^^^^^^^^^
+FilterByFrequency
+^^^^^^^^^^^^^^^^^
 
 Selects clonotypes that either have a frequency above the specified threshold and/or 
 constitute more than a specified percent of reads (e.g. quantile threshold of 0.25 will 

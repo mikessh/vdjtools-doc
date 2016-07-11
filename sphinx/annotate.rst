@@ -11,8 +11,14 @@ CalcCdrAAProfile
 Generates amino acid physical properties profile of CDR3. Amino acids are 
 first grouped to corresponding CDR3 sub-regions and then binned by position 
 within the sub-region. Amino acids in a given bin is scored according to 
-its physical properties, average values of those scores are reported for each 
-sample/sub-region/bin/property combination.
+its physical properties, sums of those scores and total number of amino acids
+is reported for each sample/sub-region/bin/property combination.
+
+For example under the **polarity** property amino acids are marked as polar (``1``) 
+and non-polar (``0``) and the sum of these values is returned. When divided by 
+the total number of amino acids one will get the fraction of polar amino acids 
+in a given sample/sub-region. For **volume** the same operation will return the 
+average volume of amino acids.
 
 Command line usage
 ~~~~~~~~~~~~~~~~~~
@@ -24,71 +30,81 @@ Command line usage
 
 Parameters:
 
-+-------------+-----------------------+--------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------+
-| Shorthand   |      Long name        | Argument           | Description                                                                                                                                              |
-+=============+=======================+====================+==========================================================================================================================================================+
-| ``-m``      | ``--metadata``        | path               | Path to metadata file. See :ref:`common_params`                                                                                                          |
-+-------------+-----------------------+--------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------+
-| ``-u``      | ``--unweighted``      |                    | If set, will not weight amino acid physical property averages by clonotype frequency. Weighing is performed by default.                                  |
-+-------------+-----------------------+--------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------+
-| ``-p``      | ``--plot``            |                    | Turns on plotting. See :ref:`_common_params`                                                                                                             |
-+-------------+-----------------------+--------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------+
-| ``-f``      | ``--factor``          | string             | Specifies plotting factor. See :ref:`_common_params`                                                                                                     |
-+-------------+-----------------------+--------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------+
-| ``-r``      | ``--region-list``     | region1:nbins1,... | Comma-separated list of "region:bin" pairs, a CDR3 sub-region (see below) followed by the number of length bins. Default: `V-germ:1,VJ-junc:1,J-germ:1`  |
-+-------------+-----------------------+--------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------+
-| ``-o``      | ``--property-list``   | property1,...      | List of amino acid physical properties to use, see below for allowed value. Uses "strength","hydropathy" and "core".                                    |
-+-------------+-----------------------+--------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------+
-|             | ``--include-cfw``     |                    | Consider first and last AAs of CDR3, which are normally conserved C and F/W. By default those are discarded.                                             |
-+-------------+-----------------------+--------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------+
-| ``-h``      | ``--help``            |                    | Display help message                                                                                                                                     |
-+-------------+-----------------------+--------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------+
++-------------+-----------------------+--------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Shorthand   |      Long name        | Argument           | Description                                                                                                                                                |
++=============+=======================+====================+============================================================================================================================================================+
+| ``-m``      | ``--metadata``        | path               | Path to metadata file. See :ref:`common_params`                                                                                                            |
++-------------+-----------------------+--------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| ``-u``      | ``--unweighted``      |                    | If set, will not weight amino acid physical property averages by clonotype frequency. Weighing is performed by default.                                    |
++-------------+-----------------------+--------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| ``-p``      | ``--plot``            |                    | Turns on plotting. See :ref:`common_params`                                                                                                                |
++-------------+-----------------------+--------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| ``-f``      | ``--factor``          | string             | Specifies plotting factor. See :ref:`common_params`                                                                                                        |
++-------------+-----------------------+--------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| ``-r``      | ``--region-list``     | region1:nbins1,... | Comma-separated list of ``region:bin`` pairs: CDR3 sub-region (see below) and the number of length bins. Default: ``CDR3-full:1,VJ-junc:1,CDR3-center:1``  |
++-------------+-----------------------+--------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| ``-o``      | ``--property-list``   | property1,...      | List of amino acid physical properties to use, see below for allowed value. Uses all amino acid properties from list below by default.                     |
++-------------+-----------------------+--------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------+
+|             | ``--include-cfw``     |                    | Consider first and last AAs of CDR3, which are normally conserved C and F/W. By default those are discarded.                                               |
++-------------+-----------------------+--------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| ``-h``      | ``--help``            |                    | Display help message                                                                                                                                       |
++-------------+-----------------------+--------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
 Supported CDR3 sub-regions:
 
-+-------------+--------------------------------------------------------------------------+
-| Name        | Description                                                              |
-+=============+==========================================================================+
-| CDR3-full   | Complete CDR3 region                                                     |
-+-------------+--------------------------------------------------------------------------+
-| CDR3-center | Central 3 amino acids of CDR                                             |
-+-------------+--------------------------------------------------------------------------+
-| V-germ      | Germline part of CDR3 region corresponding to Variable segment           |
-+-------------+--------------------------------------------------------------------------+
-| D-germ      | Germline part of CDR3 region corresponding to Diversity segment          |
-+-------------+--------------------------------------------------------------------------+
-| J-germ      | Germline part of CDR3 region corresponding to Joining segment            |
-+-------------+--------------------------------------------------------------------------+
-| VD-junc     | Variable-Diversity segment junction, applicable when D segment is mapped |
-+-------------+--------------------------------------------------------------------------+
-| DJ-junc     | Diversity-Joining segment junction, applicable when D segment is mapped  |
-+-------------+--------------------------------------------------------------------------+
-| VJ-junc     | Variable-Joining segment junction, including D segment if it is mapped   |
-+-------------+--------------------------------------------------------------------------+
++-----------------+--------------------------------------------------------------------------+
+| Name            | Description                                                              |
++=================+==========================================================================+
+| ``CDR3-full``   | Complete CDR3 region                                                     |
++-----------------+--------------------------------------------------------------------------+
+| ``CDR3-center`` | Central 3 amino acids of CDR3                                            |
++-----------------+--------------------------------------------------------------------------+
+| ``V-germ``      | Germline part of CDR3 region corresponding to Variable segment           |
++-----------------+--------------------------------------------------------------------------+
+| ``D-germ``      | Germline part of CDR3 region corresponding to Diversity segment          |
++-----------------+--------------------------------------------------------------------------+
+| ``J-germ ``     | Germline part of CDR3 region corresponding to Joining segment            |
++-----------------+--------------------------------------------------------------------------+
+| ``VD-junc``     | Variable-Diversity segment junction, applicable when D segment is mapped |
++-----------------+--------------------------------------------------------------------------+
+| ``DJ-junc``     | Diversity-Joining segment junction, applicable when D segment is mapped  |
++-----------------+--------------------------------------------------------------------------+
+| ``VJ-junc``     | Variable-Joining segment junction, including D segment if it is mapped   |
++-----------------+--------------------------------------------------------------------------+
 
-Supported amino acid physical properties:
+Supported amino acid physical properties (see `full table <https://github.com/mikessh/vdjtools/blob/master/src/main/resources/profile/aa_property_table.txt>`__ for raw values):
 
-+------------+-----------------------------------------------------------+-----------------------------------------------------------------+
-| Name       | Description                                               | Reference                                                       |
-+============+===========================================================+=================================================================+
-| strength   | Rate of amino acids with strong self antigen recognition  | `PMID:18946038 <http://www.ncbi.nlm.nih.gov/pubmed/18946038>`__ |
-+------------+-----------------------------------------------------------+-----------------------------------------------------------------+
-| disorder   | Intrinsic structural disorder                             | `PMID:16301309 <http://www.ncbi.nlm.nih.gov/pubmed/16301309>`__ |
-+------------+-----------------------------------------------------------+-----------------------------------------------------------------+
-| polarity   | Polar/non-polar amino acids                               | `PMID:14872534 <http://www.ncbi.nlm.nih.gov/pubmed/14872534>`__ |
-+------------+-----------------------------------------------------------+-----------------------------------------------------------------+
-| hydropathy | Hydropathy, according to the Kyte-Doolitle scale          | `PMID:14872534 <http://www.ncbi.nlm.nih.gov/pubmed/14872534>`__ |
-+------------+-----------------------------------------------------------+-----------------------------------------------------------------+
-| volume     | Amino acid volume                                         | `PMID:14872534 <http://www.ncbi.nlm.nih.gov/pubmed/14872534>`__ |
-+------------+-----------------------------------------------------------+-----------------------------------------------------------------+
-| charge     | Charged/non-charged amino acids                           | `PMID:14872534 <http://www.ncbi.nlm.nih.gov/pubmed/14872534>`__ |
-+------------+-----------------------------------------------------------+-----------------------------------------------------------------+
-| charge     | Charged/non-charged amino acids                           | `PMID:14872534 <http://www.ncbi.nlm.nih.gov/pubmed/14872534>`__ |
-+------------+-----------------------------------------------------------+-----------------------------------------------------------------+
-| charge     | Charged/non-charged amino acids                           | `PMID:14872534 <http://www.ncbi.nlm.nih.gov/pubmed/14872534>`__ |
-+------------+-----------------------------------------------------------+-----------------------------------------------------------------+
-| charge     | Charged/non-charged amino acids                           | `PMID:14872534 <http://www.ncbi.nlm.nih.gov/pubmed/14872534>`__ |
-+------------+-----------------------------------------------------------+-----------------------------------------------------------------+
++----------------+-----------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------+
+| Name           | Description                                                                                                     | Reference                                                       |
++================+=================================================================================================================+=================================================================+
+| ``alpha``      | Preference to appear in alpha helices                                                                           | Stryer L et al. Biochemistry, 5th edition. ISBN 978-0716746843  |
++----------------+-----------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------+
+| ``beta``       | Preference to appear in beta sheets                                                                             | Stryer L et al. Biochemistry, 5th edition. ISBN 978-0716746843  |
++----------------+-----------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------+
+| ``turn``       | Preference to appear in turns                                                                                   | Stryer L et al. Biochemistry, 5th edition. ISBN 978-0716746843  |
++----------------+-----------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------+
+| ``surface``    | Residues that have unchanged accessibility area when PPI partner is present                                     | `PMID:22559010 <http://www.ncbi.nlm.nih.gov/pubmed/22559010>`__ |
++----------------+-----------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------+
+| ``rim``        | Residues that have changed accessibility area, but no atoms with zero accessibility in PPI interfaces           | `PMID:22559010 <http://www.ncbi.nlm.nih.gov/pubmed/22559010>`__ |
++----------------+-----------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------+
+| ``core``       | Residues that have changed accessibility area and at least one atom with zero accessibility in PPI interfaces   | `PMID:22559010 <http://www.ncbi.nlm.nih.gov/pubmed/22559010>`__ |
++----------------+-----------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------+
+| ``disorder``   | Intrinsic structural disorder-promoting, order-promoting and neutral amino acids                                | `PMID:11381529 <http://www.ncbi.nlm.nih.gov/pubmed/11381529>`__ |
++----------------+-----------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------+
+| ``charge``     | Charged/non-charged amino acids                                                                                 | `Wikipedia <https://en.wikipedia.org/wiki/Amino_acid>`__        |
++----------------+-----------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------+
+| ``pH``         | Amino acid pH level                                                                                             | `Wikipedia <https://en.wikipedia.org/wiki/Amino_acid>`__        |
++----------------+-----------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------+
+| ``polarity``   | Polar/non-polar amino acids                                                                                     | `Wikipedia <https://en.wikipedia.org/wiki/Amino_acid>`__        |
++----------------+-----------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------+
+| ``hydropathy`` | Amino acid hydropathy                                                                                           | `Wikipedia <https://en.wikipedia.org/wiki/Amino_acid>`__        |
++----------------+-----------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------+
+| ``volume``     | Amino acid volume                                                                                               | `Wikipedia <https://en.wikipedia.org/wiki/Amino_acid>`__        |
++----------------+-----------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------+
+| ``strength``   | Strongly-interacting amino acids / amino acids depleted by purifying selection in thymus                        | `PMID:18946038 <http://www.ncbi.nlm.nih.gov/pubmed/18946038>`__ |
++----------------+-----------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------+
+| ``contact``    | Amino acids that show high antigen contact frequencies as inferred from structural data                         | unpublished                                                     |
++----------------+-----------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------+
 
 .. note:: 
     
@@ -141,6 +157,78 @@ Normalized values (``value``/``total`` from output table) are grouped by specifi
 **Amino acid hydrophathy and strength profiles**. Germline CDR3 parts corresponding 
 to V, D and J segments are used (4, 4 and 2 length bins respectively), 
 as well as V-D and D-J junctions (1 length bin respectively). 
+
+--------------
+
+.. _Annotate2:
+
+Annotate
+^^^^^^^^
+
+This routine will compute a set of properties for each clonotype's CDR3 sequence and 
+append them to resulting clonotype table. For example, number of added N-nucleotides 
+and the sum of polar amino acids in CDR3. The main difference from :ref:`CalcCdrAAProfile` 
+is that the former computes sample-level average while this routine performs calculation 
+on clonotype level.
+
+Command line usage
+~~~~~~~~~~~~~~~~~~
+
+.. code-block:: bash
+
+    $VDJTOOLS Annotate \
+    [options] [sample1.txt sample2.txt ... if -m is not specified] output_prefix
+
+Parameters:
+
++-------------+-----------------------+--------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Shorthand   |      Long name        | Argument           | Description                                                                                                                                                                                                                                                               |
++=============+=======================+====================+===========================================================================================================================================================================================================================================================================+
+| ``-m``      | ``--metadata``        | path               | Path to metadata file. See :ref:`common_params`                                                                                                                                                                                                                           |
++-------------+-----------------------+--------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| ``-b``      | ``--base``            | param1,param2,...  | Comma-separated list of basic clonotype features to calculate and append to resulting clonotype tables. See below for allowed values. Default: ``cdr3Length,ndnSize,insertSize``                                                                                          |
++-------------+-----------------------+--------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| ``-a``      | ``--aaprop``          | property1,...      | Comma-separated list of amino acid properties. Amino acid property value sum will be calculated for CDR3 sequence (blank annotations will be generated for non-coding clonotypes). See below for allowed values. Default: ``hydropathy,charge,polarity,strength,contact`` |
++-------------+-----------------------+--------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| ``-h``      | ``--help``            |                    | Display help message                                                                                                                                                                                                                                                      |
++-------------+-----------------------+--------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+List of basic annotation properties:
+
++----------------+--------------------------------------------------------------------------------------------------+
+| Name           | Description                                                                                      |
++================+==================================================================================================+
+| ``cdr3Length`` | Length of CDR3 region                                                                            |
++----------------+--------------------------------------------------------------------------------------------------+
+| ``NDNSize``    | Number of nucleotides between last base of V germline and first base of J germline parts of CDR3 |
++----------------+--------------------------------------------------------------------------------------------------+
+| ``insertSize`` | Number of added N-nucleotides                                                                    |
++----------------+--------------------------------------------------------------------------------------------------+
+| ``VDIns``      | Number of added N-nucleotides in V-D junction or ``-1`` if D segment is undefined                |
++----------------+--------------------------------------------------------------------------------------------------+
+| ``DJIns``      | Number of added N-nucleotides in D-J junction or ``-1`` if D segment is undefined                |
++----------------+--------------------------------------------------------------------------------------------------+
+
+See :ref:`CalcCdrAAProfile` for the list of amino acid properties available for annotation. 
+Sum of specified amino acid property values across all amino acids of CDR3 will be computed. 
+It can be divided by ``cdr3Length / 3`` basic property value to get the average.
+    
+Tabular output
+~~~~~~~~~~~~~~
+
+Processed samples will have additional annotation columns appended to VDJtools clonotype 
+table columns. Those columns will be prefixed with ``base.`` for basic CDR3 properties 
+and ``aaprop.`` for CDR3 amino acid composition properties.
+
+A metadata file will be created for resulting samples with ``annot:[-b value]:[-a value]`` 
+appended to the ``..filter..`` metadata column.
+
+Graphical output
+~~~~~~~~~~~~~~~~
+
+none
+
+----------------
 
 .. _ScanDatabase:
 
