@@ -204,10 +204,3 @@ Below is an example of :ref:`RarefactionPlot` graphical output.
 **Rarefaction analysis of MS and healthy donor repertoires.** Note that 
 rarefaction curves for MS patients are generally lower than those for healthy 
 donors, indicating the presence of clonal expansion in former.
-
---------------
-
-See also
-^^^^^^^^
-
-A couple of VDJtools usage examples can be found in `Estimating the diversity of immune repertoires tutorial <http://repseq-tutorial.readthedocs.io/en/latest/>`__.

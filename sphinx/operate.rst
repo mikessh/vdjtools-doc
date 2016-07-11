@@ -11,7 +11,8 @@ JoinSamples
 Joins several clonotype tables together to form a joint clonotype abundance table.
 Joint clonotype holds information on all clonotypes that match under a certain 
 comparison criteria (e.g. identical CDR3nt and V segment), their samples of origin 
-and corresponding abundances.
+and corresponding abundances. At least two samples should be specified for this 
+routine. For two sample case also consider using :ref:`OverlapPair` routine.
 
 .. attention:: This is the most memory-demanding routine, especially for a large number of samples.
 
@@ -136,8 +137,8 @@ R package.
     :align: center
     :scale: 50 %
     
-**Overlap of clonotype sets**. See `Venn diagram wiki article 
-<http://en.wikipedia.org/wiki/Venn_diagram>`__ for the description.
+**Overlap of clonotype sets**. See `Venn diagram wiki article <http://en.wikipedia.org/wiki/Venn_diagram>`__ 
+for the description.
 
 -----------
 
@@ -147,7 +148,10 @@ PoolSamples
 ^^^^^^^^^^^
 
 Pools clonotypes from several samples together and merges clonotypes that 
-that match under a certain comparison criteria (e.g. identical CDR3nt and V segment).
+that match under a certain comparison criteria (e.g. identical CDR3nt and V segment). 
+Note that this routine can be used with a single sample to aggregate the sameple, e.g. 
+by CDR3 amino acid sequence, in this case CDR3 nucleotide sequence, V and J segments will be 
+taken from a representative clonotype variant with the highest frequency.
 
 Command line usage
 ~~~~~~~~~~~~~~~~~~
@@ -186,7 +190,7 @@ is created with the following columns.
 +----------------------+----------------------------------------------------------------------------------------+
 | read.count           | Total number of reads associated with a given pooled clonotype                         |
 +----------------------+----------------------------------------------------------------------------------------+
-| convergence          | Total number of clonotype variants that match the pooled clonotype under ``-i`` rule. Only for   |
+| convergence          | Total number of clonotype variants that match the pooled clonotype under ``-i`` rule.  |
 +----------------------+----------------------------------------------------------------------------------------+
 
 Pooled clonotype abundance table file having ``pool.[value of -i argument].summary.txt``.

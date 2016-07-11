@@ -116,9 +116,20 @@ Some useful utilities
    Converts from one software format to another
 -  :ref:`Rinstall`
    Installs necessary R dependencies
+
+Output
+~~~~~~
    
 Each routine generates a comprehensive tabular output and some 
-produce optional graphical output.
+produce optional graphical output. In case of graphical output, 
+the corresponding R script with specified arguments (at the beginning of 
+the script, commented) will be stored to the analysis folder. Thus, user can 
+uncomment the script arguments, modify the script and re-run it. This behavior 
+be disabled by running VDJtools with ``discard_scripts`` argument prior 
+to routine name.
+
+By default, all graphical output is generated in PDF format, to generate 
+PNG images use ````--plot-type png`` option.
 
 .. attention::
 
