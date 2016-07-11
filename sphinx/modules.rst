@@ -131,11 +131,10 @@ to routine name.
 By default, all graphical output is generated in PDF format, to generate 
 PNG images use ````--plot-type png`` option.
 
-When running routines that output clonotype tables in VDJtools format consider 
-the following:
+When running routines that output clonotype tables consider the following:
 
-- Joint and pooled samples are also in VDJtools fomat
-- Annotated samples are in VDJtools format with additional annotation columns, those will be retained when running most of the analysis
+- Joint and pooled samples are stored in VDJtools fomat
+- Samples produced using :ref:`ScanDatabase` or :ref:`Annotate` routine are in VDJtools format and include additional annotation columns. Annotation columns are retained when running most of VDJtools routines
 - When loading a joint/pooled sample into VDJtools, clonotype abundance vectors, incidence counts, etc will be treated as clonotype level annotations
 - Annotation columns will not be preserved when joining/pooling annotated samples
 
