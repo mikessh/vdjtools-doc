@@ -81,6 +81,14 @@ prior to analysis. Columns 8-10 are optional.
 | 1176      | 9.90E-02    | TGTGCCAGC...AAGCTTTCTTT   | CAST...EAFF      | TRBV12-4   | TRBD1     | TRBJ1-1   | 11         | 14        | 16        | 23        |
 +-----------+-------------+---------------------------+------------------+------------+-----------+-----------+------------+-----------+-----------+-----------+
 
+All additional columns after column 10 will be considered as clonotype annotations 
+and carried over unmodified during most stages of VDJtools analysis. This is especially 
+useful when running :ref:`Annotate` and :ref:`ScanDatabase` routines.
+
+Note that this applies to pre-processing (filtering) and annotation routines. 
+Those columns will not be saved when joining/pooling samples, a workaround 
+here will be to use :ref:`ApplySampleAsFilter` routine.
+
 .. _supported_input:
 
 Formats supported for conversion
