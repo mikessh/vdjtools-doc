@@ -136,7 +136,8 @@ When running routines that output clonotype tables consider the following:
 - Joint and pooled samples are stored in VDJtools fomat
 - Samples produced using :ref:`ScanDatabase` or :ref:`Annotate` routine are in VDJtools format and include additional annotation columns. Annotation columns are retained when running most of VDJtools routines
 - When loading a joint/pooled sample into VDJtools, clonotype abundance vectors, incidence counts, etc will be treated as clonotype level annotations
-- Annotation columns will not be preserved when joining/pooling annotated samples
+- Annotation columns will not be preserved when joining/pooling annotated samples, a workaround 
+here will be to use :ref:`ApplySampleAsFilter` routine
 
 .. attention::
 
